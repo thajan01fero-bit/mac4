@@ -617,22 +617,6 @@ nav a:hover{
     line-height:1.6;
 }
 
-.screenshot-box{
-    border:1px dashed #aaa;
-    padding:18px;
-    margin:20px 0;
-}
-
-.screenshot-box label{
-    display:block;
-    font-weight:bold;
-    margin-bottom:10px;
-}
-
-.screenshot-box input{
-    width:100%;
-}
-
 .order-summary{
     background:#f5f5f5;
     padding:15px;
@@ -1364,12 +1348,11 @@ footer a:hover{
             </label>
 
             <textarea id="customerAddress"
-                      placeholder="House no, street, area, city, state, pincode">
-            </textarea>
+                      placeholder="House no, street, area, city, state, pincode"></textarea>
 
         </div>
 
-        <!-- PAYMENT -->
+        <!-- ================= UPI PAYMENT ================= -->
 
         <div class="payment-box">
 
@@ -1391,8 +1374,7 @@ footer a:hover{
 
             </div>
 
-            <div id="qrcode">
-            </div>
+            <div id="qrcode"></div>
 
             <p class="payment-note">
 
@@ -1405,32 +1387,18 @@ footer a:hover{
                 The QR code contains your
                 exact order amount.
 
-            </p>
+                <br><br>
 
-        </div>
-
-        <!-- SCREENSHOT -->
-
-        <div class="screenshot-box">
-
-            <label>
-                PAYMENT SCREENSHOT
-            </label>
-
-            <input type="file"
-                   id="paymentScreenshot"
-                   accept="image/*">
-
-            <p style="font-size:12px;color:#777;margin-top:8px;">
-
-                After WhatsApp opens,
-                attach your payment screenshot.
+                After making the payment,
+                send your order on WhatsApp.
+                Payment will be verified manually
+                before your order is confirmed.
 
             </p>
 
         </div>
 
-        <!-- ORDER SUMMARY -->
+        <!-- ================= ORDER SUMMARY ================= -->
 
         <div class="order-summary">
 
@@ -1438,8 +1406,7 @@ footer a:hover{
                 ORDER SUMMARY
             </strong>
 
-            <div id="checkoutItems">
-            </div>
+            <div id="checkoutItems"></div>
 
             <div class="order-summary-row final-total">
 
@@ -1480,9 +1447,7 @@ const WHATSAPP_NUMBER =
 
 /* =====================================================
    PRODUCTS
-
-   IMPORTANT:
-   Each product has ONLY 1 piece for EACH SIZE.
+   ONLY 1 PIECE PER SIZE
 ===================================================== */
 
 const products = [
@@ -1493,16 +1458,13 @@ const products = [
         category:"Shirts",
         price:699,
         image:"images/shirt1.jpeg",
-
         sizes:["S","M","L","XL"],
-
         stock:{
             S:1,
             M:1,
             L:1,
             XL:1
         },
-
         badge:"NEW"
     },
 
@@ -1512,16 +1474,13 @@ const products = [
         category:"Shirts",
         price:899,
         image:"images/shirt2.jpeg",
-
         sizes:["S","M","L","XL"],
-
         stock:{
             S:1,
             M:1,
             L:1,
             XL:1
         },
-
         badge:""
     },
 
@@ -1531,16 +1490,13 @@ const products = [
         category:"Shirts",
         price:749,
         image:"images/shirt3.jpeg",
-
         sizes:["S","M","L","XL"],
-
         stock:{
             S:1,
             M:1,
             L:1,
             XL:1
         },
-
         badge:"BESTSELLER"
     },
 
@@ -1550,16 +1506,13 @@ const products = [
         category:"Shirts",
         price:1299,
         image:"images/shirt4.jpeg",
-
         sizes:["S","M","L","XL"],
-
         stock:{
             S:1,
             M:1,
             L:1,
             XL:1
         },
-
         badge:"NEW"
     },
 
@@ -1569,9 +1522,7 @@ const products = [
         category:"Pants",
         price:999,
         image:"images/pants1.jpeg",
-
         sizes:["28","30","32","34","36"],
-
         stock:{
             "28":1,
             "30":1,
@@ -1579,7 +1530,6 @@ const products = [
             "34":1,
             "36":1
         },
-
         badge:"NEW"
     },
 
@@ -1589,9 +1539,7 @@ const products = [
         category:"Pants",
         price:1099,
         image:"images/pants2.jpeg",
-
         sizes:["28","30","32","34","36"],
-
         stock:{
             "28":1,
             "30":1,
@@ -1599,7 +1547,6 @@ const products = [
             "34":1,
             "36":1
         },
-
         badge:""
     },
 
@@ -1609,9 +1556,7 @@ const products = [
         category:"Pants",
         price:1199,
         image:"images/pants3.jpeg",
-
         sizes:["28","30","32","34","36"],
-
         stock:{
             "28":1,
             "30":1,
@@ -1619,7 +1564,6 @@ const products = [
             "34":1,
             "36":1
         },
-
         badge:"BESTSELLER"
     },
 
@@ -1629,9 +1573,7 @@ const products = [
         category:"Pants",
         price:1299,
         image:"images/pants4.jpeg",
-
         sizes:["28","30","32","34","36"],
-
         stock:{
             "28":1,
             "30":1,
@@ -1639,7 +1581,6 @@ const products = [
             "34":1,
             "36":1
         },
-
         badge:"NEW"
     },
 
@@ -1649,16 +1590,13 @@ const products = [
         category:"T-Shirts",
         price:499,
         image:"images/tshirt1.jpeg",
-
         sizes:["S","M","L","XL"],
-
         stock:{
             S:1,
             M:1,
             L:1,
             XL:1
         },
-
         badge:"NEW"
     },
 
@@ -1668,16 +1606,13 @@ const products = [
         category:"T-Shirts",
         price:599,
         image:"images/tshirt2.jpeg",
-
         sizes:["S","M","L","XL"],
-
         stock:{
             S:1,
             M:1,
             L:1,
             XL:1
         },
-
         badge:""
     },
 
@@ -1687,16 +1622,13 @@ const products = [
         category:"T-Shirts",
         price:649,
         image:"images/tshirt3.jpeg",
-
         sizes:["S","M","L","XL"],
-
         stock:{
             S:1,
             M:1,
             L:1,
             XL:1
         },
-
         badge:"BESTSELLER"
     },
 
@@ -1706,16 +1638,13 @@ const products = [
         category:"T-Shirts",
         price:699,
         image:"images/tshirt4.jpeg",
-
         sizes:["S","M","L","XL"],
-
         stock:{
             S:1,
             M:1,
             L:1,
             XL:1
         },
-
         badge:"NEW"
     }
 
@@ -1726,9 +1655,7 @@ const products = [
 ===================================================== */
 
 let cart = [];
-
 let wishlist = [];
-
 let currentCategory = "all";
 
 /* =====================================================
@@ -1945,8 +1872,7 @@ function getCurrentProducts(){
 
 /* =====================================================
    SIZE SELECTOR
-
-   SOLD OUT / ALREADY CART SIZES ARE NOT DISPLAYED.
+   SOLD OUT SIZES ARE NOT DISPLAYED
 ===================================================== */
 
 function openSizeModal(productId){
@@ -1973,20 +1899,9 @@ function openSizeModal(productId){
         const stock =
             product.stock[size] || 0;
 
-        /*
-           If stock is 0,
-           don't display this size.
-        */
-
         if(stock <= 0){
             return;
         }
-
-        /*
-           If this exact product + size
-           is already in cart,
-           don't display it again.
-        */
 
         const alreadyInCart =
             cart.some(
@@ -2023,11 +1938,6 @@ function openSizeModal(productId){
 
     });
 
-    /*
-       If no sizes remain,
-       show message.
-    */
-
     if(options.children.length === 0){
 
         options.innerHTML = `
@@ -2063,15 +1973,9 @@ function closeSizeModal(){
 
 /* =====================================================
    ADD TO CART
-
-   ONLY ONE PIECE PER SIZE.
 ===================================================== */
 
 function addToCart(product,size){
-
-    /*
-       Check actual stock.
-    */
 
     if(
         !product.stock[size] ||
@@ -2085,11 +1989,6 @@ function addToCart(product,size){
         return;
 
     }
-
-    /*
-       Check whether product + size
-       is already in cart.
-    */
 
     const existing =
         cart.find(
@@ -2108,24 +2007,14 @@ function addToCart(product,size){
 
     }
 
-    /*
-       Add exactly ONE.
-    */
-
     cart.push({
 
         id:product.id,
-
         name:product.name,
-
         category:product.category,
-
         price:product.price,
-
         image:product.image,
-
         size:size,
-
         quantity:1
 
     });
@@ -2163,7 +2052,6 @@ function updateCart(){
     container.innerHTML = "";
 
     let total = 0;
-
     let countNumber = 0;
 
     if(cart.length === 0){
@@ -2517,9 +2405,7 @@ function updateCheckout(){
 
             <span>
 
-                ₹${(
-                    item.price
-                ).toLocaleString("en-IN")}
+                ₹${item.price.toLocaleString("en-IN")}
 
             </span>
 
@@ -2614,8 +2500,6 @@ function generateUPIQR(){
 
 /* =====================================================
    SEND WHATSAPP ORDER
-
-   Purchased sizes become SOLD OUT.
 ===================================================== */
 
 function sendWhatsAppOrder(){
@@ -2751,14 +2635,13 @@ function sendWhatsAppOrder(){
         encodeURIComponent(
             MAC_UPI_ID
         ) +
-        "%0A";
+        "%0A%0A";
 
     message +=
-        "Payment Screenshot: " +
-        "Please attach the screenshot here.%0A%0A";
+        "Payment will be verified by MAC before the order is confirmed.%0A%0A";
 
     message +=
-        "Please confirm my order.";
+        "Please confirm my order after payment verification.";
 
     const whatsappURL =
 
@@ -2768,9 +2651,7 @@ function sendWhatsAppOrder(){
         message;
 
     /*
-       IMPORTANT:
-
-       Mark each purchased product-size
+       Mark purchased product-size
        as SOLD OUT.
     */
 
@@ -2792,40 +2673,23 @@ function sendWhatsAppOrder(){
 
     });
 
-    /*
-       Refresh website.
-    */
-
     displayProducts(
         getCurrentProducts()
     );
-
-    /*
-       Open WhatsApp.
-    */
 
     window.open(
         whatsappURL,
         "_blank"
     );
 
-    /*
-       Clear cart because order
-       has been submitted.
-    */
-
     cart = [];
 
     updateCart();
 
-    /*
-       Close checkout.
-    */
-
     closeCheckout();
 
     showToast(
-        "Order submitted successfully!"
+        "Order sent to WhatsApp!"
     );
 
 }
