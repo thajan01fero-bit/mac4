@@ -31,11 +31,11 @@ body{
     background:#fff;
 }
 
-button,input,textarea,select{
+button,input,textarea{
     font-family:inherit;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 header{
     height:72px;
@@ -83,7 +83,7 @@ nav a:hover{
     background:none;
     cursor:pointer;
     position:relative;
-    font-size:24px;
+    font-size:23px;
 }
 
 .header-count{
@@ -102,7 +102,7 @@ nav a:hover{
     justify-content:center;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 
 .hero{
     height:82vh;
@@ -145,7 +145,7 @@ nav a:hover{
     color:#fff;
 }
 
-/* SECTIONS */
+/* ================= SECTIONS ================= */
 
 .section{
     padding:85px 6%;
@@ -161,7 +161,7 @@ nav a:hover{
     letter-spacing:3px;
 }
 
-/* CATEGORY */
+/* ================= CATEGORIES ================= */
 
 .catalog-menu{
     display:flex;
@@ -186,7 +186,7 @@ nav a:hover{
     color:white;
 }
 
-/* SEARCH */
+/* ================= SEARCH ================= */
 
 .search-box{
     max-width:500px;
@@ -201,7 +201,7 @@ nav a:hover{
     font-size:17px;
 }
 
-/* PRODUCTS */
+/* ================= PRODUCTS ================= */
 
 .products{
     display:grid;
@@ -300,7 +300,7 @@ nav a:hover{
     color:#fff;
 }
 
-/* COLLECTION */
+/* ================= COLLECTION ================= */
 
 .collection{
     display:grid;
@@ -353,7 +353,7 @@ nav a:hover{
     padding-bottom:5px;
 }
 
-/* PANELS */
+/* ================= PANELS ================= */
 
 .wishlist-panel,
 .cart-panel{
@@ -506,7 +506,7 @@ nav a:hover{
     margin-top:50px;
 }
 
-/* CHECKOUT */
+/* ================= CHECKOUT ================= */
 
 .checkout-overlay,
 .size-overlay{
@@ -576,7 +576,7 @@ nav a:hover{
     resize:vertical;
 }
 
-/* PAYMENT */
+/* ================= PAYMENT ================= */
 
 .payment-box{
     border:1px solid #ddd;
@@ -663,7 +663,7 @@ nav a:hover{
     cursor:pointer;
 }
 
-/* SIZE */
+/* ================= SIZE ================= */
 
 .size-box{
     background:white;
@@ -704,7 +704,13 @@ nav a:hover{
     color:white;
 }
 
-/* NEWSLETTER */
+.sold-out-message{
+    color:#777;
+    font-size:16px;
+    padding:20px;
+}
+
+/* ================= NEWSLETTER ================= */
 
 .newsletter{
     background:#f5f5f5;
@@ -743,7 +749,7 @@ nav a:hover{
     cursor:pointer;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 footer{
     background:#111;
@@ -789,7 +795,7 @@ footer a:hover{
     font-size:12px;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media(max-width:800px){
 
@@ -874,7 +880,7 @@ footer a:hover{
 
 <body>
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 
 <header>
 
@@ -890,21 +896,35 @@ footer a:hover{
 
     <div class="header-right">
 
-        <button class="wishlist-button" onclick="openWishlist()">
+        <button class="wishlist-button"
+                onclick="openWishlist()">
+
             ♡
-            <span class="header-count" id="wishlistCount">0</span>
+
+            <span class="header-count"
+                  id="wishlistCount">
+                0
+            </span>
+
         </button>
 
-        <button class="cart-button" onclick="openCart()">
+        <button class="cart-button"
+                onclick="openCart()">
+
             🛒
-            <span class="header-count" id="cartCount">0</span>
+
+            <span class="header-count"
+                  id="cartCount">
+                0
+            </span>
+
         </button>
 
     </div>
 
 </header>
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
@@ -912,9 +932,12 @@ footer a:hover{
 
         <h1>MAC</h1>
 
-        <p>EVERYDAY. ELEVATED.</p>
+        <p>
+            EVERYDAY. ELEVATED.
+        </p>
 
-        <a href="#new" class="shop-btn">
+        <a href="#new"
+           class="shop-btn">
             SHOP NOW
         </a>
 
@@ -922,12 +945,16 @@ footer a:hover{
 
 </section>
 
-<!-- PRODUCTS -->
+<!-- ================= PRODUCTS ================= -->
 
 <section class="section" id="new">
 
     <div class="section-title">
-        <h2>SHOP OUR COLLECTION</h2>
+
+        <h2>
+            SHOP OUR COLLECTION
+        </h2>
+
     </div>
 
     <div class="catalog-menu">
@@ -956,24 +983,30 @@ footer a:hover{
 
     <div class="search-box">
 
-        <input
-            type="text"
-            id="search"
-            placeholder="Search products..."
-            onkeyup="searchProducts()">
+        <input type="text"
+               id="search"
+               placeholder="Search products..."
+               onkeyup="searchProducts()">
 
     </div>
 
-    <div class="products" id="productGrid"></div>
+    <div class="products"
+         id="productGrid">
+    </div>
 
 </section>
 
-<!-- COLLECTION -->
+<!-- ================= COLLECTION ================= -->
 
-<section class="section" id="collection">
+<section class="section"
+         id="collection">
 
     <div class="section-title">
-        <h2>SHOP THE COLLECTION</h2>
+
+        <h2>
+            SHOP THE COLLECTION
+        </h2>
+
     </div>
 
     <div class="collection">
@@ -985,8 +1018,15 @@ footer a:hover{
                  alt="Shirts">
 
             <div class="collection-text">
-                <h2>SHIRTS</h2>
-                <a href="#new">SHOP SHIRTS →</a>
+
+                <h2>
+                    SHIRTS
+                </h2>
+
+                <a href="#new">
+                    SHOP SHIRTS →
+                </a>
+
             </div>
 
         </div>
@@ -998,8 +1038,15 @@ footer a:hover{
                  alt="Pants">
 
             <div class="collection-text">
-                <h2>PANTS</h2>
-                <a href="#new">SHOP PANTS →</a>
+
+                <h2>
+                    PANTS
+                </h2>
+
+                <a href="#new">
+                    SHOP PANTS →
+                </a>
+
             </div>
 
         </div>
@@ -1011,8 +1058,15 @@ footer a:hover{
                  alt="T-Shirts">
 
             <div class="collection-text">
-                <h2>T-SHIRTS</h2>
-                <a href="#new">SHOP T-SHIRTS →</a>
+
+                <h2>
+                    T-SHIRTS
+                </h2>
+
+                <a href="#new">
+                    SHOP T-SHIRTS →
+                </a>
+
             </div>
 
         </div>
@@ -1021,11 +1075,13 @@ footer a:hover{
 
 </section>
 
-<!-- NEWSLETTER -->
+<!-- ================= NEWSLETTER ================= -->
 
 <section class="newsletter">
 
-    <h2>JOIN MAC</h2>
+    <h2>
+        JOIN MAC
+    </h2>
 
     <p>
         Get first access to new collections and exclusive drops.
@@ -1044,7 +1100,7 @@ footer a:hover{
 
 </section>
 
-<!-- FOOTER -->
+<!-- ================= FOOTER ================= -->
 
 <footer id="about">
 
@@ -1064,44 +1120,81 @@ footer a:hover{
 
         <div>
 
-            <h3>SHOP</h3>
+            <h3>
+                SHOP
+            </h3>
 
-            <a href="#new">New Arrivals</a>
-            <a href="#collection">Shirts</a>
-            <a href="#collection">Pants</a>
-            <a href="#collection">T-Shirts</a>
+            <a href="#new">
+                New Arrivals
+            </a>
+
+            <a href="#collection">
+                Shirts
+            </a>
+
+            <a href="#collection">
+                Pants
+            </a>
+
+            <a href="#collection">
+                T-Shirts
+            </a>
 
         </div>
 
         <div>
 
-            <h3>HELP</h3>
+            <h3>
+                HELP
+            </h3>
 
-            <a href="#">Contact</a>
-            <a href="#">Shipping</a>
-            <a href="#">Returns</a>
-            <a href="#">Size Guide</a>
+            <a href="#">
+                Contact
+            </a>
+
+            <a href="#">
+                Shipping
+            </a>
+
+            <a href="#">
+                Returns
+            </a>
+
+            <a href="#">
+                Size Guide
+            </a>
 
         </div>
 
-        <!-- UPDATED CONTACT -->
+        <!-- CONTACT -->
 
         <div>
 
-            <h3>CONTACT</h3>
+            <h3>
+                CONTACT
+            </h3>
 
             <a href="https://wa.me/919994977386"
                target="_blank">
-                WhatsApp: +91 99949 77386
+
+                WhatsApp:
+                +91 99949 77386
+
             </a>
 
             <a href="tel:+919994977386">
-                Call: +91 99949 77386
+
+                Call:
+                +91 99949 77386
+
             </a>
 
             <a href="https://www.instagram.com/_mac.clothing/"
                target="_blank">
-                Instagram: @_mac.clothing
+
+                Instagram:
+                @_mac.clothing
+
             </a>
 
         </div>
@@ -1109,23 +1202,31 @@ footer a:hover{
     </div>
 
     <div class="copyright">
-        © 2026 MAC Clothing. All rights reserved.
+
+        © 2026 MAC Clothing.
+        All rights reserved.
+
     </div>
 
 </footer>
 
-<!-- SIZE MODAL -->
+<!-- ================= SIZE MODAL ================= -->
 
-<div class="size-overlay" id="sizeOverlay">
+<div class="size-overlay"
+     id="sizeOverlay">
 
     <div class="size-box">
 
         <button class="close-size"
                 onclick="closeSizeModal()">
+
             ×
+
         </button>
 
-        <h2>SELECT SIZE</h2>
+        <h2>
+            SELECT SIZE
+        </h2>
 
         <p id="sizeProductName">
             Choose your size
@@ -1139,18 +1240,22 @@ footer a:hover{
 
 </div>
 
-<!-- WISHLIST -->
+<!-- ================= WISHLIST ================= -->
 
 <div class="wishlist-panel"
      id="wishlistPanel">
 
     <div class="wishlist-header">
 
-        <h2>WISHLIST</h2>
+        <h2>
+            WISHLIST
+        </h2>
 
         <button class="close-wishlist"
                 onclick="closeWishlist()">
+
             ×
+
         </button>
 
     </div>
@@ -1161,18 +1266,22 @@ footer a:hover{
 
 </div>
 
-<!-- CART -->
+<!-- ================= CART ================= -->
 
 <div class="cart-panel"
      id="cartPanel">
 
     <div class="cart-header">
 
-        <h2>YOUR CART</h2>
+        <h2>
+            YOUR CART
+        </h2>
 
         <button class="close-cart"
                 onclick="closeCart()">
+
             ×
+
         </button>
 
     </div>
@@ -1185,7 +1294,9 @@ footer a:hover{
 
         <div class="cart-total">
 
-            <span>TOTAL</span>
+            <span>
+                TOTAL
+            </span>
 
             <span id="cartTotal">
                 ₹0
@@ -1195,14 +1306,16 @@ footer a:hover{
 
         <button class="checkout-btn"
                 onclick="openCheckout()">
+
             PROCEED TO PAY
+
         </button>
 
     </div>
 
 </div>
 
-<!-- CHECKOUT -->
+<!-- ================= CHECKOUT ================= -->
 
 <div class="checkout-overlay"
      id="checkoutOverlay">
@@ -1211,14 +1324,20 @@ footer a:hover{
 
         <button class="close-checkout"
                 onclick="closeCheckout()">
+
             ×
+
         </button>
 
-        <h2>COMPLETE YOUR ORDER</h2>
+        <h2>
+            COMPLETE YOUR ORDER
+        </h2>
 
         <div class="form-group">
 
-            <label>FULL NAME</label>
+            <label>
+                FULL NAME
+            </label>
 
             <input type="text"
                    id="customerName"
@@ -1228,7 +1347,9 @@ footer a:hover{
 
         <div class="form-group">
 
-            <label>PHONE NUMBER</label>
+            <label>
+                PHONE NUMBER
+            </label>
 
             <input type="tel"
                    id="customerPhone"
@@ -1238,10 +1359,13 @@ footer a:hover{
 
         <div class="form-group">
 
-            <label>DELIVERY ADDRESS</label>
+            <label>
+                DELIVERY ADDRESS
+            </label>
 
             <textarea id="customerAddress"
-                      placeholder="House no, street, area, city, state, pincode"></textarea>
+                      placeholder="House no, street, area, city, state, pincode">
+            </textarea>
 
         </div>
 
@@ -1250,19 +1374,25 @@ footer a:hover{
         <div class="payment-box">
 
             <h3>
-                PAY ₹<span id="paymentAmount">0</span>
+
+                PAY ₹
+                <span id="paymentAmount">
+                    0
+                </span>
+
             </h3>
 
             <div class="upi-id">
 
                 UPI ID:
-                <span>
+                <strong>
                     thajan01fero@oksbi
-                </span>
+                </strong>
 
             </div>
 
-            <div id="qrcode"></div>
+            <div id="qrcode">
+            </div>
 
             <p class="payment-note">
 
@@ -1272,8 +1402,8 @@ footer a:hover{
 
                 <br><br>
 
-                The QR code automatically contains
-                your order amount.
+                The QR code contains your
+                exact order amount.
 
             </p>
 
@@ -1292,12 +1422,15 @@ footer a:hover{
                    accept="image/*">
 
             <p style="font-size:12px;color:#777;margin-top:8px;">
-                After WhatsApp opens, attach your payment screenshot.
+
+                After WhatsApp opens,
+                attach your payment screenshot.
+
             </p>
 
         </div>
 
-        <!-- SUMMARY -->
+        <!-- ORDER SUMMARY -->
 
         <div class="order-summary">
 
@@ -1305,11 +1438,14 @@ footer a:hover{
                 ORDER SUMMARY
             </strong>
 
-            <div id="checkoutItems"></div>
+            <div id="checkoutItems">
+            </div>
 
             <div class="order-summary-row final-total">
 
-                <span>TOTAL</span>
+                <span>
+                    TOTAL
+                </span>
 
                 <span id="checkoutTotal">
                     ₹0
@@ -1332,857 +1468,1433 @@ footer a:hover{
 
 <script>
 
-/* SETTINGS */
+/* =====================================================
+   MAC SETTINGS
+===================================================== */
 
-const MAC_UPI_ID = "thajan01fero@oksbi";
+const MAC_UPI_ID =
+    "thajan01fero@oksbi";
 
-const WHATSAPP_NUMBER = "919994977386";
+const WHATSAPP_NUMBER =
+    "919994977386";
 
-/* PRODUCTS */
+/* =====================================================
+   PRODUCTS
+
+   IMPORTANT:
+   Each product has ONLY 1 piece for EACH SIZE.
+===================================================== */
 
 const products = [
 
-{
-id:1,
-name:"Essential Oversized Shirt",
-category:"Shirts",
-price:699,
-image:"images/shirt1.jpeg",
-sizes:["S","M","L","XL"],
-badge:"NEW"
-},
+    {
+        id:1,
+        name:"Essential Oversized Shirt",
+        category:"Shirts",
+        price:699,
+        image:"images/shirt1.jpeg",
 
-{
-id:2,
-name:"Premium Everyday Shirt",
-category:"Shirts",
-price:899,
-image:"images/shirt2.jpeg",
-sizes:["S","M","L","XL"],
-badge:""
-},
+        sizes:["S","M","L","XL"],
 
-{
-id:3,
-name:"MAC Streetwear Shirt",
-category:"Shirts",
-price:749,
-image:"images/shirt3.jpeg",
-sizes:["S","M","L","XL"],
-badge:"BESTSELLER"
-},
+        stock:{
+            S:1,
+            M:1,
+            L:1,
+            XL:1
+        },
 
-{
-id:4,
-name:"Signature Shirt",
-category:"Shirts",
-price:1299,
-image:"images/shirt4.jpeg",
-sizes:["S","M","L","XL"],
-badge:"NEW"
-},
+        badge:"NEW"
+    },
 
-{
-id:5,
-name:"Classic Straight Pants",
-category:"Pants",
-price:999,
-image:"images/pants1.jpeg",
-sizes:["28","30","32","34","36"],
-badge:"NEW"
-},
+    {
+        id:2,
+        name:"Premium Everyday Shirt",
+        category:"Shirts",
+        price:899,
+        image:"images/shirt2.jpeg",
 
-{
-id:6,
-name:"Relaxed Fit Pants",
-category:"Pants",
-price:1099,
-image:"images/pants2.jpeg",
-sizes:["28","30","32","34","36"],
-badge:""
-},
+        sizes:["S","M","L","XL"],
 
-{
-id:7,
-name:"MAC Premium Pants",
-category:"Pants",
-price:1199,
-image:"images/pants3.jpeg",
-sizes:["28","30","32","34","36"],
-badge:"BESTSELLER"
-},
+        stock:{
+            S:1,
+            M:1,
+            L:1,
+            XL:1
+        },
 
-{
-id:8,
-name:"Modern Cargo Pants",
-category:"Pants",
-price:1299,
-image:"images/pants4.jpeg",
-sizes:["28","30","32","34","36"],
-badge:"NEW"
-},
+        badge:""
+    },
 
-{
-id:9,
-name:"Essential Cotton T-Shirt",
-category:"T-Shirts",
-price:499,
-image:"images/tshirt1.jpeg",
-sizes:["S","M","L","XL"],
-badge:"NEW"
-},
+    {
+        id:3,
+        name:"MAC Streetwear Shirt",
+        category:"Shirts",
+        price:749,
+        image:"images/shirt3.jpeg",
 
-{
-id:10,
-name:"Premium Oversized T-Shirt",
-category:"T-Shirts",
-price:599,
-image:"images/tshirt2.jpeg",
-sizes:["S","M","L","XL"],
-badge:""
-},
+        sizes:["S","M","L","XL"],
 
-{
-id:11,
-name:"MAC Graphic T-Shirt",
-category:"T-Shirts",
-price:649,
-image:"images/tshirt3.jpeg",
-sizes:["S","M","L","XL"],
-badge:"BESTSELLER"
-},
+        stock:{
+            S:1,
+            M:1,
+            L:1,
+            XL:1
+        },
 
-{
-id:12,
-name:"Signature T-Shirt",
-category:"T-Shirts",
-price:699,
-image:"images/tshirt4.jpeg",
-sizes:["S","M","L","XL"],
-badge:"NEW"
-}
+        badge:"BESTSELLER"
+    },
+
+    {
+        id:4,
+        name:"Signature Shirt",
+        category:"Shirts",
+        price:1299,
+        image:"images/shirt4.jpeg",
+
+        sizes:["S","M","L","XL"],
+
+        stock:{
+            S:1,
+            M:1,
+            L:1,
+            XL:1
+        },
+
+        badge:"NEW"
+    },
+
+    {
+        id:5,
+        name:"Classic Straight Pants",
+        category:"Pants",
+        price:999,
+        image:"images/pants1.jpeg",
+
+        sizes:["28","30","32","34","36"],
+
+        stock:{
+            "28":1,
+            "30":1,
+            "32":1,
+            "34":1,
+            "36":1
+        },
+
+        badge:"NEW"
+    },
+
+    {
+        id:6,
+        name:"Relaxed Fit Pants",
+        category:"Pants",
+        price:1099,
+        image:"images/pants2.jpeg",
+
+        sizes:["28","30","32","34","36"],
+
+        stock:{
+            "28":1,
+            "30":1,
+            "32":1,
+            "34":1,
+            "36":1
+        },
+
+        badge:""
+    },
+
+    {
+        id:7,
+        name:"MAC Premium Pants",
+        category:"Pants",
+        price:1199,
+        image:"images/pants3.jpeg",
+
+        sizes:["28","30","32","34","36"],
+
+        stock:{
+            "28":1,
+            "30":1,
+            "32":1,
+            "34":1,
+            "36":1
+        },
+
+        badge:"BESTSELLER"
+    },
+
+    {
+        id:8,
+        name:"Modern Cargo Pants",
+        category:"Pants",
+        price:1299,
+        image:"images/pants4.jpeg",
+
+        sizes:["28","30","32","34","36"],
+
+        stock:{
+            "28":1,
+            "30":1,
+            "32":1,
+            "34":1,
+            "36":1
+        },
+
+        badge:"NEW"
+    },
+
+    {
+        id:9,
+        name:"Essential Cotton T-Shirt",
+        category:"T-Shirts",
+        price:499,
+        image:"images/tshirt1.jpeg",
+
+        sizes:["S","M","L","XL"],
+
+        stock:{
+            S:1,
+            M:1,
+            L:1,
+            XL:1
+        },
+
+        badge:"NEW"
+    },
+
+    {
+        id:10,
+        name:"Premium Oversized T-Shirt",
+        category:"T-Shirts",
+        price:599,
+        image:"images/tshirt2.jpeg",
+
+        sizes:["S","M","L","XL"],
+
+        stock:{
+            S:1,
+            M:1,
+            L:1,
+            XL:1
+        },
+
+        badge:""
+    },
+
+    {
+        id:11,
+        name:"MAC Graphic T-Shirt",
+        category:"T-Shirts",
+        price:649,
+        image:"images/tshirt3.jpeg",
+
+        sizes:["S","M","L","XL"],
+
+        stock:{
+            S:1,
+            M:1,
+            L:1,
+            XL:1
+        },
+
+        badge:"BESTSELLER"
+    },
+
+    {
+        id:12,
+        name:"Signature T-Shirt",
+        category:"T-Shirts",
+        price:699,
+        image:"images/tshirt4.jpeg",
+
+        sizes:["S","M","L","XL"],
+
+        stock:{
+            S:1,
+            M:1,
+            L:1,
+            XL:1
+        },
+
+        badge:"NEW"
+    }
 
 ];
 
-let cart=[];
-let wishlist=[];
-let currentCategory="all";
+/* =====================================================
+   CART / WISHLIST
+===================================================== */
 
-/* DISPLAY PRODUCTS */
+let cart = [];
 
-function displayProducts(list=products){
+let wishlist = [];
 
-const grid=document.getElementById("productGrid");
+let currentCategory = "all";
 
-grid.innerHTML="";
+/* =====================================================
+   DISPLAY PRODUCTS
+===================================================== */
 
-if(list.length===0){
+function displayProducts(list = products){
 
-grid.innerHTML=`
-<p style="grid-column:1/-1;text-align:center;color:#777;font-size:20px;">
-No products found.
-</p>`;
+    const grid =
+        document.getElementById("productGrid");
 
-return;
+    grid.innerHTML = "";
+
+    if(list.length === 0){
+
+        grid.innerHTML = `
+            <p style="
+                grid-column:1/-1;
+                text-align:center;
+                color:#777;
+                font-size:20px;
+            ">
+                No products found.
+            </p>
+        `;
+
+        return;
+    }
+
+    list.forEach(product => {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "product";
+
+        const isWishlisted =
+            wishlist.includes(product.id);
+
+        div.innerHTML = `
+
+            <div class="product-image-wrapper">
+
+                ${
+                    product.badge
+                    ?
+                    `<span class="badge">
+                        ${product.badge}
+                    </span>`
+                    :
+                    ""
+                }
+
+                <button
+                    class="wishlist-product-btn
+                    ${isWishlisted ? "active" : ""}"
+                    onclick="toggleWishlist(${product.id})">
+
+                    ${isWishlisted ? "♥" : "♡"}
+
+                </button>
+
+                <img
+                    class="product-image"
+                    src="${product.image}"
+                    alt="${product.name}"
+                    onerror="
+                    this.src='https://via.placeholder.com/600x800?text=MAC+Clothing'
+                    ">
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    ${product.name}
+                </h3>
+
+                <div class="category-name">
+                    ${product.category}
+                </div>
+
+                <p class="price">
+                    ₹${product.price.toLocaleString("en-IN")}
+                </p>
+
+                <div class="product-actions">
+
+                    <button
+                        onclick="openSizeModal(${product.id})">
+
+                        SELECT SIZE
+
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+        grid.appendChild(div);
+
+    });
+
 }
 
-list.forEach(product=>{
-
-const div=document.createElement("div");
-
-div.className="product";
-
-const isWishlisted=wishlist.includes(product.id);
-
-div.innerHTML=`
-
-<div class="product-image-wrapper">
-
-${product.badge?
-`<span class="badge">${product.badge}</span>`:""}
-
-<button
-class="wishlist-product-btn ${isWishlisted?"active":""}"
-onclick="toggleWishlist(${product.id})">
-
-${isWishlisted?"♥":"♡"}
-
-</button>
-
-<img
-class="product-image"
-src="${product.image}"
-alt="${product.name}"
-onerror="this.src='https://via.placeholder.com/600x800?text=MAC+Clothing'">
-
-</div>
-
-<div class="product-info">
-
-<h3>${product.name}</h3>
-
-<div class="category-name">
-${product.category}
-</div>
-
-<p class="price">
-₹${product.price.toLocaleString("en-IN")}
-</p>
-
-<div class="product-actions">
-
-<button onclick="openSizeModal(${product.id})">
-SELECT SIZE & ADD TO CART
-</button>
-
-</div>
-
-</div>
-
-`;
-
-grid.appendChild(div);
-
-});
-
-}
-
-/* FILTER */
+/* =====================================================
+   FILTER
+===================================================== */
 
 function filterCategory(category,button){
 
-currentCategory=category;
+    currentCategory = category;
 
-document.querySelectorAll(".catalog-btn")
-.forEach(btn=>btn.classList.remove("active"));
+    document
+        .querySelectorAll(".catalog-btn")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
 
-if(button) button.classList.add("active");
+    if(button){
+        button.classList.add("active");
+    }
 
-displayProducts(getCurrentProducts());
+    displayProducts(
+        getCurrentProducts()
+    );
 
-document.getElementById("new")
-.scrollIntoView({behavior:"smooth"});
+    document
+        .getElementById("new")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
 
 }
 
-/* COLLECTION */
+/* =====================================================
+   COLLECTION
+===================================================== */
 
 function selectCollection(category){
 
-const buttons=document.querySelectorAll(".catalog-btn");
+    const buttons =
+        document.querySelectorAll(".catalog-btn");
 
-buttons.forEach(button=>{
+    buttons.forEach(button => {
 
-if(button.innerText.trim().toLowerCase()===category.toLowerCase()){
+        if(
+            button.innerText
+            .trim()
+            .toLowerCase()
+            ===
+            category.toLowerCase()
+        ){
 
-filterCategory(category,button);
+            filterCategory(
+                category,
+                button
+            );
+
+        }
+
+    });
 
 }
 
-});
-
-}
-
-/* SEARCH */
+/* =====================================================
+   SEARCH
+===================================================== */
 
 function searchProducts(){
 
-displayProducts(getCurrentProducts());
+    displayProducts(
+        getCurrentProducts()
+    );
 
 }
-
-/* CURRENT PRODUCTS */
 
 function getCurrentProducts(){
 
-const search=document
-.getElementById("search")
-.value
-.toLowerCase();
+    const search =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
 
-let result=products;
+    let result = products;
 
-if(currentCategory!=="all"){
+    if(currentCategory !== "all"){
 
-result=result.filter(
-product=>product.category===currentCategory
-);
+        result =
+            result.filter(
+                product =>
+                product.category === currentCategory
+            );
+
+    }
+
+    if(search){
+
+        result =
+            result.filter(
+                product =>
+                product.name
+                .toLowerCase()
+                .includes(search)
+            );
+
+    }
+
+    return result;
 
 }
 
-if(search){
+/* =====================================================
+   SIZE SELECTOR
 
-result=result.filter(
-product=>product.name.toLowerCase().includes(search)
-);
-
-}
-
-return result;
-
-}
-
-/* SIZE */
+   SOLD OUT / ALREADY CART SIZES ARE NOT DISPLAYED.
+===================================================== */
 
 function openSizeModal(productId){
 
-const product=products.find(p=>p.id===productId);
+    const product =
+        products.find(
+            p => p.id === productId
+        );
 
-if(!product)return;
+    if(!product) return;
 
-document.getElementById("sizeProductName").innerText=product.name;
+    document
+        .getElementById("sizeProductName")
+        .innerText =
+        product.name;
 
-const options=document.getElementById("sizeOptions");
+    const options =
+        document.getElementById("sizeOptions");
 
-options.innerHTML="";
+    options.innerHTML = "";
 
-product.sizes.forEach(size=>{
+    product.sizes.forEach(size => {
 
-const button=document.createElement("button");
+        const stock =
+            product.stock[size] || 0;
 
-button.className="size-option";
+        /*
+           If stock is 0,
+           don't display this size.
+        */
 
-button.innerText=size;
+        if(stock <= 0){
+            return;
+        }
 
-button.onclick=function(){
+        /*
+           If this exact product + size
+           is already in cart,
+           don't display it again.
+        */
 
-addToCart(product,size);
+        const alreadyInCart =
+            cart.some(
+                item =>
+                item.id === product.id &&
+                item.size === size
+            );
 
-closeSizeModal();
+        if(alreadyInCart){
+            return;
+        }
 
-};
+        const button =
+            document.createElement("button");
 
-options.appendChild(button);
+        button.className =
+            "size-option";
 
-});
+        button.innerText =
+            size;
 
-document.getElementById("sizeOverlay")
-.classList.add("active");
+        button.onclick = function(){
+
+            addToCart(
+                product,
+                size
+            );
+
+            closeSizeModal();
+
+        };
+
+        options.appendChild(button);
+
+    });
+
+    /*
+       If no sizes remain,
+       show message.
+    */
+
+    if(options.children.length === 0){
+
+        options.innerHTML = `
+
+            <div class="sold-out-message">
+
+                All available sizes
+                are sold out.
+
+            </div>
+
+        `;
+
+    }
+
+    document
+        .getElementById("sizeOverlay")
+        .classList.add("active");
 
 }
+
+/* =====================================================
+   CLOSE SIZE
+===================================================== */
 
 function closeSizeModal(){
 
-document.getElementById("sizeOverlay")
-.classList.remove("active");
+    document
+        .getElementById("sizeOverlay")
+        .classList.remove("active");
 
 }
 
-/* CART */
+/* =====================================================
+   ADD TO CART
+
+   ONLY ONE PIECE PER SIZE.
+===================================================== */
 
 function addToCart(product,size){
 
-const existing=cart.find(
-item=>item.id===product.id&&item.size===size
-);
+    /*
+       Check actual stock.
+    */
 
-if(existing){
+    if(
+        !product.stock[size] ||
+        product.stock[size] <= 0
+    ){
 
-existing.quantity++;
+        alert(
+            "This size is sold out."
+        );
 
-}else{
+        return;
 
-cart.push({
+    }
 
-id:product.id,
-name:product.name,
-category:product.category,
-price:product.price,
-image:product.image,
-size:size,
-quantity:1
+    /*
+       Check whether product + size
+       is already in cart.
+    */
 
-});
+    const existing =
+        cart.find(
+            item =>
+            item.id === product.id &&
+            item.size === size
+        );
+
+    if(existing){
+
+        alert(
+            "Only 1 piece of this size is available."
+        );
+
+        return;
+
+    }
+
+    /*
+       Add exactly ONE.
+    */
+
+    cart.push({
+
+        id:product.id,
+
+        name:product.name,
+
+        category:product.category,
+
+        price:product.price,
+
+        image:product.image,
+
+        size:size,
+
+        quantity:1
+
+    });
+
+    updateCart();
+
+    displayProducts(
+        getCurrentProducts()
+    );
+
+    showToast(
+        product.name +
+        " - Size " +
+        size +
+        " added to cart"
+    );
 
 }
 
-updateCart();
-
-showToast(product.name+" added to cart!");
-
-}
+/* =====================================================
+   CART
+===================================================== */
 
 function updateCart(){
 
-const container=document.getElementById("cartItems");
+    const container =
+        document.getElementById("cartItems");
 
-const count=document.getElementById("cartCount");
+    const count =
+        document.getElementById("cartCount");
 
-const totalElement=document.getElementById("cartTotal");
+    const totalElement =
+        document.getElementById("cartTotal");
 
-container.innerHTML="";
+    container.innerHTML = "";
 
-let total=0;
-let countNumber=0;
+    let total = 0;
 
-if(cart.length===0){
+    let countNumber = 0;
 
-container.innerHTML=`
-<div class="empty-cart">
-Your cart is empty.
-</div>`;
+    if(cart.length === 0){
+
+        container.innerHTML = `
+
+            <div class="empty-cart">
+
+                Your cart is empty.
+
+            </div>
+
+        `;
+
+    }
+
+    cart.forEach((item,index) => {
+
+        total +=
+            item.price *
+            item.quantity;
+
+        countNumber +=
+            item.quantity;
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "cart-item";
+
+        div.innerHTML = `
+
+            <img
+                src="${item.image}"
+                alt="${item.name}">
+
+            <div class="cart-item-info">
+
+                <h4>
+                    ${item.name}
+                </h4>
+
+                <div class="cart-size">
+                    Size: ${item.size}
+                </div>
+
+                <div class="cart-price">
+                    ₹${item.price.toLocaleString("en-IN")}
+                </div>
+
+                <div class="qty">
+
+                    <span>
+                        Quantity: 1
+                    </span>
+
+                </div>
+
+                <button
+                    class="remove"
+                    onclick="removeItem(${index})">
+
+                    Remove
+
+                </button>
+
+            </div>
+
+        `;
+
+        container.appendChild(div);
+
+    });
+
+    count.innerText =
+        countNumber;
+
+    totalElement.innerText =
+        "₹" +
+        total.toLocaleString("en-IN");
 
 }
 
-cart.forEach((item,index)=>{
-
-total+=item.price*item.quantity;
-
-countNumber+=item.quantity;
-
-const div=document.createElement("div");
-
-div.className="cart-item";
-
-div.innerHTML=`
-
-<img src="${item.image}" alt="${item.name}">
-
-<div class="cart-item-info">
-
-<h4>${item.name}</h4>
-
-<div class="cart-size">
-Size: ${item.size}
-</div>
-
-<div class="cart-price">
-₹${item.price.toLocaleString("en-IN")}
-</div>
-
-<div class="qty">
-
-<button onclick="changeQuantity(${index},-1)">
-−
-</button>
-
-<span>${item.quantity}</span>
-
-<button onclick="changeQuantity(${index},1)">
-+
-</button>
-
-</div>
-
-<button class="remove"
-onclick="removeItem(${index})">
-Remove
-</button>
-
-</div>
-
-`;
-
-container.appendChild(div);
-
-});
-
-count.innerText=countNumber;
-
-totalElement.innerText=
-"₹"+total.toLocaleString("en-IN");
-
-}
-
-function changeQuantity(index,amount){
-
-cart[index].quantity+=amount;
-
-if(cart[index].quantity<=0){
-
-cart.splice(index,1);
-
-}
-
-updateCart();
-
-}
+/* =====================================================
+   REMOVE CART ITEM
+===================================================== */
 
 function removeItem(index){
 
-cart.splice(index,1);
+    cart.splice(index,1);
 
-updateCart();
+    updateCart();
+
+    displayProducts(
+        getCurrentProducts()
+    );
 
 }
+
+/* =====================================================
+   CART TOTAL
+===================================================== */
 
 function getCartTotal(){
 
-return cart.reduce(
-(total,item)=>total+(item.price*item.quantity),0
-);
+    return cart.reduce(
+
+        (total,item) =>
+
+            total +
+            (
+                item.price *
+                item.quantity
+            ),
+
+        0
+
+    );
 
 }
 
-/* CART PANEL */
+/* =====================================================
+   CART PANEL
+===================================================== */
 
 function openCart(){
 
-closeWishlist();
+    closeWishlist();
 
-document.getElementById("cartPanel")
-.classList.add("active");
+    document
+        .getElementById("cartPanel")
+        .classList.add("active");
 
 }
 
 function closeCart(){
 
-document.getElementById("cartPanel")
-.classList.remove("active");
+    document
+        .getElementById("cartPanel")
+        .classList.remove("active");
 
 }
 
-/* WISHLIST */
+/* =====================================================
+   WISHLIST
+===================================================== */
 
 function toggleWishlist(productId){
 
-const index=wishlist.indexOf(productId);
+    const index =
+        wishlist.indexOf(productId);
 
-if(index===-1){
+    if(index === -1){
 
-wishlist.push(productId);
+        wishlist.push(productId);
 
-showToast("Added to wishlist ♥");
+        showToast(
+            "Added to wishlist ♥"
+        );
 
-}else{
+    }else{
 
-wishlist.splice(index,1);
+        wishlist.splice(index,1);
 
-showToast("Removed from wishlist");
+        showToast(
+            "Removed from wishlist"
+        );
 
-}
+    }
 
-updateWishlist();
+    updateWishlist();
 
-displayProducts(getCurrentProducts());
+    displayProducts(
+        getCurrentProducts()
+    );
 
 }
 
 function updateWishlist(){
 
-const container=document.getElementById("wishlistItems");
+    const container =
+        document.getElementById("wishlistItems");
 
-const count=document.getElementById("wishlistCount");
+    const count =
+        document.getElementById("wishlistCount");
 
-count.innerText=wishlist.length;
+    count.innerText =
+        wishlist.length;
 
-container.innerHTML="";
+    container.innerHTML = "";
 
-if(wishlist.length===0){
+    if(wishlist.length === 0){
 
-container.innerHTML=`
-<div class="empty-wishlist">
-Your wishlist is empty ♡
-<br><br>
-Save products you love here.
-</div>`;
+        container.innerHTML = `
 
-return;
+            <div class="empty-wishlist">
 
-}
+                Your wishlist is empty ♡
 
-wishlist.forEach(productId=>{
+                <br><br>
 
-const product=products.find(p=>p.id===productId);
+                Save products you love here.
 
-if(!product)return;
+            </div>
 
-const div=document.createElement("div");
+        `;
 
-div.className="wishlist-item";
+        return;
 
-div.innerHTML=`
+    }
 
-<img src="${product.image}" alt="${product.name}">
+    wishlist.forEach(productId => {
 
-<div class="wishlist-item-info">
+        const product =
+            products.find(
+                p => p.id === productId
+            );
 
-<h3>${product.name}</h3>
+        if(!product) return;
 
-<p>₹${product.price.toLocaleString("en-IN")}</p>
+        const div =
+            document.createElement("div");
 
-<button onclick="openSizeModal(${product.id})">
-ADD TO CART
-</button>
+        div.className =
+            "wishlist-item";
 
-<button onclick="toggleWishlist(${product.id})">
-REMOVE
-</button>
+        div.innerHTML = `
 
-</div>
+            <img
+                src="${product.image}"
+                alt="${product.name}">
 
-`;
+            <div class="wishlist-item-info">
 
-container.appendChild(div);
+                <h3>
+                    ${product.name}
+                </h3>
 
-});
+                <p>
+                    ₹${product.price.toLocaleString("en-IN")}
+                </p>
+
+                <br>
+
+                <button
+                    onclick="openSizeModal(${product.id})">
+
+                    ADD TO CART
+
+                </button>
+
+                <button
+                    onclick="toggleWishlist(${product.id})">
+
+                    REMOVE
+
+                </button>
+
+            </div>
+
+        `;
+
+        container.appendChild(div);
+
+    });
 
 }
 
 function openWishlist(){
 
-closeCart();
+    closeCart();
 
-updateWishlist();
+    updateWishlist();
 
-document.getElementById("wishlistPanel")
-.classList.add("active");
+    document
+        .getElementById("wishlistPanel")
+        .classList.add("active");
 
 }
 
 function closeWishlist(){
 
-document.getElementById("wishlistPanel")
-.classList.remove("active");
+    document
+        .getElementById("wishlistPanel")
+        .classList.remove("active");
 
 }
 
-/* CHECKOUT */
+/* =====================================================
+   CHECKOUT
+===================================================== */
 
 function openCheckout(){
 
-if(cart.length===0){
+    if(cart.length === 0){
 
-alert("Your cart is empty!");
+        alert(
+            "Your cart is empty!"
+        );
 
-return;
+        return;
 
-}
+    }
 
-updateCheckout();
+    updateCheckout();
 
-document.getElementById("checkoutOverlay")
-.classList.add("active");
+    document
+        .getElementById("checkoutOverlay")
+        .classList.add("active");
 
-setTimeout(generateUPIQR,150);
+    setTimeout(
+        generateUPIQR,
+        150
+    );
 
 }
 
 function closeCheckout(){
 
-document.getElementById("checkoutOverlay")
-.classList.remove("active");
+    document
+        .getElementById("checkoutOverlay")
+        .classList.remove("active");
 
 }
 
 function updateCheckout(){
 
-const container=document.getElementById("checkoutItems");
+    const container =
+        document.getElementById("checkoutItems");
 
-container.innerHTML="";
+    container.innerHTML = "";
 
-cart.forEach(item=>{
+    cart.forEach(item => {
 
-const row=document.createElement("div");
+        const row =
+            document.createElement("div");
 
-row.className="order-summary-row";
+        row.className =
+            "order-summary-row";
 
-row.innerHTML=`
+        row.innerHTML = `
 
-<span>
-${item.name} × ${item.quantity} (${item.size})
-</span>
+            <span>
 
-<span>
-₹${(item.price*item.quantity).toLocaleString("en-IN")}
-</span>
+                ${item.name}
+                × 1
+                (${item.size})
 
-`;
+            </span>
 
-container.appendChild(row);
+            <span>
 
-});
+                ₹${(
+                    item.price
+                ).toLocaleString("en-IN")}
 
-const total=getCartTotal();
+            </span>
 
-document.getElementById("checkoutTotal").innerText=
-"₹"+total.toLocaleString("en-IN");
+        `;
 
-document.getElementById("paymentAmount").innerText=
-total.toLocaleString("en-IN");
+        container.appendChild(row);
+
+    });
+
+    const total =
+        getCartTotal();
+
+    document
+        .getElementById("checkoutTotal")
+        .innerText =
+        "₹" +
+        total.toLocaleString("en-IN");
+
+    document
+        .getElementById("paymentAmount")
+        .innerText =
+        total.toLocaleString("en-IN");
 
 }
 
-/* UPI QR */
+/* =====================================================
+   UPI QR
+===================================================== */
 
 function generateUPIQR(){
 
-const total=getCartTotal();
+    const total =
+        getCartTotal();
 
-if(total<=0)return;
+    if(total <= 0) return;
 
-const qrContainer=document.getElementById("qrcode");
+    const qrContainer =
+        document.getElementById("qrcode");
 
-qrContainer.innerHTML="";
+    qrContainer.innerHTML = "";
 
-const upiURL=
-"upi://pay"+
-"?pa="+encodeURIComponent(MAC_UPI_ID)+
-"&pn="+encodeURIComponent("MAC Clothing")+
-"&am="+encodeURIComponent(total.toFixed(2))+
-"&cu=INR"+
-"&tn="+encodeURIComponent("MAC Clothing Order");
+    const upiURL =
 
-if(typeof QRCode==="undefined"){
+        "upi://pay" +
 
-qrContainer.innerHTML=
-"<p style='color:red'>QR library could not load.</p>";
+        "?pa=" +
+        encodeURIComponent(
+            MAC_UPI_ID
+        ) +
 
-return;
+        "&pn=" +
+        encodeURIComponent(
+            "MAC Clothing"
+        ) +
+
+        "&am=" +
+        encodeURIComponent(
+            total.toFixed(2)
+        ) +
+
+        "&cu=INR" +
+
+        "&tn=" +
+        encodeURIComponent(
+            "MAC Clothing Order"
+        );
+
+    if(
+        typeof QRCode ===
+        "undefined"
+    ){
+
+        qrContainer.innerHTML =
+            "<p style='color:red'>QR library could not load.</p>";
+
+        return;
+
+    }
+
+    new QRCode(
+        qrContainer,
+        {
+            text:upiURL,
+            width:280,
+            height:280,
+            correctLevel:
+                QRCode.CorrectLevel.H
+        }
+    );
 
 }
 
-new QRCode(qrContainer,{
+/* =====================================================
+   SEND WHATSAPP ORDER
 
-text:upiURL,
-width:280,
-height:280,
-correctLevel:QRCode.CorrectLevel.H
-
-});
-
-}
-
-/* WHATSAPP */
+   Purchased sizes become SOLD OUT.
+===================================================== */
 
 function sendWhatsAppOrder(){
 
-if(cart.length===0){
+    if(cart.length === 0){
 
-alert("Your cart is empty!");
+        alert(
+            "Your cart is empty!"
+        );
 
-return;
+        return;
+
+    }
+
+    const name =
+        document
+        .getElementById("customerName")
+        .value
+        .trim();
+
+    const phone =
+        document
+        .getElementById("customerPhone")
+        .value
+        .trim();
+
+    const address =
+        document
+        .getElementById("customerAddress")
+        .value
+        .trim();
+
+    if(
+        !name ||
+        !phone ||
+        !address
+    ){
+
+        alert(
+            "Please fill in all customer details."
+        );
+
+        return;
+
+    }
+
+    let total = 0;
+
+    let message =
+
+        "*MAC CLOTHING - NEW ORDER*%0A" +
+
+        "--------------------%0A%0A";
+
+    message +=
+        "*CUSTOMER DETAILS*%0A";
+
+    message +=
+        "Name: " +
+        encodeURIComponent(name) +
+        "%0A";
+
+    message +=
+        "Phone: " +
+        encodeURIComponent(phone) +
+        "%0A";
+
+    message +=
+        "Address: " +
+        encodeURIComponent(address) +
+        "%0A%0A";
+
+    message +=
+        "*ORDER DETAILS*%0A";
+
+    cart.forEach(
+        (item,index) => {
+
+            const itemTotal =
+                item.price *
+                item.quantity;
+
+            total += itemTotal;
+
+            message +=
+
+                (index + 1) +
+                ". " +
+                encodeURIComponent(
+                    item.name
+                ) +
+                "%0A";
+
+            message +=
+
+                "Category: " +
+                encodeURIComponent(
+                    item.category
+                ) +
+                "%0A";
+
+            message +=
+
+                "Size: " +
+                encodeURIComponent(
+                    item.size
+                ) +
+                "%0A";
+
+            message +=
+
+                "Quantity: 1%0A";
+
+            message +=
+
+                "Price: ₹" +
+                itemTotal +
+                "%0A%0A";
+
+        }
+    );
+
+    message +=
+        "*TOTAL: ₹" +
+        total +
+        "*%0A";
+
+    message +=
+        "Payment Method: UPI%0A";
+
+    message +=
+        "UPI ID: " +
+        encodeURIComponent(
+            MAC_UPI_ID
+        ) +
+        "%0A";
+
+    message +=
+        "Payment Screenshot: " +
+        "Please attach the screenshot here.%0A%0A";
+
+    message +=
+        "Please confirm my order.";
+
+    const whatsappURL =
+
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        message;
+
+    /*
+       IMPORTANT:
+
+       Mark each purchased product-size
+       as SOLD OUT.
+    */
+
+    cart.forEach(item => {
+
+        const product =
+            products.find(
+                p => p.id === item.id
+            );
+
+        if(
+            product &&
+            product.stock[item.size] > 0
+        ){
+
+            product.stock[item.size] = 0;
+
+        }
+
+    });
+
+    /*
+       Refresh website.
+    */
+
+    displayProducts(
+        getCurrentProducts()
+    );
+
+    /*
+       Open WhatsApp.
+    */
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+    /*
+       Clear cart because order
+       has been submitted.
+    */
+
+    cart = [];
+
+    updateCart();
+
+    /*
+       Close checkout.
+    */
+
+    closeCheckout();
+
+    showToast(
+        "Order submitted successfully!"
+    );
 
 }
 
-const name=document
-.getElementById("customerName")
-.value.trim();
-
-const phone=document
-.getElementById("customerPhone")
-.value.trim();
-
-const address=document
-.getElementById("customerAddress")
-.value.trim();
-
-if(!name||!phone||!address){
-
-alert("Please fill in all customer details.");
-
-return;
-
-}
-
-let total=0;
-
-let message=
-"*MAC CLOTHING - NEW ORDER*%0A"+
-"--------------------%0A%0A";
-
-message+="*CUSTOMER DETAILS*%0A";
-
-message+="Name: "+
-encodeURIComponent(name)+"%0A";
-
-message+="Phone: "+
-encodeURIComponent(phone)+"%0A";
-
-message+="Address: "+
-encodeURIComponent(address)+"%0A%0A";
-
-message+="*ORDER DETAILS*%0A";
-
-cart.forEach((item,index)=>{
-
-const itemTotal=item.price*item.quantity;
-
-total+=itemTotal;
-
-message+=
-(index+1)+". "+
-encodeURIComponent(item.name)+
-"%0A";
-
-message+=
-"Category: "+
-encodeURIComponent(item.category)+
-"%0A";
-
-message+=
-"Size: "+
-encodeURIComponent(item.size)+
-"%0A";
-
-message+=
-"Quantity: "+
-item.quantity+
-"%0A";
-
-message+=
-"Price: ₹"+
-itemTotal+
-"%0A%0A";
-
-});
-
-message+="*TOTAL: ₹"+total+"*%0A";
-
-message+="Payment Method: UPI%0A";
-
-message+="UPI ID: "+
-encodeURIComponent(MAC_UPI_ID)+
-"%0A";
-
-message+="Payment Screenshot: Please attach the screenshot here.%0A%0A";
-
-message+="Please confirm my order.";
-
-const whatsappURL=
-"https://wa.me/"+
-WHATSAPP_NUMBER+
-"?text="+message;
-
-window.open(whatsappURL,"_blank");
-
-}
-
-/* TOAST */
-
-function showToast(message){
-
-const toast=document.createElement("div");
-
-toast.innerText=message;
-
-toast.style.position="fixed";
-toast.style.bottom="25px";
-toast.style.left="50%";
-toast.style.transform="translateX(-50%)";
-toast.style.background="#111";
-toast.style.color="#fff";
-toast.style.padding="12px 22px";
-toast.style.zIndex="6000";
-toast.style.fontSize="15px";
-
-document.body.appendChild(toast);
-
-setTimeout(()=>{
-toast.remove();
-},2200);
-
-}
-
-/* NEWSLETTER */
+/* =====================================================
+   NEWSLETTER
+===================================================== */
 
 function joinNewsletter(){
 
-showToast("Thank you for joining MAC ✨");
+    showToast(
+        "Thank you for joining MAC ✨"
+    );
 
 }
 
-/* START */
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message){
+
+    const toast =
+        document.createElement("div");
+
+    toast.innerText =
+        message;
+
+    toast.style.position =
+        "fixed";
+
+    toast.style.bottom =
+        "25px";
+
+    toast.style.left =
+        "50%";
+
+    toast.style.transform =
+        "translateX(-50%)";
+
+    toast.style.background =
+        "#111";
+
+    toast.style.color =
+        "#fff";
+
+    toast.style.padding =
+        "12px 22px";
+
+    toast.style.zIndex =
+        "6000";
+
+    toast.style.fontSize =
+        "15px";
+
+    document.body.appendChild(
+        toast
+    );
+
+    setTimeout(
+        () => toast.remove(),
+        2200
+    );
+
+}
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
 
 displayProducts();
 
@@ -2190,25 +2902,47 @@ updateCart();
 
 updateWishlist();
 
-/* CLOSE MODALS */
+/* =====================================================
+   CLOSE SIZE MODAL
+===================================================== */
 
-document.getElementById("sizeOverlay")
-.addEventListener("click",function(event){
+document
+    .getElementById("sizeOverlay")
+    .addEventListener(
+        "click",
+        function(event){
 
-if(event.target===this){
-closeSizeModal();
-}
+            if(
+                event.target === this
+            ){
 
-});
+                closeSizeModal();
 
-document.getElementById("checkoutOverlay")
-.addEventListener("click",function(event){
+            }
 
-if(event.target===this){
-closeCheckout();
-}
+        }
+    );
 
-});
+/* =====================================================
+   CLOSE CHECKOUT
+===================================================== */
+
+document
+    .getElementById("checkoutOverlay")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(
+                event.target === this
+            ){
+
+                closeCheckout();
+
+            }
+
+        }
+    );
 
 </script>
 
