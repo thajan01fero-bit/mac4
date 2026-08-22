@@ -1,1281 +1,1531 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>MAC Clothing</title>
 
+<!-- QR CODE LIBRARY -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    color:#111;
-    background:#fff;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111;
+    background: #fff;
 }
 
-/* HEADER */
 
-header{
-    height:70px;
-    padding:0 6%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    border-bottom:1px solid #eee;
-    position:sticky;
-    top:0;
-    background:rgba(255,255,255,.97);
-    z-index:1000;
+/* =========================
+   HEADER
+========================= */
+
+header {
+    height: 70px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,.97);
+    z-index: 1000;
 }
 
-.logo{
-    font-size:30px;
-    font-weight:900;
-    letter-spacing:5px;
+.logo {
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 5px;
 }
 
-nav{
-    display:flex;
-    gap:30px;
+nav {
+    display: flex;
+    gap: 30px;
 }
 
-nav a{
-    text-decoration:none;
-    color:#111;
-    font-size:13px;
-    font-weight:bold;
+nav a {
+    text-decoration: none;
+    color: #111;
+    font-size: 13px;
+    font-weight: bold;
 }
 
-nav a:hover{
-    opacity:.5;
+nav a:hover {
+    opacity: .5;
 }
 
-.cart-button{
-    border:none;
-    background:none;
-    font-size:22px;
-    cursor:pointer;
-    position:relative;
+.cart-button {
+    border: none;
+    background: none;
+    font-size: 22px;
+    cursor: pointer;
+    position: relative;
 }
 
-.cart-count{
-    position:absolute;
-    top:-8px;
-    right:-10px;
-    width:19px;
-    height:19px;
-    border-radius:50%;
-    background:#111;
-    color:#fff;
-    font-size:11px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: #111;
+    color: #fff;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* HERO */
 
-.hero{
-    height:82vh;
-    min-height:550px;
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    height: 82vh;
+    min-height: 550px;
 
     background:
-    linear-gradient(
-        rgba(0,0,0,.4),
-        rgba(0,0,0,.4)
-    ),
-    url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1800&q=85")
-    center/cover;
+        linear-gradient(
+            rgba(0,0,0,.4),
+            rgba(0,0,0,.4)
+        ),
+        url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
 
-    display:flex;
-    align-items:flex-end;
-    padding:7%;
-    color:white;
+    display: flex;
+    align-items: flex-end;
+    padding: 7%;
+    color: white;
 }
 
-.hero-content h1{
-    font-size:clamp(65px,10vw,125px);
-    letter-spacing:10px;
-    font-weight:900;
+.hero-content h1 {
+    font-size: clamp(65px,10vw,125px);
+    letter-spacing: 10px;
+    font-weight: 900;
 }
 
-.hero-content p{
-    font-size:18px;
-    letter-spacing:4px;
-    margin:10px 0 25px;
+.hero-content p {
+    font-size: 18px;
+    letter-spacing: 4px;
+    margin: 10px 0 25px;
 }
 
-.shop-btn{
-    display:inline-block;
-    padding:15px 35px;
-    background:white;
-    color:#111;
-    text-decoration:none;
-    font-size:13px;
-    font-weight:bold;
+.shop-btn {
+    display: inline-block;
+    padding: 15px 35px;
+    background: white;
+    color: #111;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
 }
 
-.shop-btn:hover{
-    background:#111;
-    color:#fff;
+.shop-btn:hover {
+    background: #111;
+    color: #fff;
 }
 
-/* SECTIONS */
 
-.section{
-    padding:80px 6%;
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+    padding: 80px 6%;
 }
 
-.section-title{
-    margin-bottom:35px;
+.section-title {
+    margin-bottom: 35px;
 }
 
-.section-title h2{
-    font-size:30px;
-    letter-spacing:2px;
+.section-title h2 {
+    font-size: 30px;
+    letter-spacing: 2px;
 }
 
-/* SEARCH */
 
-.search-box{
-    max-width:500px;
-    margin:0 auto 40px;
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+    max-width: 500px;
+    margin: 0 auto 40px;
 }
 
-.search-box input{
-    width:100%;
-    padding:15px;
-    border:1px solid #ccc;
-    outline:none;
-    font-size:14px;
+.search-box input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
 }
 
-/* PRODUCTS */
 
-.products{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:22px;
+/* =========================
+   PRODUCTS
+========================= */
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
 }
 
-.product{
-    position:relative;
+.product {
+    position: relative;
 }
 
-.product-image{
-    width:100%;
-    aspect-ratio:3/4;
-    object-fit:cover;
-    display:block;
-    background:#f5f5f5;
+.product-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    background: #f5f5f5;
 }
 
-.product-info{
-    padding:14px 0;
+.product-info {
+    padding: 14px 0;
 }
 
-.product-info h3{
-    font-size:15px;
-    font-weight:500;
-    margin-bottom:7px;
+.product-info h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 7px;
 }
 
-.price{
-    font-size:14px;
-    font-weight:bold;
+.price {
+    font-size: 14px;
+    font-weight: bold;
 }
 
-.badge{
-    position:absolute;
-    top:12px;
-    left:12px;
-    background:#fff;
-    padding:7px 10px;
-    font-size:10px;
-    font-weight:bold;
-    z-index:2;
+.badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #fff;
+    padding: 7px 10px;
+    font-size: 10px;
+    font-weight: bold;
+    z-index: 2;
 }
 
-.product-actions{
-    margin-top:12px;
+.product-actions {
+    margin-top: 12px;
 }
 
-.product-actions button{
-    width:100%;
-    padding:12px;
-    border:1px solid #111;
-    background:#fff;
-    cursor:pointer;
-    font-weight:bold;
-    font-size:12px;
+.product-actions button {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #111;
+    background: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
 }
 
-.product-actions button:hover{
-    background:#111;
-    color:#fff;
+.product-actions button:hover {
+    background: #111;
+    color: #fff;
 }
 
-/* COLLECTION */
 
-.collection{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+/* =========================
+   COLLECTION
+========================= */
+
+.collection {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
-.collection-card{
-    height:600px;
-    position:relative;
-    overflow:hidden;
+.collection-card {
+    height: 600px;
+    position: relative;
+    overflow: hidden;
 }
 
-.collection-card img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.collection-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s;
 }
 
-.collection-text{
-    position:absolute;
-    left:35px;
-    bottom:35px;
-    color:#fff;
+.collection-card:hover img {
+    transform: scale(1.04);
 }
 
-.collection-text h2{
-    font-size:42px;
-    margin-bottom:12px;
+.collection-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        transparent 45%,
+        rgba(0,0,0,.65)
+    );
 }
 
-.collection-text a{
-    color:white;
-    text-decoration:none;
-    border-bottom:1px solid white;
-    padding-bottom:5px;
+.collection-text {
+    position: absolute;
+    left: 35px;
+    bottom: 35px;
+    color: #fff;
+    z-index: 2;
 }
 
-/* CART */
-
-.cart-panel{
-    position:fixed;
-    right:-450px;
-    top:0;
-    width:430px;
-    max-width:100%;
-    height:100vh;
-    background:#fff;
-    z-index:3000;
-    box-shadow:-5px 0 20px rgba(0,0,0,.15);
-    transition:.4s;
-    display:flex;
-    flex-direction:column;
+.collection-text h2 {
+    font-size: 42px;
+    margin-bottom: 12px;
 }
 
-.cart-panel.active{
-    right:0;
+.collection-text a {
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
 }
 
-.cart-header{
-    padding:22px;
-    border-bottom:1px solid #eee;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+
+/* =========================
+   CART
+========================= */
+
+.cart-panel {
+    position: fixed;
+    right: -450px;
+    top: 0;
+    width: 430px;
+    max-width: 100%;
+    height: 100vh;
+    background: #fff;
+    z-index: 3000;
+    box-shadow: -5px 0 20px rgba(0,0,0,.15);
+    transition: .4s;
+    display: flex;
+    flex-direction: column;
 }
 
-.cart-header h2{
-    font-size:20px;
+.cart-panel.active {
+    right: 0;
 }
 
-.close-cart{
-    border:none;
-    background:none;
-    font-size:28px;
-    cursor:pointer;
+.cart-header {
+    padding: 22px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.cart-items{
-    flex:1;
-    overflow-y:auto;
-    padding:20px;
+.cart-header h2 {
+    font-size: 20px;
 }
 
-.cart-item{
-    display:flex;
-    gap:12px;
-    margin-bottom:20px;
-    border-bottom:1px solid #eee;
-    padding-bottom:20px;
+.close-cart {
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
 }
 
-.cart-item img{
-    width:80px;
-    height:100px;
-    object-fit:cover;
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
 }
 
-.cart-item-info{
-    flex:1;
+.cart-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
 }
 
-.cart-item-info h4{
-    font-size:14px;
-    margin-bottom:7px;
+.cart-item img {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
 }
 
-.cart-size{
-    color:#666;
-    font-size:12px;
-    margin-bottom:5px;
+.cart-item-info {
+    flex: 1;
 }
 
-.qty{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-top:10px;
+.cart-item-info h4 {
+    font-size: 14px;
+    margin-bottom: 7px;
 }
 
-.qty button{
-    width:27px;
-    height:27px;
-    border:1px solid #ccc;
-    background:#fff;
-    cursor:pointer;
+.cart-size {
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 5px;
 }
 
-.remove{
-    color:#d00;
-    border:none;
-    background:none;
-    cursor:pointer;
-    font-size:12px;
-    margin-top:8px;
+.qty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
 }
 
-.cart-footer{
-    padding:20px;
-    border-top:1px solid #eee;
+.qty button {
+    width: 27px;
+    height: 27px;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
 }
 
-.cart-total{
-    display:flex;
-    justify-content:space-between;
-    font-size:18px;
-    font-weight:bold;
-    margin-bottom:15px;
+.remove {
+    color: #d00;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 8px;
 }
 
-.checkout-btn{
-    width:100%;
-    padding:16px;
-    background:#111;
-    color:#fff;
-    border:none;
-    cursor:pointer;
-    font-weight:bold;
+.cart-footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
 }
 
-.empty-cart{
-    text-align:center;
-    color:#777;
-    margin-top:50px;
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
-/* CHECKOUT */
-
-.checkout-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.7);
-    z-index:4000;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
+.checkout-btn {
+    width: 100%;
+    padding: 16px;
+    background: #111;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.checkout-overlay.active{
-    display:flex;
+.empty-cart {
+    text-align: center;
+    color: #777;
+    margin-top: 50px;
 }
 
-.checkout-box{
-    background:white;
-    width:650px;
-    max-width:100%;
-    max-height:92vh;
-    overflow-y:auto;
-    padding:30px;
-    position:relative;
+
+/* =========================
+   CHECKOUT
+========================= */
+
+.checkout-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.7);
+    z-index: 4000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.close-checkout{
-    position:absolute;
-    top:15px;
-    right:20px;
-    border:none;
-    background:none;
-    font-size:28px;
-    cursor:pointer;
+.checkout-overlay.active {
+    display: flex;
 }
 
-.checkout-box h2{
-    margin-bottom:25px;
+.checkout-box {
+    background: white;
+    width: 650px;
+    max-width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: 30px;
+    position: relative;
 }
 
-/* FORM */
-
-.form-group{
-    margin-bottom:17px;
+.close-checkout {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
 }
 
-.form-group label{
-    display:block;
-    font-size:12px;
-    font-weight:bold;
-    margin-bottom:7px;
+.checkout-box h2 {
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 7px;
 }
 
 .form-group input,
 .form-group textarea,
-.form-group select{
-    width:100%;
-    padding:13px;
-    border:1px solid #ccc;
-    outline:none;
-    font-size:14px;
+.form-group select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
 }
 
-.form-group textarea{
-    height:100px;
-    resize:vertical;
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
 }
 
-/* PAYMENT */
 
-.payment-box{
-    border:1px solid #ddd;
-    padding:20px;
-    margin:20px 0;
-    text-align:center;
+/* =========================
+   PAYMENT
+========================= */
+
+.payment-box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
 }
 
-.payment-box h3{
-    margin-bottom:10px;
-    font-size:20px;
+.payment-box h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
 }
 
-.upi-id{
-    font-size:15px;
-    margin-bottom:15px;
+.upi-id {
+    font-size: 15px;
+    margin-bottom: 15px;
 }
 
-.upi-id span{
-    font-weight:bold;
+.upi-id span {
+    font-weight: bold;
 }
 
-#qrcode{
-    width:280px;
-    min-height:280px;
-    margin:20px auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+#qrcode {
+    width: 280px;
+    min-height: 280px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#qrcode img{
-    width:280px !important;
-    height:280px !important;
+#qrcode img {
+    width: 280px !important;
+    height: 280px !important;
 }
 
-.payment-note{
-    color:#666;
-    font-size:12px;
-    line-height:1.6;
+.payment-note {
+    color: #666;
+    font-size: 12px;
+    line-height: 1.6;
 }
 
-/* SCREENSHOT */
 
-.screenshot-box{
-    border:1px dashed #aaa;
-    padding:18px;
-    margin:20px 0;
+/* =========================
+   SCREENSHOT
+========================= */
+
+.screenshot-box {
+    border: 1px dashed #aaa;
+    padding: 18px;
+    margin: 20px 0;
 }
 
-.screenshot-box label{
-    display:block;
-    font-size:13px;
-    font-weight:bold;
-    margin-bottom:10px;
+.screenshot-box label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.screenshot-box input{
-    width:100%;
+.screenshot-box input {
+    width: 100%;
 }
 
-/* ORDER SUMMARY */
 
-.order-summary{
-    background:#f5f5f5;
-    padding:15px;
-    margin:20px 0;
+/* =========================
+   ORDER SUMMARY
+========================= */
+
+.order-summary {
+    background: #f5f5f5;
+    padding: 15px;
+    margin: 20px 0;
 }
 
-.order-summary-row{
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    margin:8px 0;
-    font-size:14px;
+.order-summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin: 8px 0;
+    font-size: 14px;
 }
 
-.final-total{
-    border-top:1px solid #ccc;
-    padding-top:12px;
-    margin-top:12px;
-    font-size:18px;
-    font-weight:bold;
+.final-total {
+    border-top: 1px solid #ccc;
+    padding-top: 12px;
+    margin-top: 12px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-/* WHATSAPP */
 
-.whatsapp-btn{
-    width:100%;
-    padding:16px;
-    border:none;
-    background:#25D366;
-    color:#fff;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
+/* =========================
+   WHATSAPP
+========================= */
+
+.whatsapp-btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    background: #25D366;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.whatsapp-btn:hover{
-    opacity:.9;
+.whatsapp-btn:hover {
+    opacity: .9;
 }
 
-/* NEWSLETTER */
 
-.newsletter{
-    background:#f5f5f5;
-    text-align:center;
-    padding:80px 20px;
+/* =========================
+   NEWSLETTER
+========================= */
+
+.newsletter {
+    background: #f5f5f5;
+    text-align: center;
+    padding: 80px 20px;
 }
 
-.newsletter h2{
-    font-size:35px;
-    margin-bottom:10px;
+.newsletter h2 {
+    font-size: 35px;
+    margin-bottom: 10px;
 }
 
-.newsletter p{
-    color:#666;
-    margin-bottom:25px;
+.newsletter p {
+    color: #666;
+    margin-bottom: 25px;
 }
 
-.email-box{
-    max-width:500px;
-    display:flex;
-    margin:auto;
+.email-box {
+    max-width: 500px;
+    display: flex;
+    margin: auto;
 }
 
-.email-box input{
-    flex:1;
-    padding:15px;
-    border:1px solid #ccc;
+.email-box input {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ccc;
 }
 
-.email-box button{
-    padding:15px 25px;
-    border:none;
-    background:#111;
-    color:#fff;
+.email-box button {
+    padding: 15px 25px;
+    border: none;
+    background: #111;
+    color: #fff;
 }
 
-/* FOOTER */
 
-footer{
-    background:#111;
-    color:#fff;
-    padding:60px 6% 25px;
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #111;
+    color: #fff;
+    padding: 60px 6% 25px;
 }
 
-.footer-grid{
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr 1fr;
-    gap:40px;
-    margin-bottom:45px;
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 45px;
 }
 
-.footer-logo{
-    font-size:32px;
-    font-weight:bold;
-    letter-spacing:5px;
+.footer-logo {
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 5px;
 }
 
-footer h3{
-    font-size:13px;
-    margin-bottom:17px;
+footer h3 {
+    font-size: 13px;
+    margin-bottom: 17px;
 }
 
-footer a{
-    color:#aaa;
-    display:block;
-    text-decoration:none;
-    margin-bottom:10px;
-    font-size:13px;
+footer a {
+    color: #aaa;
+    display: block;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 13px;
 }
 
-footer a:hover{
-    color:white;
+footer a:hover {
+    color: white;
 }
 
-.copyright{
-    border-top:1px solid #333;
-    padding-top:20px;
-    color:#777;
-    font-size:12px;
+.copyright {
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    color: #777;
+    font-size: 12px;
 }
 
-/* MOBILE */
 
-@media(max-width:800px){
+/* =========================
+   MOBILE
+========================= */
 
-    header{
-        padding:0 20px;
+@media(max-width:800px) {
+
+    header {
+        padding: 0 20px;
     }
 
-    nav{
-        display:none;
+    nav {
+        display: none;
     }
 
-    .hero{
-        height:75vh;
-        min-height:500px;
+    .hero {
+        height: 75vh;
+        min-height: 500px;
     }
 
-    .products{
-        grid-template-columns:repeat(2,1fr);
-        gap:12px;
+    .products {
+        grid-template-columns: repeat(2,1fr);
+        gap: 12px;
     }
 
-    .section{
-        padding:55px 20px;
+    .section {
+        padding: 55px 20px;
     }
 
-    .collection{
-        grid-template-columns:1fr;
+    .collection {
+        grid-template-columns: 1fr;
     }
 
-    .collection-card{
-        height:500px;
+    .collection-card {
+        height: 500px;
     }
 
-    .footer-grid{
-        grid-template-columns:1fr 1fr;
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .checkout-box{
-        padding:22px;
+    .checkout-box {
+        padding: 22px;
     }
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- HEADER -->
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
-<div class="logo">
-MAC
-</div>
+    <div class="logo">
+        MAC
+    </div>
 
-<nav>
+    <nav>
 
-<a href="#new">NEW IN</a>
-<a href="#men">MEN</a>
-<a href="#women">WOMEN</a>
-<a href="#collection">COLLECTION</a>
-<a href="#about">ABOUT</a>
+        <a href="#new">
+            NEW IN
+        </a>
 
-</nav>
+        <a href="#collection">
+            COLLECTION
+        </a>
 
-<button
-class="cart-button"
-onclick="openCart()">
+        <a href="#about">
+            ABOUT
+        </a>
 
-🛒
+    </nav>
 
-<span
-class="cart-count"
-id="cartCount">
+    <button
+        class="cart-button"
+        onclick="openCart()">
 
-0
+        🛒
 
-</span>
+        <span
+            class="cart-count"
+            id="cartCount">
 
-</button>
+            0
+
+        </span>
+
+    </button>
 
 </header>
 
-<!-- HERO -->
+
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
-<div class="hero-content">
+    <div class="hero-content">
 
-<h1>MAC</h1>
+        <h1>
+            MAC
+        </h1>
 
-<p>EVERYDAY. ELEVATED.</p>
+        <p>
+            EVERYDAY. ELEVATED.
+        </p>
 
-<a
-href="#new"
-class="shop-btn">
+        <a
+            href="#new"
+            class="shop-btn">
 
-SHOP NOW
+            SHOP NOW
 
-</a>
+        </a>
 
-</div>
+    </div>
 
 </section>
 
-<!-- NEW ARRIVALS -->
+
+<!-- =========================
+     NEW ARRIVALS
+========================= -->
 
 <section
-class="section"
-id="new">
+    class="section"
+    id="new">
 
-<div class="section-title">
+    <div class="section-title">
 
-<h2>NEW ARRIVALS</h2>
+        <h2>
+            NEW ARRIVALS
+        </h2>
 
-</div>
+    </div>
 
-<div class="search-box">
+    <div class="search-box">
 
-<input
-type="text"
-id="search"
-placeholder="Search products..."
-onkeyup="searchProducts()">
+        <input
+            type="text"
+            id="search"
+            placeholder="Search products..."
+            onkeyup="searchProducts()">
 
-</div>
+    </div>
 
-<div
-class="products"
-id="productGrid">
-</div>
+    <div
+        class="products"
+        id="productGrid">
+    </div>
 
 </section>
 
-<!-- COLLECTION -->
+
+<!-- =========================
+     COLLECTION
+========================= -->
 
 <section
-class="section"
-id="collection">
+    class="section"
+    id="collection">
 
-<div class="section-title">
+    <div class="section-title">
 
-<h2>THE COLLECTION</h2>
+        <h2>
+            SHOP THE COLLECTION
+        </h2>
 
-</div>
+    </div>
 
-<div class="collection">
+    <div class="collection">
 
-<div
-class="collection-card"
-id="men">
 
-<img
-src="images/shirt1.jpeg"
-alt="Men's Shirt">
+        <!-- SHIRTS -->
 
-<div class="collection-text">
+        <div class="collection-card">
 
-<h2>MEN</h2>
+            <img
+                src="images/shirt1.jpeg"
+                alt="Modern Shirts">
 
-<a href="#new">
-SHOP MEN →
-</a>
+            <div class="collection-text">
 
-</div>
+                <h2>
+                    SHIRTS
+                </h2>
 
-</div>
+                <a href="#new">
+                    SHOP SHIRTS →
+                </a>
 
-<div
-class="collection-card"
-id="women">
+            </div>
 
-<img
-src="images/shirt2.jpeg"
-alt="Women's Shirt">
+        </div>
 
-<div class="collection-text">
 
-<h2>WOMEN</h2>
+        <!-- PANTS -->
 
-<a href="#new">
-SHOP WOMEN →
-</a>
+        <div class="collection-card">
 
-</div>
+            <img
+                src="images/pants1.jpeg"
+                alt="Modern Pants">
 
-</div>
+            <div class="collection-text">
 
-</div>
+                <h2>
+                    PANTS
+                </h2>
+
+                <a href="#new">
+                    SHOP PANTS →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- T-SHIRTS -->
+
+        <div class="collection-card">
+
+            <img
+                src="images/tshirt1.jpeg"
+                alt="Modern T-Shirts">
+
+            <div class="collection-text">
+
+                <h2>
+                    T-SHIRTS
+                </h2>
+
+                <a href="#new">
+                    SHOP T-SHIRTS →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
-<!-- NEWSLETTER -->
+
+<!-- =========================
+     NEWSLETTER
+========================= -->
 
 <section class="newsletter">
 
-<h2>JOIN MAC</h2>
+    <h2>
+        JOIN MAC
+    </h2>
 
-<p>
-Get first access to new collections and exclusive drops.
-</p>
+    <p>
+        Get first access to new collections and exclusive drops.
+    </p>
 
-<div class="email-box">
+    <div class="email-box">
 
-<input
-type="email"
-placeholder="Enter your email">
+        <input
+            type="email"
+            placeholder="Enter your email">
 
-<button>
-JOIN
-</button>
+        <button>
+            JOIN
+        </button>
 
-</div>
+    </div>
 
 </section>
 
-<!-- FOOTER -->
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer id="about">
 
-<div class="footer-grid">
+    <div class="footer-grid">
 
-<div>
 
-<div class="footer-logo">
-MAC
-</div>
+        <div>
 
-<p
-style="color:#aaa;margin-top:15px;">
+            <div class="footer-logo">
+                MAC
+            </div>
 
-Modern clothing designed for everyday confidence.
+            <p
+                style="color:#aaa;margin-top:15px;">
 
-</p>
+                Modern clothing designed for everyday confidence.
 
-</div>
+            </p>
 
-<div>
+        </div>
 
-<h3>SHOP</h3>
 
-<a href="#new">New Arrivals</a>
-<a href="#men">Men</a>
-<a href="#women">Women</a>
+        <div>
 
-</div>
+            <h3>
+                SHOP
+            </h3>
 
-<div>
+            <a href="#new">
+                New Arrivals
+            </a>
 
-<h3>HELP</h3>
+            <a href="#collection">
+                Shirts
+            </a>
 
-<a href="#">Contact</a>
-<a href="#">Shipping</a>
-<a href="#">Returns</a>
-<a href="#">Size Guide</a>
+            <a href="#collection">
+                Pants
+            </a>
 
-</div>
+            <a href="#collection">
+                T-Shirts
+            </a>
 
-<div>
+        </div>
 
-<h3>CONTACT</h3>
 
-<a
-href="https://wa.me/919994977386">
+        <div>
 
-WhatsApp
+            <h3>
+                HELP
+            </h3>
 
-</a>
+            <a href="#">
+                Contact
+            </a>
 
-<a href="#">
-Instagram
-</a>
+            <a href="#">
+                Shipping
+            </a>
 
-</div>
+            <a href="#">
+                Returns
+            </a>
 
-</div>
+            <a href="#">
+                Size Guide
+            </a>
 
-<div class="copyright">
+        </div>
 
-© 2026 MAC Clothing. All rights reserved.
 
-</div>
+        <div>
+
+            <h3>
+                CONTACT
+            </h3>
+
+            <a
+                href="https://wa.me/919994977386">
+
+                WhatsApp
+
+            </a>
+
+            <a href="#">
+                Instagram
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 MAC Clothing. All rights reserved.
+
+    </div>
 
 </footer>
 
-<!-- CART -->
+
+<!-- =========================
+     CART PANEL
+========================= -->
 
 <div
-class="cart-panel"
-id="cartPanel">
+    class="cart-panel"
+    id="cartPanel">
 
-<div class="cart-header">
 
-<h2>YOUR CART</h2>
+    <div class="cart-header">
 
-<button
-class="close-cart"
-onclick="closeCart()">
+        <h2>
+            YOUR CART
+        </h2>
 
-×
+        <button
+            class="close-cart"
+            onclick="closeCart()">
 
-</button>
+            ×
+
+        </button>
+
+    </div>
+
+
+    <div
+        class="cart-items"
+        id="cartItems">
+    </div>
+
+
+    <div class="cart-footer">
+
+        <div class="cart-total">
+
+            <span>
+                TOTAL
+            </span>
+
+            <span id="cartTotal">
+                ₹0
+            </span>
+
+        </div>
+
+
+        <button
+            class="checkout-btn"
+            onclick="openCheckout()">
+
+            PROCEED TO ORDER
+
+        </button>
+
+    </div>
 
 </div>
+
+
+<!-- =========================
+     CHECKOUT
+========================= -->
 
 <div
-class="cart-items"
-id="cartItems">
+    class="checkout-overlay"
+    id="checkoutOverlay">
+
+
+    <div class="checkout-box">
+
+
+        <button
+            class="close-checkout"
+            onclick="closeCheckout()">
+
+            ×
+
+        </button>
+
+
+        <h2>
+            COMPLETE YOUR ORDER
+        </h2>
+
+
+        <!-- CUSTOMER NAME -->
+
+        <div class="form-group">
+
+            <label>
+                FULL NAME
+            </label>
+
+            <input
+                type="text"
+                id="customerName"
+                placeholder="Enter your full name">
+
+        </div>
+
+
+        <!-- PHONE -->
+
+        <div class="form-group">
+
+            <label>
+                PHONE NUMBER
+            </label>
+
+            <input
+                type="tel"
+                id="customerPhone"
+                placeholder="Enter your phone number">
+
+        </div>
+
+
+        <!-- ADDRESS -->
+
+        <div class="form-group">
+
+            <label>
+                DELIVERY ADDRESS
+            </label>
+
+            <textarea
+                id="customerAddress"
+                placeholder="House no, street, area, city, state, pincode">
+            </textarea>
+
+        </div>
+
+
+        <!-- PAYMENT METHOD -->
+
+        <div class="form-group">
+
+            <label>
+                PAYMENT METHOD
+            </label>
+
+            <select
+                id="paymentMethod"
+                onchange="paymentMethodChanged()">
+
+                <option value="UPI">
+                    UPI / QR PAYMENT
+                </option>
+
+                <option value="Cash on Delivery">
+                    CASH ON DELIVERY
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- UPI PAYMENT -->
+
+        <div
+            class="payment-box"
+            id="paymentBox">
+
+
+            <h3>
+
+                PAY ₹
+                <span id="paymentAmount">
+                    0
+                </span>
+
+            </h3>
+
+
+            <div class="upi-id">
+
+                UPI ID:
+
+                <span>
+                    thajan01fero@oksbi
+                </span>
+
+            </div>
+
+
+            <div id="qrcode"></div>
+
+
+            <p class="payment-note">
+
+                Scan this QR code using
+                Google Pay, PhonePe, Paytm
+                or another UPI application.
+
+                <br><br>
+
+                The QR contains your
+                order amount automatically.
+
+                <br><br>
+
+                After payment, take a screenshot
+                of the successful payment.
+
+            </p>
+
+        </div>
+
+
+        <!-- SCREENSHOT -->
+
+        <div
+            class="screenshot-box"
+            id="screenshotBox">
+
+            <label>
+                PAYMENT SCREENSHOT
+            </label>
+
+            <input
+                type="file"
+                id="paymentScreenshot"
+                accept="image/*">
+
+            <p
+                style="
+                font-size:12px;
+                color:#777;
+                margin-top:8px;">
+
+                After WhatsApp opens,
+                attach your payment screenshot
+                to the WhatsApp message.
+
+            </p>
+
+        </div>
+
+
+        <!-- ORDER SUMMARY -->
+
+        <div class="order-summary">
+
+            <strong>
+                ORDER SUMMARY
+            </strong>
+
+            <div
+                id="checkoutItems">
+            </div>
+
+            <div
+                class="order-summary-row final-total">
+
+                <span>
+                    TOTAL
+                </span>
+
+                <span id="checkoutTotal">
+                    ₹0
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- WHATSAPP -->
+
+        <button
+            class="whatsapp-btn"
+            onclick="sendWhatsAppOrder()">
+
+            SEND ORDER ON WHATSAPP
+
+        </button>
+
+
+    </div>
+
 </div>
 
-<div class="cart-footer">
-
-<div class="cart-total">
-
-<span>TOTAL</span>
-
-<span id="cartTotal">
-₹0
-</span>
-
-</div>
-
-<button
-class="checkout-btn"
-onclick="openCheckout()">
-
-PROCEED TO ORDER
-
-</button>
-
-</div>
-
-</div>
-
-<!-- CHECKOUT -->
-
-<div
-class="checkout-overlay"
-id="checkoutOverlay">
-
-<div class="checkout-box">
-
-<button
-class="close-checkout"
-onclick="closeCheckout()">
-
-×
-
-</button>
-
-<h2>COMPLETE YOUR ORDER</h2>
-
-<div class="form-group">
-
-<label>FULL NAME</label>
-
-<input
-type="text"
-id="customerName"
-placeholder="Enter your full name">
-
-</div>
-
-<div class="form-group">
-
-<label>PHONE NUMBER</label>
-
-<input
-type="tel"
-id="customerPhone"
-placeholder="Enter your phone number">
-
-</div>
-
-<div class="form-group">
-
-<label>DELIVERY ADDRESS</label>
-
-<textarea
-id="customerAddress"
-placeholder="House no, street, area, city, state, pincode">
-</textarea>
-
-</div>
-
-<div class="form-group">
-
-<label>PAYMENT METHOD</label>
-
-<select
-id="paymentMethod"
-onchange="paymentMethodChanged()">
-
-<option value="UPI">
-UPI / QR PAYMENT
-</option>
-
-<option value="Cash on Delivery">
-CASH ON DELIVERY
-</option>
-
-</select>
-
-</div>
-
-<div
-class="payment-box"
-id="paymentBox">
-
-<h3>
-
-PAY ₹
-<span id="paymentAmount">
-0
-</span>
-
-</h3>
-
-<div class="upi-id">
-
-UPI ID:
-<span>
-thajan01fero@oksbi
-</span>
-
-</div>
-
-<div id="qrcode"></div>
-
-<p class="payment-note">
-
-Scan this QR code using
-Google Pay, PhonePe, Paytm
-or another UPI application.
-
-<br><br>
-
-The QR contains your
-order amount automatically.
-
-<br><br>
-
-After payment, take a screenshot
-of the successful payment.
-
-</p>
-
-</div>
-
-<div
-class="screenshot-box"
-id="screenshotBox">
-
-<label>
-📸 PAYMENT SCREENSHOT
-</label>
-
-<input
-type="file"
-id="paymentScreenshot"
-accept="image/*">
-
-<p
-style="
-font-size:12px;
-color:#777;
-margin-top:8px;
-">
-
-After WhatsApp opens,
-attach your payment screenshot
-to the WhatsApp message.
-
-</p>
-
-</div>
-
-<div class="order-summary">
-
-<strong>ORDER SUMMARY</strong>
-
-<div
-id="checkoutItems">
-</div>
-
-<div
-class="order-summary-row final-total">
-
-<span>TOTAL</span>
-
-<span id="checkoutTotal">
-₹0
-</span>
-
-</div>
-
-</div>
-
-<button
-class="whatsapp-btn"
-onclick="sendWhatsAppOrder()">
-
-📲 SEND ORDER ON WHATSAPP
-
-</button>
-
-</div>
-
-</div>
 
 <script>
 
-/* MAC SETTINGS */
+/* ==================================================
+   MAC SETTINGS
+================================================== */
 
 const MAC_UPI_ID =
-"thajan01fero@oksbi";
+    "thajan01fero@oksbi";
 
 const WHATSAPP_NUMBER =
-"919994977386";
+    "919994977386";
 
-/* PRODUCTS */
+
+/* ==================================================
+   PRODUCTS
+================================================== */
 
 const products = [
 
-{
-    id:1,
+    {
+        id: 1,
 
-    name:
-    "Essential Oversized T-Shirt",
+        name:
+        "Essential Oversized Shirt",
 
-    price:699,
+        price: 699,
 
-    image:
-    "images/shirt1.jpeg",
+        image:
+        "images/shirt1.jpeg",
 
-    sizes:
-    ["S","M","L","XL"],
+        sizes:
+        ["S","M","L","XL"],
 
-    badge:
-    "NEW"
-},
+        badge:
+        "NEW"
+    },
 
-{
-    id:2,
 
-    name:
-    "Premium Everyday Shirt",
+    {
+        id: 2,
 
-    price:899,
+        name:
+        "Premium Everyday Shirt",
 
-    image:
-    "images/shirt2.jpeg",
+        price: 899,
 
-    sizes:
-    ["S","M","L","XL"],
+        image:
+        "images/shirt2.jpeg",
 
-    badge:
-    ""
-},
+        sizes:
+        ["S","M","L","XL"],
 
-{
-    id:3,
+        badge:
+        ""
+    },
 
-    name:
-    "MAC Streetwear Tee",
 
-    price:749,
+    {
+        id: 3,
 
-    image:
-    "images/shirt3.jpeg",
+        name:
+        "MAC Streetwear Shirt",
 
-    sizes:
-    ["S","M","L","XL"],
+        price: 749,
 
-    badge:
-    "BESTSELLER"
-},
+        image:
+        "images/shirt3.jpeg",
 
-{
-    id:4,
+        sizes:
+        ["S","M","L","XL"],
 
-    name:
-    "Signature Shirt",
+        badge:
+        "BESTSELLER"
+    },
 
-    price:1299,
 
-    image:
-    "images/shirt4.jpeg",
+    {
+        id: 4,
 
-    sizes:
-    ["M","L","XL"],
+        name:
+        "Signature Shirt",
 
-    badge:
-    "NEW"
-}
+        price: 1299,
+
+        image:
+        "images/shirt4.jpeg",
+
+        sizes:
+        ["M","L","XL"],
+
+        badge:
+        "NEW"
+    }
 
 ];
 
-/* CART */
 
-let cart=[];
+/* ==================================================
+   CART
+================================================== */
 
-/* DISPLAY PRODUCTS */
+let cart = [];
 
-function displayProducts(list=products){
+
+/* ==================================================
+   DISPLAY PRODUCTS
+================================================== */
+
+function displayProducts(list = products) {
 
     const grid =
-    document.getElementById("productGrid");
+        document.getElementById(
+            "productGrid"
+        );
 
-    grid.innerHTML="";
+    grid.innerHTML = "";
 
-    if(list.length===0){
+
+    if (list.length === 0) {
 
         grid.innerHTML =
-        "<p>No products found.</p>";
+            "<p>No products found.</p>";
 
         return;
     }
 
-    list.forEach(product=>{
+
+    list.forEach(product => {
 
         const div =
-        document.createElement("div");
+            document.createElement("div");
 
         div.className =
-        "product";
+            "product";
+
 
         div.innerHTML = `
 
@@ -1289,12 +1539,13 @@ function displayProducts(list=products){
                 ""
             }
 
+
             <img
                 class="product-image"
                 src="${product.image}"
                 alt="${product.name}"
-                onerror="this.style.display='none';"
-            >
+                onerror="this.style.display='none';">
+
 
             <div class="product-info">
 
@@ -1302,9 +1553,13 @@ function displayProducts(list=products){
                     ${product.name}
                 </h3>
 
+
                 <p class="price">
+
                     ₹${product.price.toLocaleString("en-IN")}
+
                 </p>
+
 
                 <div class="product-actions">
 
@@ -1318,7 +1573,9 @@ function displayProducts(list=products){
                 </div>
 
             </div>
+
         `;
+
 
         grid.appendChild(div);
 
@@ -1326,30 +1583,39 @@ function displayProducts(list=products){
 
 }
 
-/* CHOOSE SIZE */
 
-function chooseSize(productId){
+/* ==================================================
+   CHOOSE SIZE
+================================================== */
+
+function chooseSize(productId) {
 
     const product =
-    products.find(
-        p => p.id === productId
-    );
+        products.find(
+            p => p.id === productId
+        );
+
 
     const size =
-    prompt(
-        "Choose size: " +
-        product.sizes.join(" / ")
-    );
+        prompt(
+            "Choose size: " +
+            product.sizes.join(" / ")
+        );
 
-    if(!size)
+
+    if (!size)
         return;
 
-    const selectedSize =
-    size.trim().toUpperCase();
 
-    if(
-        !product.sizes.includes(selectedSize)
-    ){
+    const selectedSize =
+        size.trim().toUpperCase();
+
+
+    if (
+        !product.sizes.includes(
+            selectedSize
+        )
+    ) {
 
         alert(
             "Please choose: " +
@@ -1359,6 +1625,7 @@ function chooseSize(productId){
         return;
     }
 
+
     addToCart(
         product,
         selectedSize
@@ -1366,24 +1633,28 @@ function chooseSize(productId){
 
 }
 
-/* ADD TO CART */
 
-function addToCart(product,size){
+/* ==================================================
+   ADD TO CART
+================================================== */
+
+function addToCart(product, size) {
 
     const existing =
-    cart.find(
-        item =>
-        item.id === product.id &&
-        item.size === size
-    );
+        cart.find(
+            item =>
+            item.id === product.id &&
+            item.size === size
+        );
 
-    if(existing){
+
+    if (existing) {
 
         existing.quantity++;
 
     }
 
-    else{
+    else {
 
         cart.push({
 
@@ -1409,7 +1680,9 @@ function addToCart(product,size){
 
     }
 
+
     updateCart();
+
 
     alert(
         product.name +
@@ -1418,25 +1691,37 @@ function addToCart(product,size){
 
 }
 
-/* UPDATE CART */
 
-function updateCart(){
+/* ==================================================
+   UPDATE CART
+================================================== */
+
+function updateCart() {
 
     const cartItems =
-    document.getElementById("cartItems");
+        document.getElementById(
+            "cartItems"
+        );
 
     const cartCount =
-    document.getElementById("cartCount");
+        document.getElementById(
+            "cartCount"
+        );
 
     const cartTotal =
-    document.getElementById("cartTotal");
+        document.getElementById(
+            "cartTotal"
+        );
 
-    cartItems.innerHTML="";
 
-    let total=0;
-    let count=0;
+    cartItems.innerHTML = "";
 
-    if(cart.length===0){
+
+    let total = 0;
+    let count = 0;
+
+
+    if (cart.length === 0) {
 
         cartItems.innerHTML = `
 
@@ -1450,59 +1735,81 @@ function updateCart(){
 
     }
 
-    cart.forEach((item,index)=>{
+
+    cart.forEach((item, index) => {
 
         total +=
-        item.price *
-        item.quantity;
+            item.price *
+            item.quantity;
 
         count +=
-        item.quantity;
+            item.quantity;
+
 
         const div =
-        document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
 
         div.className =
-        "cart-item";
+            "cart-item";
+
 
         div.innerHTML = `
 
             <img
                 src="${item.image}"
-                alt="${item.name}"
-            >
+                alt="${item.name}">
 
-            <div class="cart-item-info">
+
+            <div
+                class="cart-item-info">
 
                 <h4>
                     ${item.name}
                 </h4>
 
+
                 <div class="cart-size">
-                    Size: ${item.size}
+
+                    Size:
+                    ${item.size}
+
                 </div>
 
+
                 <div>
+
                     ₹${item.price.toLocaleString("en-IN")}
+
                 </div>
+
 
                 <div class="qty">
 
                     <button
                         onclick="changeQuantity(${index},-1)">
+
                         −
+
                     </button>
+
 
                     <span>
                         ${item.quantity}
                     </span>
 
+
                     <button
                         onclick="changeQuantity(${index},1)">
+
                         +
+
                     </button>
 
                 </div>
+
 
                 <button
                     class="remove"
@@ -1516,29 +1823,38 @@ function updateCart(){
 
         `;
 
+
         cartItems.appendChild(div);
 
     });
 
+
     cartCount.innerText =
-    count;
+        count;
+
 
     cartTotal.innerText =
-    "₹" +
-    total.toLocaleString("en-IN");
+        "₹" +
+        total.toLocaleString(
+            "en-IN"
+        );
 
 }
 
-/* CHANGE QUANTITY */
 
-function changeQuantity(index,amount){
+/* ==================================================
+   CHANGE QUANTITY
+================================================== */
+
+function changeQuantity(index, amount) {
 
     cart[index].quantity +=
-    amount;
+        amount;
 
-    if(
+
+    if (
         cart[index].quantity <= 0
-    ){
+    ) {
 
         cart.splice(
             index,
@@ -1547,13 +1863,17 @@ function changeQuantity(index,amount){
 
     }
 
+
     updateCart();
 
 }
 
-/* REMOVE ITEM */
 
-function removeItem(index){
+/* ==================================================
+   REMOVE ITEM
+================================================== */
+
+function removeItem(index) {
 
     cart.splice(
         index,
@@ -1564,49 +1884,64 @@ function removeItem(index){
 
 }
 
-/* OPEN CART */
 
-function openCart(){
+/* ==================================================
+   OPEN CART
+================================================== */
+
+function openCart() {
 
     document
-    .getElementById("cartPanel")
-    .classList.add("active");
+        .getElementById("cartPanel")
+        .classList.add("active");
 
 }
 
-/* CLOSE CART */
 
-function closeCart(){
+/* ==================================================
+   CLOSE CART
+================================================== */
+
+function closeCart() {
 
     document
-    .getElementById("cartPanel")
-    .classList.remove("active");
+        .getElementById("cartPanel")
+        .classList.remove("active");
 
 }
 
-/* GET TOTAL */
 
-function getCartTotal(){
+/* ==================================================
+   GET TOTAL
+================================================== */
+
+function getCartTotal() {
 
     return cart.reduce(
-        (total,item) =>
-        total +
-        (
-            item.price *
-            item.quantity
-        ),
+
+        (total, item) =>
+
+            total +
+            (
+                item.price *
+                item.quantity
+            ),
+
         0
     );
 
 }
 
-/* OPEN CHECKOUT */
 
-function openCheckout(){
+/* ==================================================
+   OPEN CHECKOUT
+================================================== */
 
-    if(
+function openCheckout() {
+
+    if (
         cart.length === 0
-    ){
+    ) {
 
         alert(
             "Your cart is empty!"
@@ -1615,11 +1950,18 @@ function openCheckout(){
         return;
     }
 
+
     updateCheckout();
 
+
     document
-    .getElementById("checkoutOverlay")
-    .classList.add("active");
+        .getElementById(
+            "checkoutOverlay"
+        )
+        .classList.add(
+            "active"
+        );
+
 
     setTimeout(
         generateUPIQR,
@@ -1628,32 +1970,50 @@ function openCheckout(){
 
 }
 
-/* CLOSE CHECKOUT */
 
-function closeCheckout(){
+/* ==================================================
+   CLOSE CHECKOUT
+================================================== */
+
+function closeCheckout() {
 
     document
-    .getElementById("checkoutOverlay")
-    .classList.remove("active");
+        .getElementById(
+            "checkoutOverlay"
+        )
+        .classList.remove(
+            "active"
+        );
 
 }
 
-/* UPDATE CHECKOUT */
 
-function updateCheckout(){
+/* ==================================================
+   UPDATE CHECKOUT
+================================================== */
+
+function updateCheckout() {
 
     const container =
-    document.getElementById("checkoutItems");
+        document.getElementById(
+            "checkoutItems"
+        );
 
-    container.innerHTML="";
 
-    cart.forEach(item=>{
+    container.innerHTML = "";
+
+
+    cart.forEach(item => {
 
         const row =
-        document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
 
         row.className =
-        "order-summary-row";
+            "order-summary-row";
+
 
         row.innerHTML = `
 
@@ -1664,6 +2024,7 @@ function updateCheckout(){
                 (${item.size})
 
             </span>
+
 
             <span>
 
@@ -1676,64 +2037,94 @@ function updateCheckout(){
 
         `;
 
+
         container.appendChild(row);
 
     });
 
+
     const total =
-    getCartTotal();
+        getCartTotal();
+
 
     document.getElementById(
         "checkoutTotal"
     ).innerText =
-    "₹" +
-    total.toLocaleString("en-IN");
+        "₹" +
+        total.toLocaleString(
+            "en-IN"
+        );
+
 
     document.getElementById(
         "paymentAmount"
     ).innerText =
-    total.toLocaleString("en-IN");
+        total.toLocaleString(
+            "en-IN"
+        );
 
 }
 
-/* GENERATE UPI QR */
 
-function generateUPIQR(){
+/* ==================================================
+   GENERATE UPI QR
+================================================== */
+
+function generateUPIQR() {
 
     const total =
-    getCartTotal();
+        getCartTotal();
 
-    if(total <= 0){
+
+    if (total <= 0)
         return;
-    }
+
 
     const qrContainer =
-    document.getElementById("qrcode");
+        document.getElementById(
+            "qrcode"
+        );
 
-    qrContainer.innerHTML="";
+
+    qrContainer.innerHTML = "";
+
 
     const upiURL =
         "upi://pay" +
-        "?pa=" +
-        encodeURIComponent(MAC_UPI_ID) +
-        "&pn=" +
-        encodeURIComponent("MAC Clothing") +
-        "&am=" +
-        encodeURIComponent(total.toFixed(2)) +
-        "&cu=INR" +
-        "&tn=" +
-        encodeURIComponent("MAC Clothing Order");
 
-    if(
-        typeof QRCode === "undefined"
-    ){
+        "?pa=" +
+        encodeURIComponent(
+            MAC_UPI_ID
+        ) +
+
+        "&pn=" +
+        encodeURIComponent(
+            "MAC Clothing"
+        ) +
+
+        "&am=" +
+        encodeURIComponent(
+            total.toFixed(2)
+        ) +
+
+        "&cu=INR" +
+
+        "&tn=" +
+        encodeURIComponent(
+            "MAC Clothing Order"
+        );
+
+
+    if (
+        typeof QRCode ===
+        "undefined"
+    ) {
 
         qrContainer.innerHTML = `
 
             <p style="color:red">
 
                 QR library could not load.
-                Please check your internet connection.
 
             </p>
 
@@ -1742,45 +2133,62 @@ function generateUPIQR(){
         return;
     }
 
+
     new QRCode(
         qrContainer,
         {
-            text:upiURL,
-            width:280,
-            height:280,
-            correctLevel:QRCode.CorrectLevel.H
+
+            text:
+            upiURL,
+
+            width:
+            280,
+
+            height:
+            280,
+
+            correctLevel:
+            QRCode.CorrectLevel.H
+
         }
     );
 
 }
 
-/* PAYMENT METHOD */
 
-function paymentMethodChanged(){
+/* ==================================================
+   PAYMENT METHOD
+================================================== */
+
+function paymentMethodChanged() {
 
     const method =
-    document.getElementById(
-        "paymentMethod"
-    ).value;
+        document.getElementById(
+            "paymentMethod"
+        ).value;
+
 
     const isUPI =
-    method === "UPI";
+        method === "UPI";
+
 
     document.getElementById(
         "paymentBox"
     ).style.display =
-    isUPI
-    ? "block"
-    : "none";
+        isUPI
+        ? "block"
+        : "none";
+
 
     document.getElementById(
         "screenshotBox"
     ).style.display =
-    isUPI
-    ? "block"
-    : "none";
+        isUPI
+        ? "block"
+        : "none";
 
-    if(isUPI){
+
+    if (isUPI) {
 
         setTimeout(
             generateUPIQR,
@@ -1791,13 +2199,16 @@ function paymentMethodChanged(){
 
 }
 
-/* SEND WHATSAPP ORDER */
 
-function sendWhatsAppOrder(){
+/* ==================================================
+   SEND WHATSAPP ORDER
+================================================== */
 
-    if(
+function sendWhatsAppOrder() {
+
+    if (
         cart.length === 0
-    ){
+    ) {
 
         alert(
             "Your cart is empty!"
@@ -1806,37 +2217,42 @@ function sendWhatsAppOrder(){
         return;
     }
 
+
     const name =
-    document.getElementById(
-        "customerName"
-    )
-    .value
-    .trim();
+        document.getElementById(
+            "customerName"
+        )
+        .value
+        .trim();
+
 
     const phone =
-    document.getElementById(
-        "customerPhone"
-    )
-    .value
-    .trim();
+        document.getElementById(
+            "customerPhone"
+        )
+        .value
+        .trim();
+
 
     const address =
-    document.getElementById(
-        "customerAddress"
-    )
-    .value
-    .trim();
+        document.getElementById(
+            "customerAddress"
+        )
+        .value
+        .trim();
+
 
     const payment =
-    document.getElementById(
-        "paymentMethod"
-    ).value;
+        document.getElementById(
+            "paymentMethod"
+        ).value;
 
-    if(
+
+    if (
         !name ||
         !phone ||
         !address
-    ){
+    ) {
 
         alert(
             "Please fill in all customer details."
@@ -1845,106 +2261,136 @@ function sendWhatsAppOrder(){
         return;
     }
 
-    let total=0;
+
+    let total = 0;
+
 
     let message =
-    "🛍️ *MAC CLOTHING - NEW ORDER*%0A";
+        "*MAC CLOTHING - NEW ORDER*%0A";
+
 
     message +=
-    "━━━━━━━━━━━━━━━━━━%0A%0A";
+        "--------------------%0A%0A";
+
 
     message +=
-    "*CUSTOMER DETAILS*%0A";
+        "*CUSTOMER DETAILS*%0A";
+
 
     message +=
-    "Name: " +
-    encodeURIComponent(name) +
-    "%0A";
-
-    message +=
-    "Phone: " +
-    encodeURIComponent(phone) +
-    "%0A";
-
-    message +=
-    "Address: " +
-    encodeURIComponent(address) +
-    "%0A%0A";
-
-    message +=
-    "*ORDER DETAILS*%0A";
-
-    cart.forEach((item,index)=>{
-
-        const itemTotal =
-        item.price *
-        item.quantity;
-
-        total +=
-        itemTotal;
-
-        message +=
-        (index+1) +
-        ". " +
-        encodeURIComponent(item.name) +
+        "Name: " +
+        encodeURIComponent(name) +
         "%0A";
 
-        message +=
-        "Size: " +
-        encodeURIComponent(item.size) +
+
+    message +=
+        "Phone: " +
+        encodeURIComponent(phone) +
         "%0A";
 
-        message +=
-        "Quantity: " +
-        item.quantity +
-        "%0A";
 
-        message +=
-        "Price: ₹" +
-        itemTotal +
+    message +=
+        "Address: " +
+        encodeURIComponent(address) +
         "%0A%0A";
 
-    });
 
     message +=
-    "*TOTAL: ₹" +
-    total +
-    "*%0A";
+        "*ORDER DETAILS*%0A";
+
+
+    cart.forEach(
+        (item, index) => {
+
+            const itemTotal =
+                item.price *
+                item.quantity;
+
+
+            total +=
+                itemTotal;
+
+
+            message +=
+                (index + 1) +
+                ". " +
+                encodeURIComponent(
+                    item.name
+                ) +
+                "%0A";
+
+
+            message +=
+                "Size: " +
+                encodeURIComponent(
+                    item.size
+                ) +
+                "%0A";
+
+
+            message +=
+                "Quantity: " +
+                item.quantity +
+                "%0A";
+
+
+            message +=
+                "Price: ₹" +
+                itemTotal +
+                "%0A%0A";
+
+        }
+    );
+
 
     message +=
-    "Payment Method: " +
-    encodeURIComponent(payment) +
-    "%0A";
+        "*TOTAL: ₹" +
+        total +
+        "*%0A";
 
-    if(
-        payment === "UPI"
-    ){
 
-        message +=
-        "UPI ID: " +
-        encodeURIComponent(MAC_UPI_ID) +
+    message +=
+        "Payment Method: " +
+        encodeURIComponent(
+            payment
+        ) +
         "%0A";
 
+
+    if (
+        payment === "UPI"
+    ) {
+
         message +=
-        "Payment Screenshot: Please attach the screenshot here.%0A";
+            "UPI ID: " +
+            encodeURIComponent(
+                MAC_UPI_ID
+            ) +
+            "%0A";
+
+        message +=
+            "Payment Screenshot: Please attach the screenshot here.%0A";
 
     }
 
-    else{
+    else {
 
         message +=
-        "Payment Status: Cash on Delivery%0A";
+            "Payment Status: Cash on Delivery%0A";
 
     }
+
 
     message +=
-    "%0APlease confirm my order.";
+        "%0APlease confirm my order.";
+
 
     const whatsappURL =
-    "https://wa.me/" +
-    WHATSAPP_NUMBER +
-    "?text=" +
-    message;
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        message;
+
 
     window.open(
         whatsappURL,
@@ -1953,30 +2399,40 @@ function sendWhatsAppOrder(){
 
 }
 
-/* SEARCH */
 
-function searchProducts(){
+/* ==================================================
+   SEARCH
+================================================== */
+
+function searchProducts() {
 
     const search =
-    document.getElementById(
-        "search"
-    )
-    .value
-    .toLowerCase();
+        document.getElementById(
+            "search"
+        )
+        .value
+        .toLowerCase();
+
 
     const filtered =
-    products.filter(
-        product =>
-        product.name
-        .toLowerCase()
-        .includes(search)
-    );
+        products.filter(
+            product =>
+            product.name
+                .toLowerCase()
+                .includes(search)
+        );
 
-    displayProducts(filtered);
+
+    displayProducts(
+        filtered
+    );
 
 }
 
-/* START */
+
+/* ==================================================
+   START
+================================================== */
 
 displayProducts();
 
