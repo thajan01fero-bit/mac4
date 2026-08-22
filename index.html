@@ -3,1425 +3,1840 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>MAC Clothing</title>
-
-<!-- QR CODE LIBRARY -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-<style>
-
-/* ==================================================
-   RESET
-================================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #111;
-    background: #fff;
-}
-
-
-/* ==================================================
-   HEADER
-================================================== */
-
-header {
-    height: 70px;
-    padding: 0 6%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #eee;
-    position: sticky;
-    top: 0;
-    background: rgba(255,255,255,.97);
-    z-index: 1000;
-}
-
-.logo {
-    font-size: 30px;
-    font-weight: 900;
-    letter-spacing: 5px;
-}
-
-nav {
-    display: flex;
-    gap: 30px;
-}
-
-nav a {
-    text-decoration: none;
-    color: #111;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-nav a:hover {
-    opacity: .5;
-}
-
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-
-.wishlist-button,
-.cart-button {
-    border: none;
-    background: none;
-    font-size: 22px;
-    cursor: pointer;
-    position: relative;
-}
-
-.wishlist-button {
-    font-size: 23px;
-}
-
-.wishlist-count,
-.cart-count {
-    position: absolute;
-    top: -8px;
-    right: -10px;
-    width: 19px;
-    height: 19px;
-    border-radius: 50%;
-    background: #111;
-    color: #fff;
-    font-size: 11px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    <meta charset="UTF-8">
 
-
-/* ==================================================
-   TOAST NOTIFICATION
-================================================== */
-
-.toast-container {
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.toast {
-    min-width: 280px;
-    max-width: 360px;
-    background: #111;
-    color: #fff;
-    padding: 15px 18px;
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.2);
-
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    font-size: 13px;
-
-    animation:
-        toastIn .35s ease,
-        toastOut .35s ease 3.2s forwards;
-}
-
-.toast.success {
-    border-left: 4px solid #25D366;
-}
-
-.toast.wishlist {
-    border-left: 4px solid #ff3b6b;
-}
-
-.toast.info {
-    border-left: 4px solid #fff;
-}
-
-@keyframes toastIn {
-
-    from {
-        transform: translateX(120%);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-
-}
-
-@keyframes toastOut {
-
-    from {
-        transform: translateX(0);
-        opacity: 1;
-    }
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    to {
-        transform: translateX(120%);
-        opacity: 0;
-    }
+    <title>MAC Clothing</title>
 
-}
 
+    <!-- =========================================
+         CORMORANT GARAMOND FONT
+    ========================================== -->
 
-/* ==================================================
-   HERO
-================================================== */
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
 
-.hero {
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
 
-    height: 82vh;
-    min-height: 550px;
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
-    background:
-        linear-gradient(
-            rgba(0,0,0,.4),
-            rgba(0,0,0,.4)
-        ),
-        url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1800&q=85")
-        center/cover;
 
-    display: flex;
-    align-items: flex-end;
+    <!-- =========================================
+         QR CODE LIBRARY
+    ========================================== -->
 
-    padding: 7%;
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-    color: white;
-}
 
-.hero-content h1 {
-    font-size: clamp(65px,10vw,125px);
-    letter-spacing: 10px;
-    font-weight: 900;
-}
+    <style>
 
-.hero-content p {
-    font-size: 18px;
-    letter-spacing: 4px;
-    margin: 10px 0 25px;
-}
+        /* =========================================
+           RESET
+        ========================================== */
 
-.shop-btn {
-    display: inline-block;
-    padding: 15px 35px;
-    background: white;
-    color: #111;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: bold;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.shop-btn:hover {
-    background: #111;
-    color: #fff;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
+        body {
+            font-family: "Cormorant Garamond", serif;
+            color: #111;
+            background: #fff;
+        }
 
-/* ==================================================
-   SECTION
-================================================== */
+        button,
+        input,
+        textarea,
+        select {
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-.section {
-    padding: 80px 6%;
-}
 
-.section-title {
-    margin-bottom: 35px;
-}
+        /* =========================================
+           HEADER
+        ========================================== */
 
-.section-title h2 {
-    font-size: 30px;
-    letter-spacing: 2px;
-}
+        header {
+            height: 75px;
+            padding: 0 6%;
 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-/* ==================================================
-   CATALOG MENU
-================================================== */
+            border-bottom: 1px solid #eee;
 
-.catalog-menu {
+            position: sticky;
+            top: 0;
 
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
+            background: rgba(255,255,255,.97);
 
-    margin-bottom: 35px;
-}
+            z-index: 1000;
+        }
 
-.catalog-btn {
+        .logo {
+            font-family: "Cormorant Garamond", serif;
 
-    padding: 13px 25px;
+            font-size: 38px;
+            font-weight: 700;
 
-    border: 1px solid #111;
+            letter-spacing: 7px;
+        }
 
-    background: white;
+        nav {
+            display: flex;
+            gap: 35px;
+        }
 
-    color: #111;
+        nav a {
+            text-decoration: none;
+            color: #111;
 
-    cursor: pointer;
+            font-family: Arial, Helvetica, sans-serif;
 
-    font-size: 12px;
+            font-size: 12px;
+            font-weight: bold;
 
-    font-weight: bold;
+            letter-spacing: 1px;
 
-    transition: .2s;
-}
+            transition: .3s;
+        }
 
-.catalog-btn:hover,
-.catalog-btn.active {
+        nav a:hover {
+            opacity: .5;
+        }
 
-    background: #111;
-    color: white;
 
-}
+        /* HEADER RIGHT */
 
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-/* ==================================================
-   SEARCH
-================================================== */
 
-.search-box {
-    max-width: 500px;
-    margin: 0 auto 40px;
-}
+        /* WISHLIST */
 
-.search-box input {
+        .wishlist-button {
+            border: none;
+            background: none;
 
-    width: 100%;
+            font-size: 23px;
 
-    padding: 15px;
+            cursor: pointer;
 
-    border: 1px solid #ccc;
+            position: relative;
+        }
 
-    outline: none;
+        .wishlist-count {
+            position: absolute;
 
-    font-size: 14px;
-}
+            top: -9px;
+            right: -10px;
 
+            width: 18px;
+            height: 18px;
 
-/* ==================================================
-   PRODUCTS
-================================================== */
+            border-radius: 50%;
 
-.products {
+            background: #111;
+            color: white;
 
-    display: grid;
+            font-family: Arial, Helvetica, sans-serif;
 
-    grid-template-columns:
-        repeat(4,1fr);
+            font-size: 10px;
 
-    gap: 22px;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.product {
 
-    position: relative;
-}
+        /* CART */
 
-.product-image {
+        .cart-button {
+            border: none;
+            background: none;
 
-    width: 100%;
+            font-size: 22px;
 
-    aspect-ratio: 3/4;
+            cursor: pointer;
 
-    object-fit: cover;
+            position: relative;
+        }
 
-    display: block;
+        .cart-count {
+            position: absolute;
 
-    background: #f5f5f5;
-}
+            top: -8px;
+            right: -10px;
 
-.product-info {
+            width: 19px;
+            height: 19px;
 
-    padding: 14px 0;
-}
+            border-radius: 50%;
 
-.product-info h3 {
+            background: #111;
+            color: #fff;
 
-    font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
 
-    font-weight: 500;
+            font-size: 11px;
 
-    margin-bottom: 7px;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.price {
 
-    font-size: 14px;
+        /* =========================================
+           LOGIN NOTIFICATION
+        ========================================== */
 
-    font-weight: bold;
-}
+        .login-notification {
 
-.badge {
+            position: fixed;
 
-    position: absolute;
+            top: 90px;
+            right: 25px;
 
-    top: 12px;
-    left: 12px;
+            width: 320px;
 
-    background: #fff;
+            background: #111;
+            color: white;
 
-    padding: 7px 10px;
+            padding: 20px;
 
-    font-size: 10px;
+            z-index: 5000;
 
-    font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0,0,0,.2);
 
-    z-index: 2;
-}
+            animation: slideIn .6s ease;
 
+            border-left: 3px solid #fff;
+        }
 
-/* ==================================================
-   PRODUCT WISHLIST
-================================================== */
+        .login-notification.hide {
+            display: none;
+        }
 
-.wishlist-product {
+        .login-notification h3 {
+            font-family: "Cormorant Garamond", serif;
 
-    position: absolute;
+            font-size: 24px;
 
-    top: 12px;
-    right: 12px;
+            font-weight: 500;
 
-    width: 38px;
-    height: 38px;
+            margin-bottom: 5px;
+        }
 
-    border-radius: 50%;
+        .login-notification p {
+            font-family: Arial, Helvetica, sans-serif;
 
-    border: none;
+            font-size: 12px;
 
-    background: white;
+            color: #ccc;
 
-    font-size: 19px;
+            line-height: 1.5;
 
-    cursor: pointer;
+            margin-bottom: 15px;
+        }
 
-    z-index: 5;
+        .login-actions {
+            display: flex;
+            gap: 10px;
+        }
 
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.12);
-}
+        .login-btn {
+            padding: 9px 18px;
 
-.wishlist-product.active {
+            border: 1px solid white;
 
-    color: #ff315d;
-}
+            background: white;
+            color: #111;
 
+            cursor: pointer;
 
-/* ==================================================
-   PRODUCT ACTIONS
-================================================== */
+            font-size: 11px;
+            font-weight: bold;
+        }
 
-.product-actions {
+        .dismiss-btn {
+            padding: 9px 15px;
 
-    margin-top: 12px;
+            border: 1px solid #555;
 
-    display: flex;
+            background: transparent;
+            color: white;
 
-    gap: 7px;
-}
+            cursor: pointer;
 
-.product-actions button {
+            font-size: 11px;
+        }
 
-    flex: 1;
+        @keyframes slideIn {
 
-    padding: 12px;
+            from {
+                transform: translateX(120%);
+                opacity: 0;
+            }
 
-    border: 1px solid #111;
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
 
-    background: #fff;
+        }
 
-    cursor: pointer;
 
-    font-weight: bold;
+        /* =========================================
+           HERO
+        ========================================== */
 
-    font-size: 12px;
-}
+        .hero {
 
-.product-actions button:hover {
+            height: 82vh;
+            min-height: 550px;
 
-    background: #111;
+            background:
 
-    color: #fff;
-}
+                linear-gradient(
+                    rgba(0,0,0,.42),
+                    rgba(0,0,0,.42)
+                ),
 
+                url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=1800&q=85")
 
-/* ==================================================
-   COLLECTION
-================================================== */
+                center/cover;
 
-.collection {
+            display: flex;
 
-    display: grid;
+            align-items: flex-end;
 
-    grid-template-columns:
-        repeat(3,1fr);
+            padding: 7%;
 
-    gap: 20px;
-}
+            color: white;
+        }
 
-.collection-card {
+        .hero-content h1 {
 
-    height: 600px;
+            font-family: "Cormorant Garamond", serif;
 
-    position: relative;
+            font-size: clamp(
+                80px,
+                12vw,
+                150px
+            );
 
-    overflow: hidden;
+            letter-spacing: 12px;
 
-    cursor: pointer;
-}
+            font-weight: 600;
 
-.collection-card img {
+            line-height: .8;
+        }
 
-    width: 100%;
-    height: 100%;
+        .hero-content p {
 
-    object-fit: cover;
+            font-family: Arial, Helvetica, sans-serif;
 
-    display: block;
+            font-size: 14px;
 
-    transition: transform .4s;
-}
+            letter-spacing: 5px;
 
-.collection-card:hover img {
+            margin: 20px 0 28px;
+        }
 
-    transform: scale(1.04);
-}
+        .shop-btn {
 
-.collection-card::after {
+            display: inline-block;
 
-    content: "";
+            padding: 15px 38px;
 
-    position: absolute;
+            background: white;
 
-    inset: 0;
+            color: #111;
 
-    background:
-        linear-gradient(
-            transparent 45%,
-            rgba(0,0,0,.65)
-        );
-}
+            text-decoration: none;
 
-.collection-text {
+            font-family: Arial, Helvetica, sans-serif;
 
-    position: absolute;
+            font-size: 12px;
 
-    left: 35px;
-    bottom: 35px;
+            font-weight: bold;
 
-    color: #fff;
+            letter-spacing: 1px;
 
-    z-index: 2;
-}
+            transition: .3s;
+        }
 
-.collection-text h2 {
+        .shop-btn:hover {
 
-    font-size: 42px;
+            background: #111;
 
-    margin-bottom: 12px;
-}
+            color: white;
+        }
 
-.collection-text a {
 
-    color: white;
+        /* =========================================
+           SECTION
+        ========================================== */
 
-    text-decoration: none;
+        .section {
 
-    border-bottom: 1px solid white;
+            padding: 90px 6%;
+        }
 
-    padding-bottom: 5px;
-}
+        .section-title {
 
+            margin-bottom: 35px;
+        }
 
-/* ==================================================
-   WISHLIST PANEL
-================================================== */
+        .section-title h2 {
 
-.wishlist-panel {
+            font-family: "Cormorant Garamond", serif;
 
-    position: fixed;
+            font-size: 48px;
 
-    right: -450px;
+            font-weight: 500;
 
-    top: 0;
+            letter-spacing: 3px;
+        }
 
-    width: 430px;
 
-    max-width: 100%;
+        /* =========================================
+           CATALOG MENU
+        ========================================== */
 
-    height: 100vh;
+        .catalog-menu {
 
-    background: #fff;
+            display: flex;
 
-    z-index: 3000;
+            gap: 10px;
 
-    box-shadow:
-        -5px 0 20px rgba(0,0,0,.15);
+            margin-bottom: 35px;
 
-    transition: .4s;
+            flex-wrap: wrap;
+        }
 
-    display: flex;
+        .catalog-btn {
 
-    flex-direction: column;
-}
+            padding: 12px 25px;
 
-.wishlist-panel.active {
+            background: white;
 
-    right: 0;
-}
+            border: 1px solid #ccc;
 
-.wishlist-header {
+            cursor: pointer;
 
-    padding: 22px;
+            font-family: Arial, Helvetica, sans-serif;
 
-    border-bottom: 1px solid #eee;
+            font-size: 11px;
 
-    display: flex;
+            font-weight: bold;
 
-    justify-content: space-between;
+            letter-spacing: 1px;
 
-    align-items: center;
-}
+            transition: .3s;
+        }
 
-.wishlist-header h2 {
+        .catalog-btn:hover,
+        .catalog-btn.active {
 
-    font-size: 20px;
-}
+            background: #111;
 
-.close-wishlist {
+            color: white;
 
-    border: none;
+            border-color: #111;
+        }
 
-    background: none;
 
-    font-size: 28px;
+        /* =========================================
+           SEARCH
+        ========================================== */
 
-    cursor: pointer;
-}
+        .search-box {
 
-.wishlist-items {
+            max-width: 500px;
 
-    flex: 1;
+            margin: 0 auto 45px;
+        }
 
-    overflow-y: auto;
+        .search-box input {
 
-    padding: 20px;
-}
+            width: 100%;
 
-.wishlist-item {
+            padding: 15px;
 
-    display: flex;
+            border: 1px solid #ccc;
 
-    gap: 12px;
+            outline: none;
 
-    margin-bottom: 20px;
+            font-size: 14px;
+        }
 
-    border-bottom: 1px solid #eee;
 
-    padding-bottom: 20px;
-}
+        /* =========================================
+           PRODUCTS
+        ========================================== */
 
-.wishlist-item img {
+        .products {
 
-    width: 80px;
+            display: grid;
 
-    height: 100px;
+            grid-template-columns:
+                repeat(4, 1fr);
 
-    object-fit: cover;
-}
+            gap: 25px;
+        }
 
-.wishlist-info {
+        .product {
 
-    flex: 1;
-}
+            position: relative;
+        }
 
-.wishlist-info h4 {
+        .product-image {
 
-    font-size: 14px;
+            width: 100%;
 
-    margin-bottom: 7px;
-}
+            aspect-ratio: 3 / 4;
 
-.wishlist-info .price {
+            object-fit: cover;
 
-    margin-bottom: 12px;
-}
+            display: block;
 
-.wishlist-actions {
+            background: #f5f5f5;
+        }
 
-    display: flex;
 
-    gap: 7px;
-}
+        /* PRODUCT HEART */
 
-.wishlist-actions button {
+        .product-wishlist {
 
-    padding: 8px 10px;
+            position: absolute;
 
-    border: 1px solid #111;
+            top: 12px;
+            right: 12px;
 
-    background: white;
+            width: 38px;
+            height: 38px;
 
-    cursor: pointer;
+            border-radius: 50%;
 
-    font-size: 11px;
+            border: none;
 
-    font-weight: bold;
-}
+            background: white;
 
-.wishlist-actions button:hover {
+            font-size: 20px;
 
-    background: #111;
+            cursor: pointer;
 
-    color: white;
-}
+            z-index: 5;
+        }
 
-.empty-wishlist {
+        .product-wishlist.saved {
 
-    text-align: center;
+            color: #d00;
+        }
 
-    color: #777;
 
-    margin-top: 50px;
+        /* BADGE */
 
-    line-height: 1.7;
-}
+        .badge {
 
+            position: absolute;
 
-/* ==================================================
-   CART
-================================================== */
+            top: 12px;
+            left: 12px;
 
-.cart-panel {
+            background: white;
 
-    position: fixed;
+            padding: 7px 10px;
 
-    right: -450px;
+            font-family: Arial, Helvetica, sans-serif;
 
-    top: 0;
+            font-size: 9px;
 
-    width: 430px;
+            font-weight: bold;
 
-    max-width: 100%;
+            z-index: 2;
+        }
 
-    height: 100vh;
 
-    background: #fff;
+        /* PRODUCT INFO */
 
-    z-index: 3000;
+        .product-info {
 
-    box-shadow:
-        -5px 0 20px rgba(0,0,0,.15);
+            padding: 15px 0;
+        }
 
-    transition: .4s;
+        .product-info h3 {
 
-    display: flex;
+            font-family:
+                "Cormorant Garamond",
+                serif;
 
-    flex-direction: column;
-}
+            font-size: 23px;
 
-.cart-panel.active {
+            font-weight: 500;
 
-    right: 0;
-}
+            margin-bottom: 5px;
+        }
 
-.cart-header {
+        .category-label {
 
-    padding: 22px;
+            font-family: Arial, Helvetica, sans-serif;
 
-    border-bottom: 1px solid #eee;
+            color: #777;
 
-    display: flex;
+            font-size: 10px;
 
-    justify-content: space-between;
+            text-transform: uppercase;
 
-    align-items: center;
-}
+            letter-spacing: 1px;
 
-.cart-header h2 {
+            margin-bottom: 7px;
+        }
 
-    font-size: 20px;
-}
+        .price {
 
-.close-cart {
+            font-family: Arial, Helvetica, sans-serif;
 
-    border: none;
+            font-size: 13px;
 
-    background: none;
+            font-weight: bold;
+        }
 
-    font-size: 28px;
 
-    cursor: pointer;
-}
+        /* PRODUCT ACTION */
 
-.cart-items {
+        .product-actions {
 
-    flex: 1;
+            margin-top: 13px;
+        }
 
-    overflow-y: auto;
+        .product-actions button {
 
-    padding: 20px;
-}
+            width: 100%;
 
-.cart-item {
+            padding: 12px;
 
-    display: flex;
+            border: 1px solid #111;
 
-    gap: 12px;
+            background: white;
 
-    margin-bottom: 20px;
+            cursor: pointer;
 
-    border-bottom: 1px solid #eee;
+            font-size: 11px;
 
-    padding-bottom: 20px;
-}
+            font-weight: bold;
 
-.cart-item img {
+            letter-spacing: 1px;
 
-    width: 80px;
+            transition: .3s;
+        }
 
-    height: 100px;
+        .product-actions button:hover {
 
-    object-fit: cover;
-}
+            background: #111;
 
-.cart-item-info {
+            color: white;
+        }
 
-    flex: 1;
-}
 
-.cart-item-info h4 {
+        /* =========================================
+           COLLECTION
+        ========================================== */
 
-    font-size: 14px;
+        .collection {
 
-    margin-bottom: 7px;
-}
+            display: grid;
 
-.cart-size {
+            grid-template-columns:
+                repeat(3, 1fr);
 
-    color: #666;
+            gap: 20px;
+        }
 
-    font-size: 12px;
+        .collection-card {
 
-    margin-bottom: 5px;
-}
+            height: 600px;
 
-.qty {
+            position: relative;
 
-    display: flex;
+            overflow: hidden;
+        }
 
-    align-items: center;
+        .collection-card img {
 
-    gap: 10px;
+            width: 100%;
+            height: 100%;
 
-    margin-top: 10px;
-}
+            object-fit: cover;
 
-.qty button {
+            display: block;
 
-    width: 27px;
+            transition:
+                transform .5s;
+        }
 
-    height: 27px;
+        .collection-card:hover img {
 
-    border: 1px solid #ccc;
+            transform: scale(1.05);
+        }
 
-    background: #fff;
+        .collection-card::after {
 
-    cursor: pointer;
-}
+            content: "";
 
-.remove {
+            position: absolute;
 
-    color: #d00;
+            inset: 0;
 
-    border: none;
+            background:
+                linear-gradient(
+                    transparent 40%,
+                    rgba(0,0,0,.7)
+                );
+        }
 
-    background: none;
+        .collection-text {
 
-    cursor: pointer;
+            position: absolute;
 
-    font-size: 12px;
+            left: 35px;
+            bottom: 35px;
 
-    margin-top: 8px;
-}
+            color: white;
 
-.cart-footer {
+            z-index: 2;
+        }
 
-    padding: 20px;
+        .collection-text h2 {
 
-    border-top: 1px solid #eee;
-}
+            font-family:
+                "Cormorant Garamond",
+                serif;
 
-.cart-total {
+            font-size: 58px;
 
-    display: flex;
+            font-weight: 500;
 
-    justify-content: space-between;
+            margin-bottom: 10px;
+        }
 
-    font-size: 18px;
+        .collection-text a {
 
-    font-weight: bold;
+            color: white;
 
-    margin-bottom: 15px;
-}
+            text-decoration: none;
 
-.checkout-btn {
+            font-family: Arial, Helvetica, sans-serif;
 
-    width: 100%;
+            font-size: 11px;
 
-    padding: 16px;
+            letter-spacing: 1px;
 
-    background: #111;
+            border-bottom: 1px solid white;
 
-    color: #fff;
+            padding-bottom: 5px;
+        }
 
-    border: none;
 
-    cursor: pointer;
+        /* =========================================
+           WISHLIST PANEL
+        ========================================== */
 
-    font-weight: bold;
-}
+        .wishlist-panel {
 
-.empty-cart {
+            position: fixed;
 
-    text-align: center;
+            right: -450px;
 
-    color: #777;
+            top: 0;
 
-    margin-top: 50px;
-}
+            width: 430px;
 
+            max-width: 100%;
 
-/* ==================================================
-   CHECKOUT
-================================================== */
+            height: 100vh;
 
-.checkout-overlay {
+            background: white;
 
-    position: fixed;
+            z-index: 3000;
 
-    inset: 0;
+            box-shadow:
+                -5px 0 20px rgba(0,0,0,.15);
 
-    background: rgba(0,0,0,.7);
+            transition: .4s;
 
-    z-index: 4000;
+            display: flex;
 
-    display: none;
+            flex-direction: column;
+        }
 
-    align-items: center;
+        .wishlist-panel.active {
 
-    justify-content: center;
+            right: 0;
+        }
 
-    padding: 20px;
-}
+        .wishlist-header {
 
-.checkout-overlay.active {
+            padding: 22px;
 
-    display: flex;
-}
+            border-bottom:
+                1px solid #eee;
 
-.checkout-box {
+            display: flex;
 
-    background: white;
+            justify-content:
+                space-between;
 
-    width: 650px;
+            align-items: center;
+        }
 
-    max-width: 100%;
+        .wishlist-header h2 {
 
-    max-height: 92vh;
+            font-family:
+                "Cormorant Garamond",
+                serif;
 
-    overflow-y: auto;
+            font-size: 27px;
 
-    padding: 30px;
+            font-weight: 500;
+        }
 
-    position: relative;
-}
+        .close-wishlist {
 
-.close-checkout {
+            border: none;
 
-    position: absolute;
+            background: none;
 
-    top: 15px;
-    right: 20px;
+            font-size: 28px;
 
-    border: none;
+            cursor: pointer;
+        }
 
-    background: none;
+        .wishlist-items {
 
-    font-size: 28px;
+            flex: 1;
 
-    cursor: pointer;
-}
+            overflow-y: auto;
 
-.checkout-box h2 {
+            padding: 20px;
+        }
 
-    margin-bottom: 25px;
-}
+        .wishlist-item {
 
+            display: flex;
 
-/* ==================================================
-   FORM
-================================================== */
+            gap: 15px;
 
-.form-group {
+            margin-bottom: 20px;
 
-    margin-bottom: 17px;
-}
+            padding-bottom: 20px;
 
-.form-group label {
+            border-bottom:
+                1px solid #eee;
+        }
 
-    display: block;
+        .wishlist-item img {
 
-    font-size: 12px;
+            width: 80px;
+            height: 100px;
 
-    font-weight: bold;
+            object-fit: cover;
+        }
 
-    margin-bottom: 7px;
-}
+        .wishlist-item-info {
 
-.form-group input,
-.form-group textarea {
+            flex: 1;
+        }
 
-    width: 100%;
+        .wishlist-item-info h4 {
 
-    padding: 13px;
+            font-family:
+                "Cormorant Garamond",
+                serif;
 
-    border: 1px solid #ccc;
+            font-size: 20px;
 
-    outline: none;
+            font-weight: 500;
 
-    font-size: 14px;
-}
+            margin-bottom: 5px;
+        }
 
-.form-group textarea {
+        .wishlist-item-info p {
 
-    height: 100px;
+            font-family: Arial, Helvetica, sans-serif;
 
-    resize: vertical;
-}
+            font-size: 13px;
 
+            margin-bottom: 10px;
+        }
 
-/* ==================================================
-   PAYMENT
-================================================== */
+        .wishlist-add {
 
-.payment-box {
+            border: 1px solid #111;
 
-    border: 1px solid #ddd;
+            background: white;
 
-    padding: 20px;
+            padding: 8px 12px;
 
-    margin: 20px 0;
+            font-family: Arial, Helvetica, sans-serif;
 
-    text-align: center;
-}
+            font-size: 10px;
 
-.payment-box h3 {
+            font-weight: bold;
 
-    margin-bottom: 10px;
+            cursor: pointer;
+        }
 
-    font-size: 20px;
-}
+        .wishlist-remove {
 
-.upi-id {
+            border: none;
 
-    font-size: 15px;
+            background: none;
 
-    margin-bottom: 15px;
-}
+            color: #d00;
 
-.upi-id span {
+            margin-left: 8px;
 
-    font-weight: bold;
-}
+            font-size: 11px;
 
-#qrcode {
+            cursor: pointer;
+        }
 
-    width: 280px;
+        .empty-wishlist {
 
-    min-height: 280px;
+            text-align: center;
 
-    margin: 20px auto;
+            color: #777;
 
-    display: flex;
+            margin-top: 50px;
 
-    align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
 
-    justify-content: center;
-}
+            font-size: 13px;
+        }
 
-#qrcode img {
 
-    width: 280px !important;
+        /* =========================================
+           CART
+        ========================================== */
 
-    height: 280px !important;
-}
+        .cart-panel {
 
-.payment-note {
+            position: fixed;
 
-    color: #666;
+            right: -450px;
 
-    font-size: 12px;
+            top: 0;
 
-    line-height: 1.6;
-}
+            width: 430px;
 
+            max-width: 100%;
 
-/* ==================================================
-   SCREENSHOT
-================================================== */
+            height: 100vh;
 
-.screenshot-box {
+            background: white;
 
-    border: 1px dashed #aaa;
+            z-index: 3000;
 
-    padding: 18px;
+            box-shadow:
+                -5px 0 20px rgba(0,0,0,.15);
 
-    margin: 20px 0;
-}
+            transition: .4s;
 
-.screenshot-box label {
+            display: flex;
 
-    display: block;
+            flex-direction: column;
+        }
 
-    font-size: 13px;
+        .cart-panel.active {
 
-    font-weight: bold;
+            right: 0;
+        }
 
-    margin-bottom: 10px;
-}
+        .cart-header {
 
-.screenshot-box input {
+            padding: 22px;
 
-    width: 100%;
-}
+            border-bottom:
+                1px solid #eee;
 
+            display: flex;
 
-/* ==================================================
-   ORDER SUMMARY
-================================================== */
+            justify-content:
+                space-between;
 
-.order-summary {
+            align-items: center;
+        }
 
-    background: #f5f5f5;
+        .cart-header h2 {
 
-    padding: 15px;
+            font-family:
+                "Cormorant Garamond",
+                serif;
 
-    margin: 20px 0;
-}
+            font-size: 27px;
 
-.order-summary-row {
+            font-weight: 500;
+        }
 
-    display: flex;
+        .close-cart {
 
-    justify-content: space-between;
+            border: none;
 
-    gap: 15px;
+            background: none;
 
-    margin: 8px 0;
+            font-size: 28px;
 
-    font-size: 14px;
-}
+            cursor: pointer;
+        }
 
-.final-total {
+        .cart-items {
 
-    border-top: 1px solid #ccc;
+            flex: 1;
 
-    padding-top: 12px;
+            overflow-y: auto;
 
-    margin-top: 12px;
+            padding: 20px;
+        }
 
-    font-size: 18px;
+        .cart-item {
 
-    font-weight: bold;
-}
+            display: flex;
 
+            gap: 12px;
 
-/* ==================================================
-   WHATSAPP
-================================================== */
+            margin-bottom: 20px;
 
-.whatsapp-btn {
+            border-bottom:
+                1px solid #eee;
 
-    width: 100%;
+            padding-bottom: 20px;
+        }
 
-    padding: 16px;
+        .cart-item img {
 
-    border: none;
+            width: 80px;
+            height: 100px;
 
-    background: #25D366;
+            object-fit: cover;
+        }
 
-    color: #fff;
+        .cart-item-info {
 
-    font-size: 15px;
+            flex: 1;
+        }
 
-    font-weight: bold;
+        .cart-item-info h4 {
 
-    cursor: pointer;
-}
+            font-family:
+                "Cormorant Garamond",
+                serif;
 
-.whatsapp-btn:hover {
+            font-size: 20px;
 
-    opacity: .9;
-}
+            font-weight: 500;
 
+            margin-bottom: 5px;
+        }
 
-/* ==================================================
-   NEWSLETTER
-================================================== */
+        .cart-size {
 
-.newsletter {
+            color: #666;
 
-    background: #f5f5f5;
+            font-family: Arial, Helvetica, sans-serif;
 
-    text-align: center;
+            font-size: 11px;
 
-    padding: 80px 20px;
-}
+            margin-bottom: 5px;
+        }
 
-.newsletter h2 {
+        .cart-price {
 
-    font-size: 35px;
+            font-family: Arial, Helvetica, sans-serif;
 
-    margin-bottom: 10px;
-}
+            font-size: 12px;
+        }
 
-.newsletter p {
+        .qty {
 
-    color: #666;
+            display: flex;
 
-    margin-bottom: 25px;
-}
+            align-items: center;
 
-.email-box {
+            gap: 10px;
 
-    max-width: 500px;
+            margin-top: 10px;
+        }
 
-    display: flex;
+        .qty button {
 
-    margin: auto;
-}
+            width: 27px;
+            height: 27px;
 
-.email-box input {
+            border: 1px solid #ccc;
 
-    flex: 1;
+            background: white;
 
-    padding: 15px;
+            cursor: pointer;
+        }
 
-    border: 1px solid #ccc;
-}
+        .remove {
 
-.email-box button {
+            color: #d00;
 
-    padding: 15px 25px;
+            border: none;
 
-    border: none;
+            background: none;
 
-    background: #111;
+            cursor: pointer;
 
-    color: #fff;
-}
+            font-size: 11px;
 
+            margin-top: 8px;
+        }
 
-/* ==================================================
-   FOOTER
-================================================== */
+        .cart-footer {
 
-footer {
+            padding: 20px;
 
-    background: #111;
+            border-top:
+                1px solid #eee;
+        }
 
-    color: #fff;
+        .cart-total {
 
-    padding: 60px 6% 25px;
-}
+            display: flex;
 
-.footer-grid {
+            justify-content:
+                space-between;
 
-    display: grid;
+            font-family: Arial, Helvetica, sans-serif;
 
-    grid-template-columns:
-        2fr 1fr 1fr 1fr;
+            font-size: 17px;
 
-    gap: 40px;
+            font-weight: bold;
 
-    margin-bottom: 45px;
-}
+            margin-bottom: 15px;
+        }
 
-.footer-logo {
+        .checkout-btn {
 
-    font-size: 32px;
+            width: 100%;
 
-    font-weight: bold;
+            padding: 16px;
 
-    letter-spacing: 5px;
-}
+            background: #111;
 
-footer h3 {
+            color: white;
 
-    font-size: 13px;
+            border: none;
 
-    margin-bottom: 17px;
-}
+            cursor: pointer;
 
-footer a {
+            font-weight: bold;
 
-    color: #aaa;
+            font-size: 12px;
 
-    display: block;
+            letter-spacing: 1px;
+        }
 
-    text-decoration: none;
+        .empty-cart {
 
-    margin-bottom: 10px;
+            text-align: center;
 
-    font-size: 13px;
-}
+            color: #777;
 
-footer a:hover {
+            margin-top: 50px;
 
-    color: white;
-}
+            font-family: Arial, Helvetica, sans-serif;
 
-.copyright {
+            font-size: 13px;
+        }
 
-    border-top: 1px solid #333;
 
-    padding-top: 20px;
+        /* =========================================
+           CHECKOUT
+        ========================================== */
 
-    color: #777;
+        .checkout-overlay {
 
-    font-size: 12px;
-}
+            position: fixed;
 
+            inset: 0;
 
-/* ==================================================
-   MOBILE
-================================================== */
+            background:
+                rgba(0,0,0,.7);
 
-@media(max-width:800px) {
+            z-index: 4000;
 
-    header {
+            display: none;
 
-        padding: 0 20px;
-    }
+            align-items: center;
 
-    nav {
+            justify-content: center;
 
-        display: none;
-    }
+            padding: 20px;
+        }
 
-    .hero {
+        .checkout-overlay.active {
 
-        height: 75vh;
+            display: flex;
+        }
 
-        min-height: 500px;
-    }
+        .checkout-box {
 
-    .products {
+            background: white;
 
-        grid-template-columns:
-            repeat(2,1fr);
+            width: 650px;
 
-        gap: 12px;
-    }
+            max-width: 100%;
 
-    .section {
+            max-height: 92vh;
 
-        padding: 55px 20px;
-    }
+            overflow-y: auto;
 
-    .collection {
+            padding: 30px;
 
-        grid-template-columns: 1fr;
-    }
+            position: relative;
+        }
 
-    .collection-card {
+        .close-checkout {
 
-        height: 500px;
-    }
+            position: absolute;
 
-    .footer-grid {
+            top: 15px;
+            right: 20px;
 
-        grid-template-columns:
-            1fr 1fr;
-    }
+            border: none;
 
-    .checkout-box {
+            background: none;
 
-        padding: 22px;
-    }
+            font-size: 28px;
 
-    .catalog-menu {
+            cursor: pointer;
+        }
 
-        justify-content: flex-start;
+        .checkout-box h2 {
 
-        overflow-x: auto;
+            font-family:
+                "Cormorant Garamond",
+                serif;
 
-        flex-wrap: nowrap;
+            font-size: 35px;
 
-        padding-bottom: 5px;
-    }
+            font-weight: 500;
 
-    .catalog-btn {
+            margin-bottom: 25px;
+        }
 
-        white-space: nowrap;
-    }
 
-    .toast-container {
+        /* =========================================
+           FORM
+        ========================================== */
 
-        right: 15px;
+        .form-group {
 
-        left: 15px;
+            margin-bottom: 17px;
+        }
 
-        bottom: 15px;
-    }
+        .form-group label {
 
-    .toast {
+            display: block;
 
-        width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
 
-        min-width: 0;
-    }
+            font-size: 11px;
 
-}
+            font-weight: bold;
 
-</style>
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #ccc;
+
+            outline: none;
+
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+
+            height: 100px;
+
+            resize: vertical;
+        }
+
+
+        /* =========================================
+           PAYMENT
+        ========================================== */
+
+        .payment-box {
+
+            border: 1px solid #ddd;
+
+            padding: 20px;
+
+            margin: 20px 0;
+
+            text-align: center;
+        }
+
+        .payment-box h3 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 28px;
+
+            font-weight: 500;
+
+            margin-bottom: 10px;
+        }
+
+        .upi-id {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 13px;
+
+            margin-bottom: 15px;
+        }
+
+        .upi-id span {
+
+            font-weight: bold;
+        }
+
+        #qrcode {
+
+            width: 280px;
+
+            min-height: 280px;
+
+            margin: 20px auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+        #qrcode img {
+
+            width: 280px !important;
+
+            height: 280px !important;
+        }
+
+        .payment-note {
+
+            color: #666;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           SCREENSHOT
+        ========================================== */
+
+        .screenshot-box {
+
+            border: 1px dashed #aaa;
+
+            padding: 18px;
+
+            margin: 20px 0;
+        }
+
+        .screenshot-box label {
+
+            display: block;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+        }
+
+        .screenshot-box input {
+
+            width: 100%;
+        }
+
+
+        /* =========================================
+           ORDER SUMMARY
+        ========================================== */
+
+        .order-summary {
+
+            background: #f5f5f5;
+
+            padding: 15px;
+
+            margin: 20px 0;
+        }
+
+        .order-summary strong {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 20px;
+        }
+
+        .order-summary-row {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            gap: 15px;
+
+            margin: 8px 0;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 12px;
+        }
+
+        .final-total {
+
+            border-top:
+                1px solid #ccc;
+
+            padding-top: 12px;
+
+            margin-top: 12px;
+
+            font-size: 17px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================================
+           WHATSAPP
+        ========================================== */
+
+        .whatsapp-btn {
+
+            width: 100%;
+
+            padding: 16px;
+
+            border: none;
+
+            background: #25D366;
+
+            color: white;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .whatsapp-btn:hover {
+
+            opacity: .9;
+        }
+
+
+        /* =========================================
+           NEWSLETTER
+        ========================================== */
+
+        .newsletter {
+
+            background: #f5f5f5;
+
+            text-align: center;
+
+            padding: 90px 20px;
+        }
+
+        .newsletter h2 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 48px;
+
+            font-weight: 500;
+
+            margin-bottom: 10px;
+        }
+
+        .newsletter p {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            color: #666;
+
+            margin-bottom: 25px;
+
+            font-size: 13px;
+        }
+
+        .email-box {
+
+            max-width: 500px;
+
+            display: flex;
+
+            margin: auto;
+        }
+
+        .email-box input {
+
+            flex: 1;
+
+            padding: 15px;
+
+            border: 1px solid #ccc;
+        }
+
+        .email-box button {
+
+            padding: 15px 25px;
+
+            border: none;
+
+            background: #111;
+
+            color: white;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================== */
+
+        footer {
+
+            background: #111;
+
+            color: white;
+
+            padding: 60px 6% 25px;
+        }
+
+        .footer-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                2fr 1fr 1fr 1fr;
+
+            gap: 40px;
+
+            margin-bottom: 45px;
+        }
+
+        .footer-logo {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 40px;
+
+            font-weight: 600;
+
+            letter-spacing: 7px;
+        }
+
+        footer h3 {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 12px;
+
+            margin-bottom: 17px;
+        }
+
+        footer a {
+
+            color: #aaa;
+
+            display: block;
+
+            text-decoration: none;
+
+            margin-bottom: 10px;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 12px;
+        }
+
+        footer a:hover {
+
+            color: white;
+        }
+
+        .copyright {
+
+            border-top:
+                1px solid #333;
+
+            padding-top: 20px;
+
+            color: #777;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================================
+           TOAST NOTIFICATION
+        ========================================== */
+
+        .toast {
+
+            position: fixed;
+
+            bottom: 25px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%)
+                translateY(100px);
+
+            background: #111;
+
+            color: white;
+
+            padding: 14px 25px;
+
+            z-index: 6000;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 12px;
+
+            opacity: 0;
+
+            transition: .4s;
+        }
+
+        .toast.show {
+
+            opacity: 1;
+
+            transform:
+                translateX(-50%)
+                translateY(0);
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================== */
+
+        @media(max-width:800px) {
+
+            header {
+
+                padding: 0 20px;
+
+            }
+
+            nav {
+
+                display: none;
+
+            }
+
+            .logo {
+
+                font-size: 32px;
+
+            }
+
+            .hero {
+
+                height: 75vh;
+
+                min-height: 500px;
+
+            }
+
+            .hero-content h1 {
+
+                font-size: 90px;
+
+                letter-spacing: 7px;
+
+            }
+
+            .products {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+
+                gap: 15px;
+
+            }
+
+            .section {
+
+                padding: 60px 20px;
+
+            }
+
+            .section-title h2 {
+
+                font-size: 38px;
+
+            }
+
+            .collection {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .collection-card {
+
+                height: 500px;
+
+            }
+
+            .collection-text h2 {
+
+                font-size: 50px;
+
+            }
+
+            .footer-grid {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+            .checkout-box {
+
+                padding: 22px;
+
+            }
+
+            .login-notification {
+
+                right: 15px;
+
+                left: 15px;
+
+                width: auto;
+
+            }
+
+        }
+
+    </style>
 
 </head>
+
 
 <body>
 
 
-<!-- ==================================================
+<!-- =========================================
+     LOGIN NOTIFICATION
+========================================== -->
+
+<div class="login-notification" id="loginNotification">
+
+    <h3>Enjoy a richer MAC experience.</h3>
+
+    <p>
+        Save your favourite pieces to your wishlist
+        and keep track of the styles you love.
+    </p>
+
+    <div class="login-actions">
+
+        <button
+            class="login-btn"
+            onclick="closeLoginNotification()">
+
+            MAYBE LATER
+
+        </button>
+
+        <button
+            class="dismiss-btn"
+            onclick="closeLoginNotification()">
+
+            CLOSE
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
      HEADER
-================================================== -->
+========================================== -->
 
 <header>
 
     <div class="logo">
         MAC
     </div>
+
 
     <nav>
 
@@ -1439,7 +1854,9 @@ footer a:hover {
 
     </nav>
 
-    <div class="header-actions">
+
+    <div class="header-right">
+
 
         <!-- WISHLIST -->
 
@@ -1483,19 +1900,9 @@ footer a:hover {
 </header>
 
 
-<!-- ==================================================
-     TOAST CONTAINER
-================================================== -->
-
-<div
-    class="toast-container"
-    id="toastContainer">
-</div>
-
-
-<!-- ==================================================
+<!-- =========================================
      HERO
-================================================== -->
+========================================== -->
 
 <section class="hero">
 
@@ -1522,9 +1929,9 @@ footer a:hover {
 </section>
 
 
-<!-- ==================================================
+<!-- =========================================
      NEW ARRIVALS
-================================================== -->
+========================================== -->
 
 <section
     class="section"
@@ -1533,7 +1940,7 @@ footer a:hover {
     <div class="section-title">
 
         <h2>
-            SHOP
+            NEW ARRIVALS
         </h2>
 
     </div>
@@ -1545,7 +1952,7 @@ footer a:hover {
 
         <button
             class="catalog-btn active"
-            onclick="filterCategory('all', this)">
+            onclick="filterCategory('ALL', this)">
 
             ALL
 
@@ -1553,7 +1960,7 @@ footer a:hover {
 
         <button
             class="catalog-btn"
-            onclick="filterCategory('shirt', this)">
+            onclick="filterCategory('SHIRTS', this)">
 
             SHIRTS
 
@@ -1561,7 +1968,7 @@ footer a:hover {
 
         <button
             class="catalog-btn"
-            onclick="filterCategory('pant', this)">
+            onclick="filterCategory('PANTS', this)">
 
             PANTS
 
@@ -1569,7 +1976,7 @@ footer a:hover {
 
         <button
             class="catalog-btn"
-            onclick="filterCategory('tshirt', this)">
+            onclick="filterCategory('T-SHIRTS', this)">
 
             T-SHIRTS
 
@@ -1585,7 +1992,7 @@ footer a:hover {
         <input
             type="text"
             id="search"
-            placeholder="Search products..."
+            placeholder="Search shirts, pants, t-shirts..."
             onkeyup="searchProducts()">
 
     </div>
@@ -1601,9 +2008,9 @@ footer a:hover {
 </section>
 
 
-<!-- ==================================================
+<!-- =========================================
      COLLECTION
-================================================== -->
+========================================== -->
 
 <section
     class="section"
@@ -1625,7 +2032,7 @@ footer a:hover {
 
         <div
             class="collection-card"
-            onclick="selectCollection('shirt')">
+            onclick="filterFromCollection('SHIRTS')">
 
             <img
                 src="images/shirt1.jpeg"
@@ -1650,10 +2057,10 @@ footer a:hover {
 
         <div
             class="collection-card"
-            onclick="selectCollection('pant')">
+            onclick="filterFromCollection('PANTS')">
 
             <img
-                src="images/pant1.jpeg"
+                src="images/pants1.jpeg"
                 alt="Modern Pants">
 
             <div class="collection-text">
@@ -1675,7 +2082,7 @@ footer a:hover {
 
         <div
             class="collection-card"
-            onclick="selectCollection('tshirt')">
+            onclick="filterFromCollection('T-SHIRTS')">
 
             <img
                 src="images/tshirt1.jpeg"
@@ -1700,9 +2107,9 @@ footer a:hover {
 </section>
 
 
-<!-- ==================================================
+<!-- =========================================
      NEWSLETTER
-================================================== -->
+========================================== -->
 
 <section class="newsletter">
 
@@ -1720,11 +2127,8 @@ footer a:hover {
             type="email"
             placeholder="Enter your email">
 
-        <button
-            onclick="showToast('Thanks for joining MAC! ✨','success')">
-
+        <button>
             JOIN
-
         </button>
 
     </div>
@@ -1732,13 +2136,14 @@ footer a:hover {
 </section>
 
 
-<!-- ==================================================
+<!-- =========================================
      FOOTER
-================================================== -->
+========================================== -->
 
 <footer id="about">
 
     <div class="footer-grid">
+
 
         <div>
 
@@ -1747,9 +2152,14 @@ footer a:hover {
             </div>
 
             <p
-                style="color:#aaa;margin-top:15px;">
+                style="
+                color:#aaa;
+                margin-top:15px;
+                font-family:Arial;
+                font-size:12px;">
 
-                Modern clothing designed for everyday confidence.
+                Modern clothing designed
+                for everyday confidence.
 
             </p>
 
@@ -1766,25 +2176,16 @@ footer a:hover {
                 New Arrivals
             </a>
 
-            <a href="#new"
-               onclick="selectCollection('shirt')">
-
+            <a href="#new">
                 Shirts
-
             </a>
 
-            <a href="#new"
-               onclick="selectCollection('pant')">
-
+            <a href="#new">
                 Pants
-
             </a>
 
-            <a href="#new"
-               onclick="selectCollection('tshirt')">
-
+            <a href="#new">
                 T-Shirts
-
             </a>
 
         </div>
@@ -1821,9 +2222,7 @@ footer a:hover {
                 CONTACT
             </h3>
 
-            <a
-                href="https://wa.me/919994977386"
-                target="_blank">
+            <a href="https://wa.me/919994977386">
 
                 WhatsApp
 
@@ -1840,25 +2239,27 @@ footer a:hover {
 
     <div class="copyright">
 
-        © 2026 MAC Clothing. All rights reserved.
+        © 2026 MAC Clothing.
+        All rights reserved.
 
     </div>
 
 </footer>
 
 
-<!-- ==================================================
+<!-- =========================================
      WISHLIST PANEL
-================================================== -->
+========================================== -->
 
 <div
     class="wishlist-panel"
     id="wishlistPanel">
 
+
     <div class="wishlist-header">
 
         <h2>
-            YOUR WISHLIST ❤️
+            YOUR WISHLIST
         </h2>
 
         <button
@@ -1880,13 +2281,14 @@ footer a:hover {
 </div>
 
 
-<!-- ==================================================
+<!-- =========================================
      CART PANEL
-================================================== -->
+========================================== -->
 
 <div
     class="cart-panel"
     id="cartPanel">
+
 
     <div class="cart-header">
 
@@ -1939,15 +2341,17 @@ footer a:hover {
 </div>
 
 
-<!-- ==================================================
+<!-- =========================================
      CHECKOUT
-================================================== -->
+========================================== -->
 
 <div
     class="checkout-overlay"
     id="checkoutOverlay">
 
+
     <div class="checkout-box">
+
 
         <button
             class="close-checkout"
@@ -2005,12 +2409,13 @@ footer a:hover {
 
             <textarea
                 id="customerAddress"
-                placeholder="House no, street, area, city, state, pincode"></textarea>
+                placeholder="House no, street, area, city, state, pincode">
+            </textarea>
 
         </div>
 
 
-        <!-- PAYMENT -->
+        <!-- ONLY UPI -->
 
         <div class="payment-box">
 
@@ -2062,8 +2467,7 @@ footer a:hover {
 
         <!-- SCREENSHOT -->
 
-        <div
-            class="screenshot-box">
+        <div class="screenshot-box">
 
             <label>
                 PAYMENT SCREENSHOT
@@ -2076,7 +2480,8 @@ footer a:hover {
 
             <p
                 style="
-                font-size:12px;
+                font-family:Arial;
+                font-size:11px;
                 color:#777;
                 margin-top:8px;">
 
@@ -2089,7 +2494,7 @@ footer a:hover {
         </div>
 
 
-        <!-- ORDER SUMMARY -->
+        <!-- SUMMARY -->
 
         <div class="order-summary">
 
@@ -2103,7 +2508,8 @@ footer a:hover {
 
 
             <div
-                class="order-summary-row final-total">
+                class="order-summary-row
+                       final-total">
 
                 <span>
                     TOTAL
@@ -2133,11 +2539,23 @@ footer a:hover {
 </div>
 
 
+<!-- =========================================
+     TOAST
+========================================== -->
+
+<div
+    class="toast"
+    id="toast">
+
+</div>
+
+
 <script>
 
-/* ==================================================
+
+/* =========================================
    MAC SETTINGS
-================================================== */
+========================================= */
 
 const MAC_UPI_ID =
     "thajan01fero@oksbi";
@@ -2146,314 +2564,178 @@ const WHATSAPP_NUMBER =
     "919994977386";
 
 
-/* ==================================================
+/* =========================================
    PRODUCTS
-================================================== */
+========================================= */
 
 const products = [
 
-    /* SHIRTS */
-
     {
         id: 1,
-        name: "Essential Oversized Shirt",
-        price: 699,
-        image: "images/shirt1.jpeg",
-        category: "shirt",
-        sizes: ["S","M","L","XL"],
-        badge: "NEW"
+
+        name:
+            "Essential Oversized Shirt",
+
+        category:
+            "SHIRTS",
+
+        price:
+            699,
+
+        image:
+            "images/shirt1.jpeg",
+
+        sizes:
+            ["S","M","L","XL"],
+
+        badge:
+            "NEW"
     },
+
 
     {
         id: 2,
-        name: "Premium Everyday Shirt",
-        price: 899,
-        image: "images/shirt2.jpeg",
-        category: "shirt",
-        sizes: ["S","M","L","XL"],
-        badge: ""
+
+        name:
+            "Premium Everyday Shirt",
+
+        category:
+            "SHIRTS",
+
+        price:
+            899,
+
+        image:
+            "images/shirt2.jpeg",
+
+        sizes:
+            ["S","M","L","XL"],
+
+        badge:
+            ""
     },
+
 
     {
         id: 3,
-        name: "MAC Streetwear Shirt",
-        price: 749,
-        image: "images/shirt3.jpeg",
-        category: "shirt",
-        sizes: ["S","M","L","XL"],
-        badge: "BESTSELLER"
+
+        name:
+            "MAC Streetwear Shirt",
+
+        category:
+            "SHIRTS",
+
+        price:
+            749,
+
+        image:
+            "images/shirt3.jpeg",
+
+        sizes:
+            ["S","M","L","XL"],
+
+        badge:
+            "BESTSELLER"
     },
+
 
     {
         id: 4,
-        name: "Signature Shirt",
-        price: 1299,
-        image: "images/shirt4.jpeg",
-        category: "shirt",
-        sizes: ["M","L","XL"],
-        badge: "NEW"
+
+        name:
+            "Signature Shirt",
+
+        category:
+            "SHIRTS",
+
+        price:
+            1299,
+
+        image:
+            "images/shirt4.jpeg",
+
+        sizes:
+            ["M","L","XL"],
+
+        badge:
+            "NEW"
     },
 
-
-    /* PANTS */
 
     {
         id: 5,
-        name: "Relaxed Fit Pants",
-        price: 999,
-        image: "images/pant1.jpeg",
-        category: "pant",
-        sizes: ["S","M","L","XL"],
-        badge: "NEW"
+
+        name:
+            "Classic Relaxed Pants",
+
+        category:
+            "PANTS",
+
+        price:
+            999,
+
+        image:
+            "images/pants1.jpeg",
+
+        sizes:
+            ["S","M","L","XL"],
+
+        badge:
+            "NEW"
     },
+
 
     {
         id: 6,
-        name: "Urban Cargo Pants",
-        price: 1199,
-        image: "images/pant2.jpeg",
-        category: "pant",
-        sizes: ["S","M","L","XL"],
-        badge: "BESTSELLER"
-    },
 
-    {
-        id: 7,
-        name: "Classic Straight Pants",
-        price: 899,
-        image: "images/pant3.jpeg",
-        category: "pant",
-        sizes: ["M","L","XL"],
-        badge: ""
-    },
+        name:
+            "MAC Essential T-Shirt",
 
-    {
-        id: 8,
-        name: "MAC Premium Trousers",
-        price: 1399,
-        image: "images/pant4.jpeg",
-        category: "pant",
-        sizes: ["M","L","XL"],
-        badge: "PREMIUM"
-    },
+        category:
+            "T-SHIRTS",
 
+        price:
+            599,
 
-    /* T-SHIRTS */
+        image:
+            "images/tshirt1.jpeg",
 
-    {
-        id: 9,
-        name: "Essential Oversized T-Shirt",
-        price: 599,
-        image: "images/tshirt1.jpeg",
-        category: "tshirt",
-        sizes: ["S","M","L","XL"],
-        badge: "NEW"
-    },
+        sizes:
+            ["S","M","L","XL"],
 
-    {
-        id: 10,
-        name: "MAC Graphic T-Shirt",
-        price: 699,
-        image: "images/tshirt2.jpeg",
-        category: "tshirt",
-        sizes: ["S","M","L","XL"],
-        badge: "BESTSELLER"
-    },
-
-    {
-        id: 11,
-        name: "Premium Cotton T-Shirt",
-        price: 799,
-        image: "images/tshirt3.jpeg",
-        category: "tshirt",
-        sizes: ["S","M","L","XL"],
-        badge: ""
-    },
-
-    {
-        id: 12,
-        name: "MAC Street T-Shirt",
-        price: 649,
-        image: "images/tshirt4.jpeg",
-        category: "tshirt",
-        sizes: ["S","M","L","XL"],
-        badge: "NEW"
+        badge:
+            "NEW"
     }
 
 ];
 
 
-/* ==================================================
+/* =========================================
    CART
-================================================== */
+========================================= */
 
-let cart =
-    JSON.parse(
-        localStorage.getItem("macCart")
-    ) || [];
+let cart = [];
 
 
-/* ==================================================
+/* =========================================
    WISHLIST
-================================================== */
+========================================= */
 
-let wishlist =
-    JSON.parse(
-        localStorage.getItem("macWishlist")
-    ) || [];
+let wishlist = [];
 
 
-/* ==================================================
+/* =========================================
    CURRENT CATEGORY
-================================================== */
+========================================= */
 
-let currentCategory = "all";
-
-
-/* ==================================================
-   TOAST
-================================================== */
-
-function showToast(message, type = "info") {
-
-    const container =
-        document.getElementById(
-            "toastContainer"
-        );
-
-    const toast =
-        document.createElement("div");
-
-    toast.className =
-        "toast " + type;
-
-    toast.innerHTML =
-        message;
-
-    container.appendChild(toast);
-
-    setTimeout(() => {
-
-        toast.remove();
-
-    }, 3600);
-
-}
+let currentCategory = "ALL";
 
 
-/* ==================================================
-   SAVE CART
-================================================== */
-
-function saveCart() {
-
-    localStorage.setItem(
-        "macCart",
-        JSON.stringify(cart)
-    );
-
-}
-
-
-/* ==================================================
-   SAVE WISHLIST
-================================================== */
-
-function saveWishlist() {
-
-    localStorage.setItem(
-        "macWishlist",
-        JSON.stringify(wishlist)
-    );
-
-}
-
-
-/* ==================================================
-   CHECK WISHLIST
-================================================== */
-
-function isWishlisted(id) {
-
-    return wishlist.includes(id);
-
-}
-
-
-/* ==================================================
-   TOGGLE WISHLIST
-================================================== */
-
-function toggleWishlist(productId) {
-
-    const product =
-        products.find(
-            p => p.id === productId
-        );
-
-    if (
-        isWishlisted(productId)
-    ) {
-
-        wishlist =
-            wishlist.filter(
-                id => id !== productId
-            );
-
-        showToast(
-            "♡ " +
-            product.name +
-            " removed from wishlist",
-            "wishlist"
-        );
-
-    }
-
-    else {
-
-        wishlist.push(productId);
-
-        showToast(
-            "♥ " +
-            product.name +
-            " saved to wishlist",
-            "wishlist"
-        );
-
-    }
-
-    saveWishlist();
-
-    updateWishlistCount();
-
-    displayProducts(
-        getFilteredProducts()
-    );
-
-    displayWishlist();
-
-}
-
-
-/* ==================================================
-   WISHLIST COUNT
-================================================== */
-
-function updateWishlistCount() {
-
-    document.getElementById(
-        "wishlistCount"
-    ).innerText =
-        wishlist.length;
-
-}
-
-
-/* ==================================================
+/* =========================================
    DISPLAY PRODUCTS
-================================================== */
+========================================= */
 
-function displayProducts(list) {
+function displayProducts(list = products) {
 
     const grid =
         document.getElementById(
@@ -2463,20 +2745,18 @@ function displayProducts(list) {
     grid.innerHTML = "";
 
 
-    if (
-        list.length === 0
-    ) {
+    if (list.length === 0) {
 
         grid.innerHTML = `
-
-            <p>
+            <p style="
+                font-family:Arial;
+                color:#777;
+            ">
                 No products found.
             </p>
-
         `;
 
         return;
-
     }
 
 
@@ -2489,16 +2769,8 @@ function displayProducts(list) {
             "product";
 
 
-        const heart =
-            isWishlisted(product.id)
-            ? "♥"
-            : "♡";
-
-
-        const active =
-            isWishlisted(product.id)
-            ? "active"
-            : "";
+        const isSaved =
+            wishlist.includes(product.id);
 
 
         div.innerHTML = `
@@ -2517,10 +2789,11 @@ function displayProducts(list) {
 
 
             <button
-                class="wishlist-product ${active}"
+                class="product-wishlist
+                ${isSaved ? "saved" : ""}"
                 onclick="toggleWishlist(${product.id})">
 
-                ${heart}
+                ${isSaved ? "♥" : "♡"}
 
             </button>
 
@@ -2529,15 +2802,20 @@ function displayProducts(list) {
                 class="product-image"
                 src="${product.image}"
                 alt="${product.name}"
-                onerror="this.style.background='#f3f3f3';">
+                onerror="
+                    this.src='https://via.placeholder.com/600x800?text=MAC+Clothing';
+                ">
 
 
             <div class="product-info">
 
+                <div class="category-label">
+                    ${product.category}
+                </div>
+
                 <h3>
                     ${product.name}
                 </h3>
-
 
                 <p class="price">
 
@@ -2569,139 +2847,72 @@ function displayProducts(list) {
 }
 
 
-/* ==================================================
-   GET FILTERED PRODUCTS
-================================================== */
+/* =========================================
+   FILTER CATEGORY
+========================================= */
 
-function getFilteredProducts() {
+function filterCategory(category, button) {
+
+    currentCategory =
+        category;
+
+
+    document
+        .querySelectorAll(".catalog-btn")
+        .forEach(btn => {
+
+            btn.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    if (button) {
+
+        button.classList.add(
+            "active"
+        );
+
+    }
+
 
     const search =
         document.getElementById(
             "search"
-        ).value
-        .toLowerCase()
-        .trim();
+        ).value.toLowerCase();
 
 
-    return products.filter(product => {
-
-        const categoryMatch =
-            currentCategory === "all" ||
-            product.category === currentCategory;
+    let filtered =
+        products;
 
 
-        const searchMatch =
-            product.name
-                .toLowerCase()
-                .includes(search);
+    if (category !== "ALL") {
 
-
-        return (
-            categoryMatch &&
-            searchMatch
-        );
-
-    });
-
-}
-
-
-/* ==================================================
-   CATEGORY FILTER
-================================================== */
-
-function filterCategory(
-    category,
-    button
-) {
-
-    currentCategory =
-        category;
-
-
-    document
-        .querySelectorAll(
-            ".catalog-btn"
-        )
-        .forEach(btn => {
-
-            btn.classList.remove(
-                "active"
+        filtered =
+            filtered.filter(
+                product =>
+                    product.category === category
             );
 
-        });
+    }
 
 
-    button.classList.add(
-        "active"
-    );
+    if (search) {
+
+        filtered =
+            filtered.filter(
+                product =>
+                    product.name
+                    .toLowerCase()
+                    .includes(search)
+            );
+
+    }
 
 
     displayProducts(
-        getFilteredProducts()
-    );
-
-}
-
-
-/* ==================================================
-   COLLECTION SELECT
-================================================== */
-
-function selectCollection(
-    category
-) {
-
-    currentCategory =
-        category;
-
-
-    document
-        .querySelectorAll(
-            ".catalog-btn"
-        )
-        .forEach(btn => {
-
-            btn.classList.remove(
-                "active"
-            );
-
-        });
-
-
-    const buttons =
-        document.querySelectorAll(
-            ".catalog-btn"
-        );
-
-
-    buttons.forEach(btn => {
-
-        if (
-            btn.innerText
-                .toLowerCase()
-                .includes(
-                    category === "shirt"
-                    ? "shirts"
-                    :
-                    category === "pant"
-                    ? "pants"
-                    :
-                    "t-shirts"
-                )
-        ) {
-
-            btn.classList.add(
-                "active"
-            );
-
-        }
-
-    });
-
-
-    displayProducts(
-        getFilteredProducts()
+        filtered
     );
 
 
@@ -2714,22 +2925,91 @@ function selectCollection(
 }
 
 
-/* ==================================================
+/* =========================================
+   COLLECTION FILTER
+========================================= */
+
+function filterFromCollection(category) {
+
+    const buttons =
+        document.querySelectorAll(
+            ".catalog-btn"
+        );
+
+
+    buttons.forEach(button => {
+
+        if (
+            button.innerText.trim() ===
+            category
+        ) {
+
+            filterCategory(
+                category,
+                button
+            );
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
    SEARCH
-================================================== */
+========================================= */
 
 function searchProducts() {
 
+    const search =
+        document.getElementById(
+            "search"
+        ).value.toLowerCase();
+
+
+    let filtered =
+        products;
+
+
+    if (
+        currentCategory !==
+        "ALL"
+    ) {
+
+        filtered =
+            filtered.filter(
+                product =>
+                    product.category ===
+                    currentCategory
+            );
+
+    }
+
+
+    if (search) {
+
+        filtered =
+            filtered.filter(
+                product =>
+                    product.name
+                    .toLowerCase()
+                    .includes(search)
+            );
+
+    }
+
+
     displayProducts(
-        getFilteredProducts()
+        filtered
     );
 
 }
 
 
-/* ==================================================
+/* =========================================
    CHOOSE SIZE
-================================================== */
+========================================= */
 
 function chooseSize(productId) {
 
@@ -2751,9 +3031,7 @@ function chooseSize(productId) {
 
 
     const selectedSize =
-        size
-            .trim()
-            .toUpperCase();
+        size.trim().toUpperCase();
 
 
     if (
@@ -2780,9 +3058,9 @@ function chooseSize(productId) {
 }
 
 
-/* ==================================================
-   ADD TO CART
-================================================== */
+/* =========================================
+   ADD CART
+========================================= */
 
 function addToCart(
     product,
@@ -2830,24 +3108,282 @@ function addToCart(
     }
 
 
-    saveCart();
-
     updateCart();
 
 
     showToast(
-        "🛒 " +
         product.name +
-        " added to cart",
-        "success"
+        " added to cart"
     );
 
 }
 
 
-/* ==================================================
+/* =========================================
+   WISHLIST TOGGLE
+========================================= */
+
+function toggleWishlist(productId) {
+
+    const product =
+        products.find(
+            p => p.id === productId
+        );
+
+
+    const index =
+        wishlist.indexOf(
+            productId
+        );
+
+
+    if (index === -1) {
+
+        wishlist.push(
+            productId
+        );
+
+        showToast(
+            product.name +
+            " saved to wishlist ♥"
+        );
+
+    }
+
+    else {
+
+        wishlist.splice(
+            index,
+            1
+        );
+
+        showToast(
+            "Removed from wishlist"
+        );
+
+    }
+
+
+    updateWishlist();
+
+
+    displayProducts(
+        getCurrentProducts()
+    );
+
+}
+
+
+/* =========================================
+   GET CURRENT PRODUCTS
+========================================= */
+
+function getCurrentProducts() {
+
+    const search =
+        document.getElementById(
+            "search"
+        ).value.toLowerCase();
+
+
+    let result =
+        products;
+
+
+    if (
+        currentCategory !==
+        "ALL"
+    ) {
+
+        result =
+            result.filter(
+                product =>
+                    product.category ===
+                    currentCategory
+            );
+
+    }
+
+
+    if (search) {
+
+        result =
+            result.filter(
+                product =>
+                    product.name
+                    .toLowerCase()
+                    .includes(search)
+            );
+
+    }
+
+
+    return result;
+
+}
+
+
+/* =========================================
+   UPDATE WISHLIST
+========================================= */
+
+function updateWishlist() {
+
+    const container =
+        document.getElementById(
+            "wishlistItems"
+        );
+
+    const count =
+        document.getElementById(
+            "wishlistCount"
+        );
+
+
+    count.innerText =
+        wishlist.length;
+
+
+    container.innerHTML = "";
+
+
+    if (
+        wishlist.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="empty-wishlist">
+
+                Your wishlist is empty.
+
+                <br><br>
+
+                Tap ♡ on products
+                you love.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    wishlist.forEach(
+        productId => {
+
+            const product =
+                products.find(
+                    p => p.id === productId
+                );
+
+
+            if (!product)
+                return;
+
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "wishlist-item";
+
+
+            div.innerHTML = `
+
+                <img
+                    src="${product.image}"
+                    alt="${product.name}">
+
+
+                <div
+                    class="wishlist-item-info">
+
+                    <h4>
+                        ${product.name}
+                    </h4>
+
+                    <p>
+                        ₹${product.price.toLocaleString("en-IN")}
+                    </p>
+
+
+                    <button
+                        class="wishlist-add"
+                        onclick="chooseSize(${product.id})">
+
+                        ADD TO CART
+
+                    </button>
+
+
+                    <button
+                        class="wishlist-remove"
+                        onclick="toggleWishlist(${product.id})">
+
+                        REMOVE
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                div
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   OPEN WISHLIST
+========================================= */
+
+function openWishlist() {
+
+    updateWishlist();
+
+    document
+        .getElementById(
+            "wishlistPanel"
+        )
+        .classList.add(
+            "active"
+        );
+
+}
+
+
+/* =========================================
+   CLOSE WISHLIST
+========================================= */
+
+function closeWishlist() {
+
+    document
+        .getElementById(
+            "wishlistPanel"
+        )
+        .classList.remove(
+            "active"
+        );
+
+}
+
+
+/* =========================================
    UPDATE CART
-================================================== */
+========================================= */
 
 function updateCart() {
 
@@ -2893,11 +3429,12 @@ function updateCart() {
 
 
     cart.forEach(
-        (item,index) => {
+        (item, index) => {
 
             total +=
                 item.price *
                 item.quantity;
+
 
             count +=
                 item.quantity;
@@ -2936,7 +3473,7 @@ function updateCart() {
                     </div>
 
 
-                    <div>
+                    <div class="cart-price">
 
                         ₹${item.price.toLocaleString("en-IN")}
 
@@ -2946,7 +3483,8 @@ function updateCart() {
                     <div class="qty">
 
                         <button
-                            onclick="changeQuantity(${index},-1)">
+                            onclick="
+                            changeQuantity(${index}, -1)">
 
                             −
 
@@ -2959,7 +3497,8 @@ function updateCart() {
 
 
                         <button
-                            onclick="changeQuantity(${index},1)">
+                            onclick="
+                            changeQuantity(${index}, 1)">
 
                             +
 
@@ -2970,7 +3509,8 @@ function updateCart() {
 
                     <button
                         class="remove"
-                        onclick="removeItem(${index})">
+                        onclick="
+                        removeItem(${index})">
 
                         Remove
 
@@ -2981,7 +3521,9 @@ function updateCart() {
             `;
 
 
-            cartItems.appendChild(div);
+            cartItems.appendChild(
+                div
+            );
 
         }
     );
@@ -3000,9 +3542,9 @@ function updateCart() {
 }
 
 
-/* ==================================================
+/* =========================================
    CHANGE QUANTITY
-================================================== */
+========================================= */
 
 function changeQuantity(
     index,
@@ -3025,22 +3567,16 @@ function changeQuantity(
     }
 
 
-    saveCart();
-
     updateCart();
 
 }
 
 
-/* ==================================================
+/* =========================================
    REMOVE ITEM
-================================================== */
+========================================= */
 
 function removeItem(index) {
-
-    const name =
-        cart[index].name;
-
 
     cart.splice(
         index,
@@ -3048,23 +3584,14 @@ function removeItem(index) {
     );
 
 
-    saveCart();
-
     updateCart();
-
-
-    showToast(
-        name +
-        " removed from cart",
-        "info"
-    );
 
 }
 
 
-/* ==================================================
+/* =========================================
    OPEN CART
-================================================== */
+========================================= */
 
 function openCart() {
 
@@ -3079,9 +3606,9 @@ function openCart() {
 }
 
 
-/* ==================================================
+/* =========================================
    CLOSE CART
-================================================== */
+========================================= */
 
 function closeCart() {
 
@@ -3096,15 +3623,18 @@ function closeCart() {
 }
 
 
-/* ==================================================
-   GET CART TOTAL
-================================================== */
+/* =========================================
+   GET TOTAL
+========================================= */
 
 function getCartTotal() {
 
     return cart.reduce(
 
-        (total,item) =>
+        (
+            total,
+            item
+        ) =>
 
             total +
             (
@@ -3119,156 +3649,9 @@ function getCartTotal() {
 }
 
 
-/* ==================================================
-   WISHLIST PANEL
-================================================== */
-
-function openWishlist() {
-
-    displayWishlist();
-
-    document
-        .getElementById(
-            "wishlistPanel"
-        )
-        .classList.add(
-            "active"
-        );
-
-}
-
-
-function closeWishlist() {
-
-    document
-        .getElementById(
-            "wishlistPanel"
-        )
-        .classList.remove(
-            "active"
-        );
-
-}
-
-
-/* ==================================================
-   DISPLAY WISHLIST
-================================================== */
-
-function displayWishlist() {
-
-    const container =
-        document.getElementById(
-            "wishlistItems"
-        );
-
-
-    container.innerHTML = "";
-
-
-    if (
-        wishlist.length === 0
-    ) {
-
-        container.innerHTML = `
-
-            <div class="empty-wishlist">
-
-                Your wishlist is empty ❤️
-
-                <br><br>
-
-                Tap the ♡ button on products
-                to save them here.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    wishlist.forEach(
-        productId => {
-
-            const product =
-                products.find(
-                    p => p.id === productId
-                );
-
-
-            if (!product)
-                return;
-
-
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-
-            div.className =
-                "wishlist-item";
-
-
-            div.innerHTML = `
-
-                <img
-                    src="${product.image}"
-                    alt="${product.name}">
-
-
-                <div class="wishlist-info">
-
-                    <h4>
-                        ${product.name}
-                    </h4>
-
-
-                    <div class="price">
-
-                        ₹${product.price.toLocaleString("en-IN")}
-
-                    </div>
-
-
-                    <div class="wishlist-actions">
-
-                        <button
-                            onclick="chooseSize(${product.id})">
-
-                            ADD TO CART
-
-                        </button>
-
-
-                        <button
-                            onclick="toggleWishlist(${product.id})">
-
-                            REMOVE
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-
-            container.appendChild(div);
-
-        }
-    );
-
-}
-
-
-/* ==================================================
+/* =========================================
    OPEN CHECKOUT
-================================================== */
+========================================= */
 
 function openCheckout() {
 
@@ -3276,9 +3659,8 @@ function openCheckout() {
         cart.length === 0
     ) {
 
-        showToast(
-            "Your cart is empty!",
-            "info"
+        alert(
+            "Your cart is empty!"
         );
 
         return;
@@ -3306,9 +3688,9 @@ function openCheckout() {
 }
 
 
-/* ==================================================
+/* =========================================
    CLOSE CHECKOUT
-================================================== */
+========================================= */
 
 function closeCheckout() {
 
@@ -3323,9 +3705,9 @@ function closeCheckout() {
 }
 
 
-/* ==================================================
+/* =========================================
    UPDATE CHECKOUT
-================================================== */
+========================================= */
 
 function updateCheckout() {
 
@@ -3338,44 +3720,48 @@ function updateCheckout() {
     container.innerHTML = "";
 
 
-    cart.forEach(item => {
+    cart.forEach(
+        item => {
 
-        const row =
-            document.createElement(
-                "div"
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+
+            row.className =
+                "order-summary-row";
+
+
+            row.innerHTML = `
+
+                <span>
+
+                    ${item.name}
+                    × ${item.quantity}
+                    (${item.size})
+
+                </span>
+
+
+                <span>
+
+                    ₹${(
+                        item.price *
+                        item.quantity
+                    ).toLocaleString("en-IN")}
+
+                </span>
+
+            `;
+
+
+            container.appendChild(
+                row
             );
 
-
-        row.className =
-            "order-summary-row";
-
-
-        row.innerHTML = `
-
-            <span>
-
-                ${item.name}
-                × ${item.quantity}
-                (${item.size})
-
-            </span>
-
-
-            <span>
-
-                ₹${(
-                    item.price *
-                    item.quantity
-                ).toLocaleString("en-IN")}
-
-            </span>
-
-        `;
-
-
-        container.appendChild(row);
-
-    });
+        }
+    );
 
 
     const total =
@@ -3401,9 +3787,9 @@ function updateCheckout() {
 }
 
 
-/* ==================================================
+/* =========================================
    GENERATE UPI QR
-================================================== */
+========================================= */
 
 function generateUPIQR() {
 
@@ -3427,6 +3813,7 @@ function generateUPIQR() {
 
 
     const upiURL =
+
         "upi://pay" +
 
         "?pa=" +
@@ -3494,9 +3881,9 @@ function generateUPIQR() {
 }
 
 
-/* ==================================================
-   SEND WHATSAPP ORDER
-================================================== */
+/* =========================================
+   SEND WHATSAPP
+========================================= */
 
 function sendWhatsAppOrder() {
 
@@ -3590,7 +3977,7 @@ function sendWhatsAppOrder() {
 
 
     cart.forEach(
-        (item,index) => {
+        (item, index) => {
 
             const itemTotal =
                 item.price *
@@ -3602,6 +3989,7 @@ function sendWhatsAppOrder() {
 
 
             message +=
+
                 (index + 1) +
                 ". " +
                 encodeURIComponent(
@@ -3611,6 +3999,17 @@ function sendWhatsAppOrder() {
 
 
             message +=
+
+                "Category: " +
+                encodeURIComponent(
+                    item.category ||
+                    ""
+                ) +
+                "%0A";
+
+
+            message +=
+
                 "Size: " +
                 encodeURIComponent(
                     item.size
@@ -3619,12 +4018,14 @@ function sendWhatsAppOrder() {
 
 
             message +=
+
                 "Quantity: " +
                 item.quantity +
                 "%0A";
 
 
             message +=
+
                 "Price: ₹" +
                 itemTotal +
                 "%0A%0A";
@@ -3634,16 +4035,19 @@ function sendWhatsAppOrder() {
 
 
     message +=
+
         "*TOTAL: ₹" +
         total +
         "*%0A";
 
 
     message +=
-        "Payment Method: UPI / QR%0A";
+
+        "Payment Method: UPI%0A";
 
 
     message +=
+
         "UPI ID: " +
         encodeURIComponent(
             MAC_UPI_ID
@@ -3652,14 +4056,17 @@ function sendWhatsAppOrder() {
 
 
     message +=
+
         "Payment Screenshot: Please attach the screenshot here.%0A";
 
 
     message +=
+
         "%0APlease confirm my order.";
 
 
     const whatsappURL =
+
         "https://wa.me/" +
         WHATSAPP_NUMBER +
         "?text=" +
@@ -3671,43 +4078,74 @@ function sendWhatsAppOrder() {
         "_blank"
     );
 
+}
 
-    showToast(
-        "Order details prepared for WhatsApp 📱",
-        "success"
+
+/* =========================================
+   LOGIN NOTIFICATION
+========================================= */
+
+function closeLoginNotification() {
+
+    document
+        .getElementById(
+            "loginNotification"
+        )
+        .classList.add(
+            "hide"
+        );
+
+}
+
+
+/* =========================================
+   TOAST
+========================================= */
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.innerText =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2500
     );
 
 }
 
 
-/* ==================================================
+/* =========================================
    START WEBSITE
-================================================== */
+========================================= */
 
-displayProducts(products);
+displayProducts();
 
 updateCart();
 
-updateWishlistCount();
+updateWishlist();
 
-
-/* ==================================================
-   WELCOME NOTIFICATION
-================================================== */
-
-setTimeout(
-    function() {
-
-        showToast(
-            "✨ Welcome to MAC — Explore our latest collection.",
-            "info"
-        );
-
-    },
-    800
-);
 
 </script>
+
 
 </body>
 
