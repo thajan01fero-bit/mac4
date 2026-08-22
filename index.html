@@ -73,6 +73,17 @@ nav a:hover {
     opacity: .5;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* =========================
+   WISHLIST BUTTON
+========================= */
+
+.wishlist-button,
 .cart-button {
     border: none;
     background: none;
@@ -81,6 +92,15 @@ nav a:hover {
     position: relative;
 }
 
+.wishlist-button {
+    font-size: 25px;
+}
+
+.wishlist-button:hover {
+    transform: scale(1.1);
+}
+
+.wishlist-count,
 .cart-count {
     position: absolute;
     top: -8px;
@@ -197,12 +217,47 @@ nav a:hover {
     position: relative;
 }
 
+.product-image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
 .product-image {
     width: 100%;
     aspect-ratio: 3/4;
     object-fit: cover;
     display: block;
     background: #f5f5f5;
+}
+
+/* =========================
+   WISHLIST HEART
+========================= */
+
+.wishlist-heart {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,.95);
+    cursor: pointer;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: .2s;
+}
+
+.wishlist-heart:hover {
+    transform: scale(1.1);
+}
+
+.wishlist-heart.active {
+    color: red;
 }
 
 .product-info {
@@ -257,7 +312,7 @@ nav a:hover {
 
 .collection {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
 
@@ -311,10 +366,11 @@ nav a:hover {
 
 
 /* =========================
-   CART
+   CART + WISHLIST PANELS
 ========================= */
 
-.cart-panel {
+.cart-panel,
+.wishlist-panel {
     position: fixed;
     right: -450px;
     top: 0;
@@ -329,11 +385,17 @@ nav a:hover {
     flex-direction: column;
 }
 
-.cart-panel.active {
+.cart-panel.active,
+.wishlist-panel.active {
     right: 0;
 }
 
-.cart-header {
+.wishlist-panel {
+    z-index: 3100;
+}
+
+.cart-header,
+.wishlist-header {
     padding: 22px;
     border-bottom: 1px solid #eee;
     display: flex;
@@ -341,24 +403,33 @@ nav a:hover {
     align-items: center;
 }
 
-.cart-header h2 {
+.cart-header h2,
+.wishlist-header h2 {
     font-size: 20px;
 }
 
-.close-cart {
+.close-cart,
+.close-wishlist {
     border: none;
     background: none;
     font-size: 28px;
     cursor: pointer;
 }
 
-.cart-items {
+.cart-items,
+.wishlist-items {
     flex: 1;
     overflow-y: auto;
     padding: 20px;
 }
 
-.cart-item {
+
+/* =========================
+   CART ITEM
+========================= */
+
+.cart-item,
+.wishlist-item {
     display: flex;
     gap: 12px;
     margin-bottom: 20px;
@@ -366,17 +437,20 @@ nav a:hover {
     padding-bottom: 20px;
 }
 
-.cart-item img {
+.cart-item img,
+.wishlist-item img {
     width: 80px;
     height: 100px;
     object-fit: cover;
 }
 
-.cart-item-info {
+.cart-item-info,
+.wishlist-item-info {
     flex: 1;
 }
 
-.cart-item-info h4 {
+.cart-item-info h4,
+.wishlist-item-info h4 {
     font-size: 14px;
     margin-bottom: 7px;
 }
@@ -411,6 +485,31 @@ nav a:hover {
     margin-top: 8px;
 }
 
+.wishlist-actions {
+    display: flex;
+    gap: 7px;
+    margin-top: 10px;
+}
+
+.wishlist-actions button {
+    padding: 8px 10px;
+    border: 1px solid #111;
+    background: #fff;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.wishlist-actions button:hover {
+    background: #111;
+    color: #fff;
+}
+
+
+/* =========================
+   CART FOOTER
+========================= */
+
 .cart-footer {
     padding: 20px;
     border-top: 1px solid #eee;
@@ -434,10 +533,12 @@ nav a:hover {
     font-weight: bold;
 }
 
-.empty-cart {
+.empty-cart,
+.empty-wishlist {
     text-align: center;
     color: #777;
     margin-top: 50px;
+    line-height: 1.7;
 }
 
 
@@ -733,6 +834,10 @@ footer a:hover {
         display: none;
     }
 
+    .header-actions {
+        gap: 12px;
+    }
+
     .hero {
         height: 75vh;
         min-height: 500px;
@@ -761,6 +866,11 @@ footer a:hover {
 
     .checkout-box {
         padding: 22px;
+    }
+
+    .cart-panel,
+    .wishlist-panel {
+        width: 100%;
     }
 }
 
@@ -797,21 +907,46 @@ footer a:hover {
 
     </nav>
 
-    <button
-        class="cart-button"
-        onclick="openCart()">
+    <div class="header-actions">
 
-        🛒
+        <!-- WISHLIST -->
 
-        <span
-            class="cart-count"
-            id="cartCount">
+        <button
+            class="wishlist-button"
+            onclick="openWishlist()">
 
-            0
+            ♡
 
-        </span>
+            <span
+                class="wishlist-count"
+                id="wishlistCount">
 
-    </button>
+                0
+
+            </span>
+
+        </button>
+
+
+        <!-- CART -->
+
+        <button
+            class="cart-button"
+            onclick="openCart()">
+
+            🛒
+
+            <span
+                class="cart-count"
+                id="cartCount">
+
+                0
+
+            </span>
+
+        </button>
+
+    </div>
 
 </header>
 
@@ -943,29 +1078,6 @@ footer a:hover {
 
         </div>
 
-
-        <!-- T-SHIRTS -->
-
-        <div class="collection-card">
-
-            <img
-                src="images/tshirt1.jpeg"
-                alt="Modern T-Shirts">
-
-            <div class="collection-text">
-
-                <h2>
-                    T-SHIRTS
-                </h2>
-
-                <a href="#new">
-                    SHOP T-SHIRTS →
-                </a>
-
-            </div>
-
-        </div>
-
     </div>
 
 </section>
@@ -1008,7 +1120,6 @@ footer a:hover {
 
     <div class="footer-grid">
 
-
         <div>
 
             <div class="footer-logo">
@@ -1041,10 +1152,6 @@ footer a:hover {
 
             <a href="#collection">
                 Pants
-            </a>
-
-            <a href="#collection">
-                T-Shirts
             </a>
 
         </div>
@@ -1107,13 +1214,44 @@ footer a:hover {
 
 
 <!-- =========================
+     WISHLIST PANEL
+========================= -->
+
+<div
+    class="wishlist-panel"
+    id="wishlistPanel">
+
+    <div class="wishlist-header">
+
+        <h2>
+            MY WISHLIST
+        </h2>
+
+        <button
+            class="close-wishlist"
+            onclick="closeWishlist()">
+
+            ×
+
+        </button>
+
+    </div>
+
+    <div
+        class="wishlist-items"
+        id="wishlistItems">
+    </div>
+
+</div>
+
+
+<!-- =========================
      CART PANEL
 ========================= -->
 
 <div
     class="cart-panel"
     id="cartPanel">
-
 
     <div class="cart-header">
 
@@ -1174,9 +1312,7 @@ footer a:hover {
     class="checkout-overlay"
     id="checkoutOverlay">
 
-
     <div class="checkout-box">
-
 
         <button
             class="close-checkout"
@@ -1234,43 +1370,14 @@ footer a:hover {
 
             <textarea
                 id="customerAddress"
-                placeholder="House no, street, area, city, state, pincode">
-            </textarea>
+                placeholder="House no, street, area, city, state, pincode"></textarea>
 
         </div>
 
 
-        <!-- PAYMENT METHOD -->
+        <!-- PAYMENT -->
 
-        <div class="form-group">
-
-            <label>
-                PAYMENT METHOD
-            </label>
-
-            <select
-                id="paymentMethod"
-                onchange="paymentMethodChanged()">
-
-                <option value="UPI">
-                    UPI / QR PAYMENT
-                </option>
-
-                <option value="Cash on Delivery">
-                    CASH ON DELIVERY
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- UPI PAYMENT -->
-
-        <div
-            class="payment-box"
-            id="paymentBox">
-
+        <div class="payment-box">
 
             <h3>
 
@@ -1320,8 +1427,7 @@ footer a:hover {
         <!-- SCREENSHOT -->
 
         <div
-            class="screenshot-box"
-            id="screenshotBox">
+            class="screenshot-box">
 
             <label>
                 PAYMENT SCREENSHOT
@@ -1384,7 +1490,6 @@ footer a:hover {
             SEND ORDER ON WHATSAPP
 
         </button>
-
 
     </div>
 
@@ -1496,6 +1601,21 @@ let cart = [];
 
 
 /* ==================================================
+   WISHLIST
+================================================== */
+
+/*
+   Load wishlist from browser storage.
+   This means saved products remain even after refresh.
+*/
+
+let wishlist =
+    JSON.parse(
+        localStorage.getItem("macWishlist")
+    ) || [];
+
+
+/* ==================================================
    DISPLAY PRODUCTS
 ================================================== */
 
@@ -1527,6 +1647,10 @@ function displayProducts(list = products) {
             "product";
 
 
+        const isWishlisted =
+            wishlist.includes(product.id);
+
+
         div.innerHTML = `
 
             ${
@@ -1540,11 +1664,24 @@ function displayProducts(list = products) {
             }
 
 
-            <img
-                class="product-image"
-                src="${product.image}"
-                alt="${product.name}"
-                onerror="this.style.display='none';">
+            <div class="product-image-wrapper">
+
+                <img
+                    class="product-image"
+                    src="${product.image}"
+                    alt="${product.name}"
+                    onerror="this.style.display='none';">
+
+
+                <button
+                    class="wishlist-heart ${isWishlisted ? "active" : ""}"
+                    onclick="toggleWishlist(${product.id})">
+
+                    ${isWishlisted ? "♥" : "♡"}
+
+                </button>
+
+            </div>
 
 
             <div class="product-info">
@@ -1580,6 +1717,240 @@ function displayProducts(list = products) {
         grid.appendChild(div);
 
     });
+
+}
+
+
+/* ==================================================
+   WISHLIST
+================================================== */
+
+function toggleWishlist(productId) {
+
+    const index =
+        wishlist.indexOf(productId);
+
+
+    if (index === -1) {
+
+        wishlist.push(productId);
+
+        alert("Added to wishlist ❤️");
+
+    }
+
+    else {
+
+        wishlist.splice(index, 1);
+
+        alert("Removed from wishlist");
+
+    }
+
+
+    saveWishlist();
+
+    updateWishlistCount();
+
+    displayProducts(
+        getCurrentProductList()
+    );
+
+    displayWishlist();
+
+}
+
+
+/* ==================================================
+   SAVE WISHLIST
+================================================== */
+
+function saveWishlist() {
+
+    localStorage.setItem(
+        "macWishlist",
+        JSON.stringify(wishlist)
+    );
+
+}
+
+
+/* ==================================================
+   WISHLIST COUNT
+================================================== */
+
+function updateWishlistCount() {
+
+    document.getElementById(
+        "wishlistCount"
+    ).innerText =
+        wishlist.length;
+
+}
+
+
+/* ==================================================
+   GET CURRENT PRODUCT LIST
+================================================== */
+
+function getCurrentProductList() {
+
+    const search =
+        document.getElementById(
+            "search"
+        ).value
+        .toLowerCase();
+
+    return products.filter(
+        product =>
+            product.name
+                .toLowerCase()
+                .includes(search)
+    );
+
+}
+
+
+/* ==================================================
+   DISPLAY WISHLIST
+================================================== */
+
+function displayWishlist() {
+
+    const container =
+        document.getElementById(
+            "wishlistItems"
+        );
+
+    container.innerHTML = "";
+
+
+    if (wishlist.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-wishlist">
+
+                Your wishlist is empty ❤️
+
+                <br><br>
+
+                Tap the ♡ on a product
+                to save it here.
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    wishlist.forEach(productId => {
+
+        const product =
+            products.find(
+                p => p.id === productId
+            );
+
+
+        if (!product)
+            return;
+
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "wishlist-item";
+
+
+        div.innerHTML = `
+
+            <img
+                src="${product.image}"
+                alt="${product.name}">
+
+
+            <div class="wishlist-item-info">
+
+                <h4>
+                    ${product.name}
+                </h4>
+
+                <div>
+                    ₹${product.price.toLocaleString("en-IN")}
+                </div>
+
+
+                <div class="wishlist-actions">
+
+                    <button
+                        onclick="wishlistAddToCart(${product.id})">
+
+                        ADD TO CART
+
+                    </button>
+
+
+                    <button
+                        onclick="toggleWishlist(${product.id})">
+
+                        REMOVE
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+/* ==================================================
+   WISHLIST ADD TO CART
+================================================== */
+
+function wishlistAddToCart(productId) {
+
+    chooseSize(productId);
+
+}
+
+
+/* ==================================================
+   OPEN WISHLIST
+================================================== */
+
+function openWishlist() {
+
+    displayWishlist();
+
+    closeCart();
+
+    document
+        .getElementById("wishlistPanel")
+        .classList.add("active");
+
+}
+
+
+/* ==================================================
+   CLOSE WISHLIST
+================================================== */
+
+function closeWishlist() {
+
+    document
+        .getElementById("wishlistPanel")
+        .classList.remove("active");
 
 }
 
@@ -1623,6 +1994,7 @@ function chooseSize(productId) {
         );
 
         return;
+
     }
 
 
@@ -1643,8 +2015,8 @@ function addToCart(product, size) {
     const existing =
         cart.find(
             item =>
-            item.id === product.id &&
-            item.size === size
+                item.id === product.id &&
+                item.size === size
         );
 
 
@@ -1747,9 +2119,7 @@ function updateCart() {
 
 
         const div =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         div.className =
@@ -1763,8 +2133,7 @@ function updateCart() {
                 alt="${item.name}">
 
 
-            <div
-                class="cart-item-info">
+            <div class="cart-item-info">
 
                 <h4>
                     ${item.name}
@@ -1789,7 +2158,7 @@ function updateCart() {
                 <div class="qty">
 
                     <button
-                        onclick="changeQuantity(${index},-1)">
+                        onclick="changeQuantity(${index}, -1)">
 
                         −
 
@@ -1802,7 +2171,7 @@ function updateCart() {
 
 
                     <button
-                        onclick="changeQuantity(${index},1)">
+                        onclick="changeQuantity(${index}, 1)">
 
                         +
 
@@ -1835,9 +2204,7 @@ function updateCart() {
 
     cartTotal.innerText =
         "₹" +
-        total.toLocaleString(
-            "en-IN"
-        );
+        total.toLocaleString("en-IN");
 
 }
 
@@ -1890,6 +2257,8 @@ function removeItem(index) {
 ================================================== */
 
 function openCart() {
+
+    closeWishlist();
 
     document
         .getElementById("cartPanel")
@@ -1948,6 +2317,7 @@ function openCheckout() {
         );
 
         return;
+
     }
 
 
@@ -2131,6 +2501,7 @@ function generateUPIQR() {
         `;
 
         return;
+
     }
 
 
@@ -2157,50 +2528,6 @@ function generateUPIQR() {
 
 
 /* ==================================================
-   PAYMENT METHOD
-================================================== */
-
-function paymentMethodChanged() {
-
-    const method =
-        document.getElementById(
-            "paymentMethod"
-        ).value;
-
-
-    const isUPI =
-        method === "UPI";
-
-
-    document.getElementById(
-        "paymentBox"
-    ).style.display =
-        isUPI
-        ? "block"
-        : "none";
-
-
-    document.getElementById(
-        "screenshotBox"
-    ).style.display =
-        isUPI
-        ? "block"
-        : "none";
-
-
-    if (isUPI) {
-
-        setTimeout(
-            generateUPIQR,
-            100
-        );
-
-    }
-
-}
-
-
-/* ==================================================
    SEND WHATSAPP ORDER
 ================================================== */
 
@@ -2215,6 +2542,7 @@ function sendWhatsAppOrder() {
         );
 
         return;
+
     }
 
 
@@ -2242,12 +2570,6 @@ function sendWhatsAppOrder() {
         .trim();
 
 
-    const payment =
-        document.getElementById(
-            "paymentMethod"
-        ).value;
-
-
     if (
         !name ||
         !phone ||
@@ -2259,6 +2581,7 @@ function sendWhatsAppOrder() {
         );
 
         return;
+
     }
 
 
@@ -2350,35 +2673,19 @@ function sendWhatsAppOrder() {
 
 
     message +=
-        "Payment Method: " +
+        "Payment Method: UPI%0A";
+
+
+    message +=
+        "UPI ID: " +
         encodeURIComponent(
-            payment
+            MAC_UPI_ID
         ) +
         "%0A";
 
 
-    if (
-        payment === "UPI"
-    ) {
-
-        message +=
-            "UPI ID: " +
-            encodeURIComponent(
-                MAC_UPI_ID
-            ) +
-            "%0A";
-
-        message +=
-            "Payment Screenshot: Please attach the screenshot here.%0A";
-
-    }
-
-    else {
-
-        message +=
-            "Payment Status: Cash on Delivery%0A";
-
-    }
+    message +=
+        "Payment Screenshot: Please attach the screenshot here.%0A";
 
 
     message +=
@@ -2406,21 +2713,8 @@ function sendWhatsAppOrder() {
 
 function searchProducts() {
 
-    const search =
-        document.getElementById(
-            "search"
-        )
-        .value
-        .toLowerCase();
-
-
     const filtered =
-        products.filter(
-            product =>
-            product.name
-                .toLowerCase()
-                .includes(search)
-        );
+        getCurrentProductList();
 
 
     displayProducts(
@@ -2431,14 +2725,16 @@ function searchProducts() {
 
 
 /* ==================================================
-   START
+   START WEBSITE
 ================================================== */
 
 displayProducts();
 
 updateCart();
 
-paymentMethodChanged();
+updateWishlistCount();
+
+displayWishlist();
 
 </script>
 
