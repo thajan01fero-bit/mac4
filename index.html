@@ -1,6 +1,7 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -11,16 +12,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<!-- Main website font + Kanit only for size buttons -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
 
-/* =====================================================
+/* =========================================================
    RESET
-===================================================== */
+========================================================= */
 
 *{
     margin:0;
@@ -45,9 +45,9 @@ select{
     font-family:inherit;
 }
 
-/* =====================================================
+/* =========================================================
    HEADER
-===================================================== */
+========================================================= */
 
 header{
     height:72px;
@@ -114,9 +114,9 @@ nav a:hover{
     justify-content:center;
 }
 
-/* =====================================================
+/* =========================================================
    HERO
-===================================================== */
+========================================================= */
 
 .hero{
     height:82vh;
@@ -159,9 +159,9 @@ nav a:hover{
     color:#fff;
 }
 
-/* =====================================================
+/* =========================================================
    SECTIONS
-===================================================== */
+========================================================= */
 
 .section{
     padding:85px 6%;
@@ -177,9 +177,9 @@ nav a:hover{
     letter-spacing:3px;
 }
 
-/* =====================================================
-   CATEGORY BUTTONS
-===================================================== */
+/* =========================================================
+   CATEGORY
+========================================================= */
 
 .catalog-menu{
     display:flex;
@@ -204,9 +204,9 @@ nav a:hover{
     color:#fff;
 }
 
-/* =====================================================
+/* =========================================================
    SEARCH
-===================================================== */
+========================================================= */
 
 .search-box{
     max-width:500px;
@@ -221,9 +221,9 @@ nav a:hover{
     font-size:17px;
 }
 
-/* =====================================================
+/* =========================================================
    PRODUCTS
-===================================================== */
+========================================================= */
 
 .products{
     display:grid;
@@ -323,9 +323,9 @@ nav a:hover{
     color:#fff;
 }
 
-/* =====================================================
-   PRODUCT DETAIL POPUP
-===================================================== */
+/* =========================================================
+   PRODUCT DETAIL
+========================================================= */
 
 .product-detail-overlay{
     position:fixed;
@@ -369,9 +369,9 @@ nav a:hover{
     gap:40px;
 }
 
-/* =====================================================
-   HORIZONTAL PHOTO CAROUSEL
-===================================================== */
+/* =========================================================
+   GALLERY
+========================================================= */
 
 .product-gallery{
     width:100%;
@@ -404,7 +404,6 @@ nav a:hover{
     flex:0 0 100%;
     width:100%;
     scroll-snap-align:start;
-    scroll-snap-stop:always;
 }
 
 .main-product-photo{
@@ -412,12 +411,7 @@ nav a:hover{
     aspect-ratio:3/4;
     object-fit:cover;
     display:block;
-    background:#f5f5f5;
 }
-
-/* =====================================================
-   CAROUSEL ARROWS
-===================================================== */
 
 .gallery-arrow{
     position:absolute;
@@ -449,10 +443,6 @@ nav a:hover{
     right:12px;
 }
 
-/* =====================================================
-   PHOTO COUNTER
-===================================================== */
-
 .photo-counter{
     position:absolute;
     bottom:12px;
@@ -464,21 +454,13 @@ nav a:hover{
     border-radius:20px;
     font-family:Arial,sans-serif;
     font-size:12px;
-    z-index:10;
 }
-
-/* =====================================================
-   HORIZONTAL THUMBNAILS
-===================================================== */
 
 .product-thumbnails{
     display:flex;
     gap:10px;
     margin-top:12px;
     overflow-x:auto;
-    overflow-y:hidden;
-    scroll-behavior:smooth;
-    -webkit-overflow-scrolling:touch;
     scrollbar-width:none;
 }
 
@@ -493,16 +475,15 @@ nav a:hover{
     object-fit:cover;
     cursor:pointer;
     border:2px solid transparent;
-    transition:.2s;
 }
 
 .product-thumbnail.active{
     border:2px solid #111;
 }
 
-/* =====================================================
-   PRODUCT DETAIL INFORMATION
-===================================================== */
+/* =========================================================
+   PRODUCT DETAILS
+========================================================= */
 
 .product-detail-info{
     padding-top:20px;
@@ -542,21 +523,26 @@ nav a:hover{
     margin-bottom:12px;
 }
 
+/* =========================================================
+   MULTI SIZE SELECTION
+========================================================= */
+
 .detail-size-options{
     display:flex;
+    flex-direction:row;
     flex-wrap:wrap;
     gap:10px;
-    margin-bottom:25px;
+    margin-bottom:10px;
 }
 
-/* =====================================================
-   SIZE SELECTION
-   ONLY THESE SIZE BUTTONS USE KANIT
-===================================================== */
+/*
+   ONLY SIZE LETTERS USE KANIT
+*/
 
 .detail-size-option{
     min-width:60px;
-    padding:12px 16px;
+    min-height:52px;
+    padding:10px 16px;
 
     background:#fff;
     border:1px solid #111;
@@ -564,22 +550,45 @@ nav a:hover{
     cursor:pointer;
 
     font-family:"Kanit",sans-serif;
-    font-size:20px;
+    font-size:21px;
     font-weight:700;
     letter-spacing:1px;
-    line-height:1;
+
+    transition:.2s;
 }
 
-.detail-size-option:hover,
+.detail-size-option:hover{
+    background:#111;
+    color:#fff;
+}
+
+/* Selected multiple sizes */
+
 .detail-size-option.selected{
     background:#111;
     color:#fff;
 }
 
+/* Sold out */
+
 .detail-size-option.sold{
     opacity:.35;
     text-decoration:line-through;
     cursor:not-allowed;
+    background:#eee;
+    color:#555;
+}
+
+/* =========================================================
+   SELECTED SIZE INFO
+========================================================= */
+
+.selected-size-info{
+    min-height:25px;
+    margin-bottom:15px;
+
+    font-family:"Kanit",sans-serif;
+    font-size:15px;
 }
 
 .detail-add-cart{
@@ -597,9 +606,9 @@ nav a:hover{
     opacity:.85;
 }
 
-/* =====================================================
+/* =========================================================
    COLLECTION
-===================================================== */
+========================================================= */
 
 .collection{
     display:grid;
@@ -655,9 +664,9 @@ nav a:hover{
     padding-bottom:5px;
 }
 
-/* =====================================================
+/* =========================================================
    SIDE PANELS
-===================================================== */
+========================================================= */
 
 .wishlist-panel,
 .cart-panel{
@@ -803,12 +812,12 @@ nav a:hover{
     font-weight:bold;
 }
 
-/* =====================================================
+/* =========================================================
    CHECKOUT
-===================================================== */
+========================================================= */
 
 .checkout-overlay,
-.size-overlay{
+.admin-overlay{
     position:fixed;
     inset:0;
 
@@ -825,11 +834,12 @@ nav a:hover{
 }
 
 .checkout-overlay.active,
-.size-overlay.active{
+.admin-overlay.active{
     display:flex;
 }
 
-.checkout-box{
+.checkout-box,
+.admin-box{
     background:#fff;
 
     width:650px;
@@ -845,7 +855,7 @@ nav a:hover{
 }
 
 .close-checkout,
-.close-size{
+.close-admin{
     position:absolute;
 
     top:15px;
@@ -859,7 +869,8 @@ nav a:hover{
     cursor:pointer;
 }
 
-.checkout-box h2{
+.checkout-box h2,
+.admin-box h2{
     font-size:32px;
     margin-bottom:25px;
 }
@@ -897,9 +908,9 @@ nav a:hover{
     resize:vertical;
 }
 
-/* =====================================================
+/* =========================================================
    PAYMENT NOTICE
-===================================================== */
+========================================================= */
 
 .advance-notice{
     background:#fff4d6;
@@ -922,9 +933,9 @@ nav a:hover{
     margin-bottom:5px;
 }
 
-/* =====================================================
+/* =========================================================
    PAYMENT
-===================================================== */
+========================================================= */
 
 .payment-box{
     border:1px solid #ddd;
@@ -943,9 +954,7 @@ nav a:hover{
 
 .upi-id{
     font-family:Arial,sans-serif;
-
     font-size:14px;
-
     margin-bottom:15px;
 }
 
@@ -976,9 +985,9 @@ nav a:hover{
     line-height:1.6;
 }
 
-/* =====================================================
+/* =========================================================
    COD
-===================================================== */
+========================================================= */
 
 .cod-box{
     border:1px solid #ddd;
@@ -1011,9 +1020,7 @@ nav a:hover{
 
 .payment-option{
     border:1px solid #ccc;
-
     padding:14px;
-
     cursor:pointer;
 }
 
@@ -1022,33 +1029,26 @@ nav a:hover{
     margin-right:8px;
 }
 
-/* =====================================================
+/* =========================================================
    ORDER SUMMARY
-===================================================== */
+========================================================= */
 
 .order-summary{
     background:#f5f5f5;
-
     padding:15px;
-
     margin:20px 0;
 }
 
 .order-summary-row{
     display:flex;
-
     justify-content:space-between;
-
     gap:15px;
-
     margin:8px 0;
 }
 
 .final-total{
     border-top:1px solid #ccc;
-
     padding-top:12px;
-
     font-weight:bold;
 }
 
@@ -1070,9 +1070,141 @@ nav a:hover{
     cursor:pointer;
 }
 
-/* =====================================================
+/* =========================================================
+   ORDER SENT MESSAGE
+========================================================= */
+
+.order-sent-box{
+    display:none;
+
+    border:1px solid #ccc;
+
+    padding:20px;
+
+    margin-top:20px;
+
+    text-align:center;
+}
+
+.order-sent-box.active{
+    display:block;
+}
+
+.order-sent-box h3{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+/* =========================================================
+   ADMIN CONFIRMATION
+========================================================= */
+
+.admin-section{
+    margin-top:25px;
+
+    padding:20px;
+
+    border:1px dashed #999;
+
+    background:#fafafa;
+}
+
+.admin-section h3{
+    margin-bottom:8px;
+}
+
+.admin-section p{
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    color:#666;
+    line-height:1.5;
+}
+
+.admin-button{
+    width:100%;
+
+    padding:14px;
+
+    margin-top:12px;
+
+    background:#111;
+
+    color:#fff;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+/* =========================================================
+   ADMIN ORDER LIST
+========================================================= */
+
+.admin-order{
+    border:1px solid #ddd;
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    background:#fff;
+}
+
+.admin-order h3{
+    margin-bottom:10px;
+}
+
+.admin-order-item{
+    padding:7px 0;
+
+    border-bottom:1px solid #eee;
+
+    font-family:Arial,sans-serif;
+
+    font-size:13px;
+}
+
+.confirm-order-btn{
+    width:100%;
+
+    margin-top:12px;
+
+    padding:13px;
+
+    background:#111;
+
+    color:#fff;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+.cancel-order-btn{
+    width:100%;
+
+    margin-top:8px;
+
+    padding:12px;
+
+    background:#fff;
+
+    color:#111;
+
+    border:1px solid #111;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+/* =========================================================
    NEWSLETTER
-===================================================== */
+========================================================= */
 
 .newsletter{
     background:#f5f5f5;
@@ -1122,9 +1254,9 @@ nav a:hover{
     cursor:pointer;
 }
 
-/* =====================================================
+/* =========================================================
    FOOTER
-===================================================== */
+========================================================= */
 
 footer{
     background:#111;
@@ -1155,7 +1287,6 @@ footer{
 
 footer h3{
     font-size:16px;
-
     margin-bottom:17px;
 }
 
@@ -1187,9 +1318,33 @@ footer a:hover{
     font-size:12px;
 }
 
-/* =====================================================
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+
+    bottom:25px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:#111;
+
+    color:#fff;
+
+    padding:12px 22px;
+
+    z-index:7000;
+
+    font-size:15px;
+}
+
+/* =========================================================
    MOBILE
-===================================================== */
+========================================================= */
 
 @media(max-width:800px){
 
@@ -1260,10 +1415,6 @@ footer a:hover{
         padding-top:0;
     }
 
-    .main-product-photo{
-        aspect-ratio:3/4;
-    }
-
 }
 
 @media(max-width:600px){
@@ -1273,7 +1424,8 @@ footer a:hover{
         width:100%;
     }
 
-    .checkout-box{
+    .checkout-box,
+    .admin-box{
         padding:22px;
     }
 
@@ -1309,9 +1461,9 @@ footer a:hover{
 
 <body>
 
-<!-- =====================================================
+<!-- =========================================================
      HEADER
-===================================================== -->
+========================================================= -->
 
 <header>
 
@@ -1346,7 +1498,9 @@ footer a:hover{
             <span
                 class="header-count"
                 id="wishlistCount">
+
                 0
+
             </span>
 
         </button>
@@ -1360,7 +1514,9 @@ footer a:hover{
             <span
                 class="header-count"
                 id="cartCount">
+
                 0
+
             </span>
 
         </button>
@@ -1369,9 +1525,9 @@ footer a:hover{
 
 </header>
 
-<!-- =====================================================
+<!-- =========================================================
      HERO
-===================================================== -->
+========================================================= -->
 
 <section class="hero">
 
@@ -1397,9 +1553,9 @@ footer a:hover{
 
 </section>
 
-<!-- =====================================================
+<!-- =========================================================
      PRODUCTS
-===================================================== -->
+========================================================= -->
 
 <section
     class="section"
@@ -1466,9 +1622,9 @@ footer a:hover{
 
 </section>
 
-<!-- =====================================================
+<!-- =========================================================
      COLLECTION
-===================================================== -->
+========================================================= -->
 
 <section
     class="section"
@@ -1554,9 +1710,9 @@ footer a:hover{
 
 </section>
 
-<!-- =====================================================
+<!-- =========================================================
      NEWSLETTER
-===================================================== -->
+========================================================= -->
 
 <section class="newsletter">
 
@@ -1583,9 +1739,9 @@ footer a:hover{
 
 </section>
 
-<!-- =====================================================
+<!-- =========================================================
      FOOTER
-===================================================== -->
+========================================================= -->
 
 <footer id="about">
 
@@ -1621,15 +1777,15 @@ footer a:hover{
                 New Arrivals
             </a>
 
-            <a href="#collection">
+            <a href="#new">
                 Shirts
             </a>
 
-            <a href="#collection">
+            <a href="#new">
                 Pants
             </a>
 
-            <a href="#collection">
+            <a href="#new">
                 T-Shirts
             </a>
 
@@ -1710,9 +1866,9 @@ footer a:hover{
 
 </footer>
 
-<!-- =====================================================
-     PRODUCT DETAIL POPUP
-===================================================== -->
+<!-- =========================================================
+     PRODUCT DETAIL
+========================================================= -->
 
 <div
     class="product-detail-overlay"
@@ -1779,9 +1935,7 @@ footer a:hover{
                     id="detailCategory">
                 </div>
 
-                <h2
-                    id="detailName">
-                </h2>
+                <h2 id="detailName"></h2>
 
                 <div
                     class="product-detail-price"
@@ -1794,7 +1948,19 @@ footer a:hover{
                 </p>
 
                 <div class="detail-size-title">
+
                     SELECT SIZE
+
+                    <span
+                        style="
+                        color:#777;
+                        font-weight:normal;
+                        ">
+
+                        — select multiple sizes
+
+                    </span>
+
                 </div>
 
                 <div
@@ -1802,12 +1968,20 @@ footer a:hover{
                     id="detailSizeOptions">
                 </div>
 
+                <div
+                    class="selected-size-info"
+                    id="selectedSizeInfo">
+
+                    No sizes selected
+
+                </div>
+
                 <button
                     class="detail-add-cart"
                     id="detailAddCartBtn"
-                    onclick="addSelectedDetailToCart()">
+                    onclick="addSelectedSizesToCart()">
 
-                    SELECT A SIZE
+                    SELECT SIZE
 
                 </button>
 
@@ -1819,9 +1993,9 @@ footer a:hover{
 
 </div>
 
-<!-- =====================================================
-     WISHLIST PANEL
-===================================================== -->
+<!-- =========================================================
+     WISHLIST
+========================================================= -->
 
 <div
     class="wishlist-panel"
@@ -1850,9 +2024,9 @@ footer a:hover{
 
 </div>
 
-<!-- =====================================================
-     CART PANEL
-===================================================== -->
+<!-- =========================================================
+     CART
+========================================================= -->
 
 <div
     class="cart-panel"
@@ -1905,9 +2079,9 @@ footer a:hover{
 
 </div>
 
-<!-- =====================================================
+<!-- =========================================================
      CHECKOUT
-===================================================== -->
+========================================================= -->
 
 <div
     class="checkout-overlay"
@@ -2046,11 +2220,6 @@ footer a:hover{
                 Scan this QR code using Google Pay,
                 PhonePe, Paytm or another UPI application.
 
-                <br><br>
-
-                The QR code contains your exact
-                order amount.
-
             </p>
 
         </div>
@@ -2075,12 +2244,6 @@ footer a:hover{
                     Advance payment is required depending
                     upon the delivery location.
                 </strong>
-
-                <br><br>
-
-                MAC will confirm the applicable payment
-                requirement through WhatsApp before
-                processing your order.
 
             </p>
 
@@ -2117,15 +2280,92 @@ footer a:hover{
 
         </button>
 
+        <div
+            class="order-sent-box"
+            id="orderSentBox">
+
+            <h3>
+                ORDER SENT
+            </h3>
+
+            <p>
+                Your order has been sent to MAC.
+            </p>
+
+            <p
+                style="
+                margin-top:8px;
+                font-size:13px;
+                color:#666;
+                ">
+
+                Your selected sizes will remain available
+                until the order is confirmed.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================================================
+     ADMIN CONFIRMATION
+========================================================= -->
+
+<div
+    class="admin-overlay"
+    id="adminOverlay">
+
+    <div class="admin-box">
+
+        <button
+            class="close-admin"
+            onclick="closeAdmin()">
+
+            ×
+
+        </button>
+
+        <h2>
+            MAC ORDER CONFIRMATION
+        </h2>
+
+        <p
+            style="
+            color:#666;
+            font-family:Arial,sans-serif;
+            font-size:13px;
+            line-height:1.5;
+            margin-bottom:20px;
+            ">
+
+            Orders sent from this browser will appear here.
+            Confirm an order only after you have actually
+            accepted the customer's order.
+
+        </p>
+
+        <div id="adminOrders"></div>
+
+        <button
+            class="admin-button"
+            onclick="resetDemoStock()">
+
+            RESET ALL SIZE STOCK
+
+        </button>
+
     </div>
 
 </div>
 
 <script>
 
-/* =====================================================
+/* =========================================================
    MAC SETTINGS
-===================================================== */
+========================================================= */
 
 const MAC_UPI_ID =
     "thajan01fero@oksbi";
@@ -2133,9 +2373,13 @@ const MAC_UPI_ID =
 const WHATSAPP_NUMBER =
     "917812843410";
 
-/* =====================================================
+/* =========================================================
    PRODUCTS
-===================================================== */
+
+   IMPORTANT:
+   XL IS REMOVED.
+   36 IS REMOVED.
+========================================================= */
 
 const products = [
 
@@ -2154,7 +2398,6 @@ const products = [
         description:
         "A relaxed oversized shirt designed for everyday comfort and effortless streetwear style.",
 
-        /* XL REMOVED */
         sizes:["S","M","L"],
 
         stock:{
@@ -2181,7 +2424,6 @@ const products = [
         description:
         "A premium everyday shirt with a clean modern silhouette and comfortable fit.",
 
-        /* XL REMOVED */
         sizes:["S","M","L"],
 
         stock:{
@@ -2208,7 +2450,6 @@ const products = [
         description:
         "A bold streetwear-inspired shirt made for casual outfits and everyday styling.",
 
-        /* XL REMOVED */
         sizes:["S","M","L"],
 
         stock:{
@@ -2235,7 +2476,6 @@ const products = [
         description:
         "MAC signature shirt featuring a premium look and versatile design.",
 
-        /* XL REMOVED */
         sizes:["S","M","L"],
 
         stock:{
@@ -2262,7 +2502,6 @@ const products = [
         description:
         "Classic straight-fit pants designed to pair easily with your everyday wardrobe.",
 
-        /* 36 REMOVED */
         sizes:["28","30","32","34"],
 
         stock:{
@@ -2290,7 +2529,6 @@ const products = [
         description:
         "Relaxed-fit pants designed for comfort with a modern MAC silhouette.",
 
-        /* 36 REMOVED */
         sizes:["28","30","32","34"],
 
         stock:{
@@ -2318,7 +2556,6 @@ const products = [
         description:
         "Premium pants combining everyday comfort with a refined streetwear look.",
 
-        /* 36 REMOVED */
         sizes:["28","30","32","34"],
 
         stock:{
@@ -2346,7 +2583,6 @@ const products = [
         description:
         "Modern cargo pants with a functional design and contemporary streetwear style.",
 
-        /* 36 REMOVED */
         sizes:["28","30","32","34"],
 
         stock:{
@@ -2374,7 +2610,6 @@ const products = [
         description:
         "A comfortable essential cotton T-shirt made for simple everyday outfits.",
 
-        /* XL REMOVED */
         sizes:["S","M","L"],
 
         stock:{
@@ -2401,7 +2636,6 @@ const products = [
         description:
         "Premium oversized T-shirt offering a relaxed fit and modern streetwear aesthetic.",
 
-        /* XL REMOVED */
         sizes:["S","M","L"],
 
         stock:{
@@ -2428,7 +2662,6 @@ const products = [
         description:
         "MAC graphic T-shirt designed to make a statement while keeping your outfit comfortable.",
 
-        /* XL REMOVED */
         sizes:["S","M","L"],
 
         stock:{
@@ -2455,7 +2688,6 @@ const products = [
         description:
         "A signature MAC T-shirt with a clean premium design for everyday wear.",
 
-        /* XL REMOVED */
         sizes:["S","M","L"],
 
         stock:{
@@ -2469,9 +2701,9 @@ const products = [
 
 ];
 
-/* =====================================================
+/* =========================================================
    VARIABLES
-===================================================== */
+========================================================= */
 
 let cart = [];
 
@@ -2481,47 +2713,167 @@ let currentCategory = "all";
 
 let selectedDetailProduct = null;
 
-let selectedDetailSize = null;
+let selectedDetailSizes = [];
 
 let currentPhotoIndex = 0;
 
-/* =====================================================
-   DISPLAY PRODUCTS
-===================================================== */
+let pendingOrders = [];
 
-function displayProducts(list = products){
+/* =========================================================
+   SAVE STOCK
+========================================================= */
+
+function saveStock(){
+
+    const stockData = {};
+
+    products.forEach(product => {
+
+        stockData[product.id] =
+            product.stock;
+
+    });
+
+    localStorage.setItem(
+        "MAC_STOCK",
+        JSON.stringify(stockData)
+    );
+
+}
+
+/* =========================================================
+   LOAD STOCK
+========================================================= */
+
+function loadStock(){
+
+    const saved =
+        localStorage.getItem(
+            "MAC_STOCK"
+        );
+
+    if(!saved)
+        return;
+
+    try{
+
+        const stockData =
+            JSON.parse(saved);
+
+        products.forEach(product => {
+
+            if(stockData[product.id]){
+
+                product.stock =
+                    stockData[product.id];
+
+            }
+
+        });
+
+    }catch(error){
+
+        console.log(
+            "Stock data error",
+            error
+        );
+
+    }
+
+}
+
+/* =========================================================
+   LOAD PENDING ORDERS
+========================================================= */
+
+function loadPendingOrders(){
+
+    const saved =
+        localStorage.getItem(
+            "MAC_PENDING_ORDERS"
+        );
+
+    if(!saved)
+        return;
+
+    try{
+
+        pendingOrders =
+            JSON.parse(saved);
+
+    }catch(error){
+
+        pendingOrders = [];
+
+    }
+
+}
+
+/* =========================================================
+   SAVE PENDING ORDERS
+========================================================= */
+
+function savePendingOrders(){
+
+    localStorage.setItem(
+        "MAC_PENDING_ORDERS",
+        JSON.stringify(
+            pendingOrders
+        )
+    );
+
+}
+
+/* =========================================================
+   DISPLAY PRODUCTS
+========================================================= */
+
+function displayProducts(
+    list = products
+){
 
     const grid =
-        document.getElementById("productGrid");
+        document.getElementById(
+            "productGrid"
+        );
 
     grid.innerHTML = "";
 
     if(list.length === 0){
 
         grid.innerHTML = `
+
             <p style="
                 grid-column:1/-1;
                 text-align:center;
                 color:#777;
                 font-size:20px;
             ">
+
                 No products found.
+
             </p>
+
         `;
 
         return;
+
     }
 
     list.forEach(product => {
 
         const div =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         div.className =
             "product";
 
         const isWishlisted =
-            wishlist.includes(product.id);
+            wishlist.includes(
+                product.id
+            );
 
         div.innerHTML = `
 
@@ -2540,8 +2892,10 @@ function displayProducts(list = products){
                 }
 
                 <button
-                    class="wishlist-product-btn
-                    ${isWishlisted ? "active" : ""}"
+                    class="
+                    wishlist-product-btn
+                    ${isWishlisted ? "active" : ""}
+                    "
                     onclick="
                         event.stopPropagation();
                         toggleWishlist(${product.id});
@@ -2585,7 +2939,7 @@ function displayProducts(list = products){
                             openProductDetail(${product.id});
                         ">
 
-                        VIEW DETAILS
+                        SELECT SIZE
 
                     </button>
 
@@ -2601,48 +2955,63 @@ function displayProducts(list = products){
 
 }
 
-/* =====================================================
-   OPEN PRODUCT DETAIL
-===================================================== */
+/* =========================================================
+   OPEN PRODUCT
+========================================================= */
 
-function openProductDetail(productId){
+function openProductDetail(
+    productId
+){
 
     const product =
         products.find(
             p => p.id === productId
         );
 
-    if(!product) return;
+    if(!product)
+        return;
 
     selectedDetailProduct =
         product;
 
-    selectedDetailSize =
-        null;
+    selectedDetailSizes = [];
 
-    currentPhotoIndex =
-        0;
+    currentPhotoIndex = 0;
 
     document
-        .getElementById("detailName")
+        .getElementById(
+            "detailName"
+        )
         .innerText =
         product.name;
 
     document
-        .getElementById("detailCategory")
+        .getElementById(
+            "detailCategory"
+        )
         .innerText =
         product.category;
 
     document
-        .getElementById("detailPrice")
+        .getElementById(
+            "detailPrice"
+        )
         .innerText =
         "₹" +
-        product.price.toLocaleString("en-IN");
+        product.price.toLocaleString(
+            "en-IN"
+        );
 
     document
-        .getElementById("detailDescription")
+        .getElementById(
+            "detailDescription"
+        )
         .innerText =
         product.description;
+
+    /* -----------------------------------------------------
+       PHOTOS
+    ----------------------------------------------------- */
 
     const track =
         document.getElementById(
@@ -2653,29 +3022,39 @@ function openProductDetail(productId){
 
     product.images
         .slice(0,3)
-        .forEach((image,index) => {
+        .forEach(
+            (image,index) => {
 
-            const slide =
-                document.createElement("div");
+                const slide =
+                    document.createElement(
+                        "div"
+                    );
 
-            slide.className =
-                "main-photo-slide";
+                slide.className =
+                    "main-photo-slide";
 
-            slide.innerHTML = `
+                slide.innerHTML = `
 
-                <img
-                    class="main-product-photo"
-                    src="${image}"
-                    alt="${product.name} photo ${index + 1}"
-                    onerror="
-                    this.src='https://via.placeholder.com/600x800?text=MAC+Photo'
-                    ">
+                    <img
+                        class="main-product-photo"
+                        src="${image}"
+                        alt="${product.name}"
+                        onerror="
+                        this.src='https://via.placeholder.com/600x800?text=MAC+Photo'
+                        ">
 
-            `;
+                `;
 
-            track.appendChild(slide);
+                track.appendChild(
+                    slide
+                );
 
-        });
+            }
+        );
+
+    /* -----------------------------------------------------
+       THUMBNAILS
+    ----------------------------------------------------- */
 
     const thumbnails =
         document.getElementById(
@@ -2686,139 +3065,326 @@ function openProductDetail(productId){
 
     product.images
         .slice(0,3)
-        .forEach((image,index) => {
+        .forEach(
+            (image,index) => {
 
-            const thumbnail =
-                document.createElement("img");
+                const thumbnail =
+                    document.createElement(
+                        "img"
+                    );
 
-            thumbnail.src =
-                image;
+                thumbnail.src =
+                    image;
 
-            thumbnail.className =
-                "product-thumbnail";
+                thumbnail.className =
+                    "product-thumbnail";
 
-            if(index === 0){
+                if(index === 0){
 
-                thumbnail.classList.add(
-                    "active"
+                    thumbnail.classList.add(
+                        "active"
+                    );
+
+                }
+
+                thumbnail.onclick =
+                    () =>
+                    goToPhoto(index);
+
+                thumbnails.appendChild(
+                    thumbnail
                 );
 
             }
-
-            thumbnail.onclick =
-                function(){
-
-                    goToPhoto(index);
-
-                };
-
-            thumbnails.appendChild(
-                thumbnail
-            );
-
-        });
-
-    const sizeContainer =
-        document.getElementById(
-            "detailSizeOptions"
         );
 
-    sizeContainer.innerHTML = "";
+    /* -----------------------------------------------------
+       SIZES
+    ----------------------------------------------------- */
 
-    product.sizes.forEach(size => {
-
-        const button =
-            document.createElement("button");
-
-        button.className =
-            "detail-size-option";
-
-        button.innerText =
-            size;
-
-        const stock =
-            product.stock[size] || 0;
-
-        const alreadyInCart =
-            cart.some(
-                item =>
-                item.id === product.id &&
-                item.size === size
-            );
-
-        if(
-            stock <= 0 ||
-            alreadyInCart
-        ){
-
-            button.classList.add("sold");
-
-            button.innerText =
-                size + " SOLD OUT";
-
-            button.disabled = true;
-
-        }else{
-
-            button.onclick =
-                function(){
-
-                    document
-                        .querySelectorAll(
-                            ".detail-size-option"
-                        )
-                        .forEach(
-                            b =>
-                            b.classList
-                            .remove("selected")
-                        );
-
-                    button.classList.add(
-                        "selected"
-                    );
-
-                    selectedDetailSize =
-                        size;
-
-                    document
-                        .getElementById(
-                            "detailAddCartBtn"
-                        )
-                        .innerText =
-                        "ADD SIZE " +
-                        size +
-                        " TO CART";
-
-                };
-
-        }
-
-        sizeContainer.appendChild(
-            button
-        );
-
-    });
-
-    document
-        .getElementById(
-            "detailAddCartBtn"
-        )
-        .innerText =
-        "SELECT A SIZE";
+    renderSizeButtons();
 
     document
         .getElementById(
             "productDetailOverlay"
         )
-        .classList.add("active");
+        .classList.add(
+            "active"
+        );
 
     updatePhotoUI();
 
 }
 
-/* =====================================================
-   CLOSE PRODUCT DETAIL
-===================================================== */
+/* =========================================================
+   RENDER SIZE BUTTONS
+========================================================= */
+
+function renderSizeButtons(){
+
+    if(!selectedDetailProduct)
+        return;
+
+    const container =
+        document.getElementById(
+            "detailSizeOptions"
+        );
+
+    container.innerHTML = "";
+
+    selectedDetailProduct.sizes
+        .forEach(size => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.className =
+                "detail-size-option";
+
+            button.innerText =
+                size;
+
+            const stock =
+                selectedDetailProduct.stock[size] || 0;
+
+            /*
+               IMPORTANT:
+
+               A size is sold out ONLY when
+               stock has been confirmed as 0.
+
+               Adding to cart does NOT change stock.
+            */
+
+            if(stock <= 0){
+
+                button.classList.add(
+                    "sold"
+                );
+
+                button.innerText =
+                    size +
+                    " SOLD OUT";
+
+                button.disabled =
+                    true;
+
+            }else{
+
+                if(
+                    selectedDetailSizes
+                    .includes(size)
+                ){
+
+                    button.classList.add(
+                        "selected"
+                    );
+
+                }
+
+                button.onclick =
+                    () =>
+                    toggleSize(size);
+
+            }
+
+            container.appendChild(
+                button
+            );
+
+        });
+
+    updateSelectedSizeText();
+
+}
+
+/* =========================================================
+   MULTI SIZE SELECT
+========================================================= */
+
+function toggleSize(size){
+
+    if(!selectedDetailProduct)
+        return;
+
+    const stock =
+        selectedDetailProduct.stock[size] || 0;
+
+    if(stock <= 0){
+
+        showToast(
+            "This size is sold out."
+        );
+
+        return;
+
+    }
+
+    const index =
+        selectedDetailSizes.indexOf(
+            size
+        );
+
+    if(index === -1){
+
+        selectedDetailSizes.push(
+            size
+        );
+
+    }else{
+
+        selectedDetailSizes.splice(
+            index,
+            1
+        );
+
+    }
+
+    renderSizeButtons();
+
+}
+
+/* =========================================================
+   SELECTED SIZE TEXT
+========================================================= */
+
+function updateSelectedSizeText(){
+
+    const info =
+        document.getElementById(
+            "selectedSizeInfo"
+        );
+
+    const button =
+        document.getElementById(
+            "detailAddCartBtn"
+        );
+
+    if(
+        selectedDetailSizes.length === 0
+    ){
+
+        info.innerText =
+            "No sizes selected";
+
+        button.innerText =
+            "SELECT SIZE";
+
+        return;
+
+    }
+
+    info.innerText =
+        "Selected: " +
+        selectedDetailSizes.join(
+            " + "
+        );
+
+    button.innerText =
+        "ADD " +
+        selectedDetailSizes.length +
+        (
+            selectedDetailSizes.length === 1
+            ? " SIZE"
+            : " SIZES"
+        ) +
+        " TO CART";
+
+}
+
+/* =========================================================
+   ADD MULTIPLE SIZES
+========================================================= */
+
+function addSelectedSizesToCart(){
+
+    if(!selectedDetailProduct)
+        return;
+
+    if(
+        selectedDetailSizes.length === 0
+    ){
+
+        alert(
+            "Please select at least one size."
+        );
+
+        return;
+
+    }
+
+    /*
+       Add every selected size separately.
+
+       Example:
+       S + M + L
+
+       becomes:
+
+       Shirt - S
+       Shirt - M
+       Shirt - L
+    */
+
+    selectedDetailSizes.forEach(
+        size => {
+
+            const alreadyInCart =
+                cart.some(
+                    item =>
+                    item.id ===
+                    selectedDetailProduct.id &&
+                    item.size === size
+                );
+
+            if(!alreadyInCart){
+
+                cart.push({
+
+                    id:
+                    selectedDetailProduct.id,
+
+                    name:
+                    selectedDetailProduct.name,
+
+                    category:
+                    selectedDetailProduct.category,
+
+                    price:
+                    selectedDetailProduct.price,
+
+                    image:
+                    selectedDetailProduct.images[0],
+
+                    size:size,
+
+                    quantity:1
+
+                });
+
+            }
+
+        }
+    );
+
+    updateCart();
+
+    showToast(
+        selectedDetailProduct.name +
+        " added with " +
+        selectedDetailSizes.length +
+        " size(s)"
+    );
+
+    closeProductDetail();
+
+}
+
+/* =========================================================
+   CLOSE PRODUCT
+========================================================= */
 
 function closeProductDetail(){
 
@@ -2826,19 +3392,20 @@ function closeProductDetail(){
         .getElementById(
             "productDetailOverlay"
         )
-        .classList.remove("active");
+        .classList.remove(
+            "active"
+        );
 
     selectedDetailProduct =
         null;
 
-    selectedDetailSize =
-        null;
+    selectedDetailSizes = [];
 
 }
 
-/* =====================================================
-   PHOTO FUNCTIONS
-===================================================== */
+/* =========================================================
+   PHOTO
+========================================================= */
 
 function goToPhoto(index){
 
@@ -2859,14 +3426,11 @@ function goToPhoto(index){
             "mainPhotoTrack"
         );
 
-    const slideWidth =
-        track.clientWidth;
-
     track.scrollTo({
 
         left:
         currentPhotoIndex *
-        slideWidth,
+        track.clientWidth,
 
         behavior:"smooth"
 
@@ -2926,6 +3490,9 @@ function previousPhoto(){
 
 function updatePhotoUI(){
 
+    if(!selectedDetailProduct)
+        return;
+
     document
         .getElementById(
             "photoCounter"
@@ -2935,13 +3502,7 @@ function updatePhotoUI(){
             currentPhotoIndex + 1
         ) +
         " / " +
-        (
-            selectedDetailProduct
-            ?
-            selectedDetailProduct.images.length
-            :
-            3
-        );
+        selectedDetailProduct.images.length;
 
     document
         .querySelectorAll(
@@ -2952,7 +3513,8 @@ function updatePhotoUI(){
 
                 thumbnail.classList.toggle(
                     "active",
-                    index === currentPhotoIndex
+                    index ===
+                    currentPhotoIndex
                 );
 
             }
@@ -2960,85 +3522,9 @@ function updatePhotoUI(){
 
 }
 
-/* =====================================================
-   MANUAL PHOTO SWIPE
-===================================================== */
-
-document
-    .getElementById(
-        "mainPhotoTrack"
-    )
-    .addEventListener(
-        "scroll",
-        function(){
-
-            if(!selectedDetailProduct)
-                return;
-
-            const width =
-                this.clientWidth;
-
-            if(width <= 0)
-                return;
-
-            const index =
-                Math.round(
-                    this.scrollLeft /
-                    width
-                );
-
-            if(
-                index !==
-                currentPhotoIndex
-            ){
-
-                currentPhotoIndex =
-                    Math.max(
-                        0,
-                        Math.min(
-                            index,
-                            selectedDetailProduct.images.length - 1
-                        )
-                    );
-
-                updatePhotoUI();
-
-            }
-
-        }
-    );
-
-/* =====================================================
-   ADD SELECTED SIZE TO CART
-===================================================== */
-
-function addSelectedDetailToCart(){
-
-    if(!selectedDetailProduct)
-        return;
-
-    if(!selectedDetailSize){
-
-        alert(
-            "Please select a size."
-        );
-
-        return;
-
-    }
-
-    addToCart(
-        selectedDetailProduct,
-        selectedDetailSize
-    );
-
-    closeProductDetail();
-
-}
-
-/* =====================================================
-   CATEGORY FILTER
-===================================================== */
+/* =========================================================
+   CATEGORY
+========================================================= */
 
 function filterCategory(
     category,
@@ -3070,12 +3556,6 @@ function filterCategory(
         getCurrentProducts()
     );
 
-    document
-        .getElementById("new")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
-
 }
 
 function selectCollection(
@@ -3105,11 +3585,19 @@ function selectCollection(
 
         });
 
+    document
+        .getElementById(
+            "new"
+        )
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
 }
 
-/* =====================================================
+/* =========================================================
    SEARCH
-===================================================== */
+========================================================= */
 
 function searchProducts(){
 
@@ -3123,7 +3611,9 @@ function getCurrentProducts(){
 
     const search =
         document
-        .getElementById("search")
+        .getElementById(
+            "search"
+        )
         .value
         .toLowerCase()
         .trim();
@@ -3161,71 +3651,9 @@ function getCurrentProducts(){
 
 }
 
-/* =====================================================
+/* =========================================================
    CART
-===================================================== */
-
-function addToCart(
-    product,
-    size
-){
-
-    if(
-        !product.stock[size] ||
-        product.stock[size] <= 0
-    ){
-
-        alert(
-            "This size is sold out."
-        );
-
-        return;
-
-    }
-
-    const existing =
-        cart.find(
-            item =>
-            item.id === product.id &&
-            item.size === size
-        );
-
-    if(existing){
-
-        alert(
-            "Only 1 piece of this size is available."
-        );
-
-        return;
-
-    }
-
-    cart.push({
-
-        id:product.id,
-        name:product.name,
-        category:product.category,
-        price:product.price,
-        image:product.images[0],
-        size:size,
-        quantity:1
-
-    });
-
-    updateCart();
-
-    displayProducts(
-        getCurrentProducts()
-    );
-
-    showToast(
-        product.name +
-        " - Size " +
-        size +
-        " added to cart"
-    );
-
-}
+========================================================= */
 
 function updateCart(){
 
@@ -3247,14 +3675,19 @@ function updateCart(){
     container.innerHTML = "";
 
     let total = 0;
-    let countNumber = 0;
 
     if(cart.length === 0){
 
         container.innerHTML = `
 
-            <div class="empty-cart">
+            <div style="
+                text-align:center;
+                color:#777;
+                padding:30px 0;
+            ">
+
                 Your cart is empty.
+
             </div>
 
         `;
@@ -3266,9 +3699,6 @@ function updateCart(){
 
             total +=
                 item.price *
-                item.quantity;
-
-            countNumber +=
                 item.quantity;
 
             const div =
@@ -3285,22 +3715,36 @@ function updateCart(){
                     src="${item.image}"
                     alt="${item.name}">
 
-                <div class="cart-item-info">
+                <div
+                    class="cart-item-info">
 
                     <h4>
                         ${item.name}
                     </h4>
 
                     <div class="cart-size">
-                        Size: ${item.size}
+
+                        Size:
+                        <strong>
+                            ${item.size}
+                        </strong>
+
                     </div>
 
                     <div class="cart-price">
+
                         ₹${item.price.toLocaleString("en-IN")}
+
                     </div>
 
-                    <div style="margin-top:10px;">
+                    <div
+                        style="
+                        margin-top:8px;
+                        font-size:13px;
+                        ">
+
                         Quantity: 1
+
                     </div>
 
                     <button
@@ -3323,11 +3767,13 @@ function updateCart(){
     );
 
     count.innerText =
-        countNumber;
+        cart.length;
 
     totalElement.innerText =
         "₹" +
-        total.toLocaleString("en-IN");
+        total.toLocaleString(
+            "en-IN"
+        );
 
 }
 
@@ -3340,10 +3786,6 @@ function removeItem(index){
 
     updateCart();
 
-    displayProducts(
-        getCurrentProducts()
-    );
-
 }
 
 function getCartTotal(){
@@ -3353,10 +3795,7 @@ function getCartTotal(){
         (total,item) =>
 
             total +
-            (
-                item.price *
-                item.quantity
-            ),
+            item.price,
 
         0
 
@@ -3364,9 +3803,9 @@ function getCartTotal(){
 
 }
 
-/* =====================================================
-   CART OPEN / CLOSE
-===================================================== */
+/* =========================================================
+   CART OPEN
+========================================================= */
 
 function openCart(){
 
@@ -3376,7 +3815,9 @@ function openCart(){
         .getElementById(
             "cartPanel"
         )
-        .classList.add("active");
+        .classList.add(
+            "active"
+        );
 
 }
 
@@ -3386,13 +3827,15 @@ function closeCart(){
         .getElementById(
             "cartPanel"
         )
-        .classList.remove("active");
+        .classList.remove(
+            "active"
+        );
 
 }
 
-/* =====================================================
+/* =========================================================
    WISHLIST
-===================================================== */
+========================================================= */
 
 function toggleWishlist(
     productId
@@ -3457,13 +3900,13 @@ function updateWishlist(){
 
         container.innerHTML = `
 
-            <div class="empty-wishlist">
+            <div style="
+                color:#777;
+                text-align:center;
+                padding:30px;
+            ">
 
                 Your wishlist is empty ♡
-
-                <br><br>
-
-                Save products you love here.
 
             </div>
 
@@ -3548,7 +3991,9 @@ function openWishlist(){
         .getElementById(
             "wishlistPanel"
         )
-        .classList.add("active");
+        .classList.add(
+            "active"
+        );
 
 }
 
@@ -3558,13 +4003,15 @@ function closeWishlist(){
         .getElementById(
             "wishlistPanel"
         )
-        .classList.remove("active");
+        .classList.remove(
+            "active"
+        );
 
 }
 
-/* =====================================================
+/* =========================================================
    CHECKOUT
-===================================================== */
+========================================================= */
 
 function openCheckout(){
 
@@ -3584,7 +4031,9 @@ function openCheckout(){
         .getElementById(
             "checkoutOverlay"
         )
-        .classList.add("active");
+        .classList.add(
+            "active"
+        );
 
     changePaymentMethod();
 
@@ -3596,9 +4045,15 @@ function closeCheckout(){
         .getElementById(
             "checkoutOverlay"
         )
-        .classList.remove("active");
+        .classList.remove(
+            "active"
+        );
 
 }
+
+/* =========================================================
+   CHECKOUT SUMMARY
+========================================================= */
 
 function updateCheckout(){
 
@@ -3609,39 +4064,40 @@ function updateCheckout(){
 
     container.innerHTML = "";
 
-    cart.forEach(item => {
+    cart.forEach(
+        item => {
 
-        const row =
-            document.createElement(
-                "div"
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+            row.className =
+                "order-summary-row";
+
+            row.innerHTML = `
+
+                <span>
+
+                    ${item.name}
+                    — Size ${item.size}
+
+                </span>
+
+                <span>
+
+                    ₹${item.price.toLocaleString("en-IN")}
+
+                </span>
+
+            `;
+
+            container.appendChild(
+                row
             );
 
-        row.className =
-            "order-summary-row";
-
-        row.innerHTML = `
-
-            <span>
-
-                ${item.name}
-                × 1
-                (${item.size})
-
-            </span>
-
-            <span>
-
-                ₹${item.price.toLocaleString("en-IN")}
-
-            </span>
-
-        `;
-
-        container.appendChild(
-            row
-        );
-
-    });
+        }
+    );
 
     const total =
         getCartTotal();
@@ -3652,20 +4108,24 @@ function updateCheckout(){
         )
         .innerText =
         "₹" +
-        total.toLocaleString("en-IN");
+        total.toLocaleString(
+            "en-IN"
+        );
 
     document
         .getElementById(
             "paymentAmount"
         )
         .innerText =
-        total.toLocaleString("en-IN");
+        total.toLocaleString(
+            "en-IN"
+        );
 
 }
 
-/* =====================================================
+/* =========================================================
    PAYMENT
-===================================================== */
+========================================================= */
 
 function changePaymentMethod(){
 
@@ -3714,33 +4174,18 @@ function changePaymentMethod(){
 
 function generateUPIQR(){
 
-    const selected =
-        document.querySelector(
-            'input[name="paymentMethod"]:checked'
-        );
-
-    if(
-        selected &&
-        selected.value !==
-        "UPI"
-    ){
-
-        return;
-
-    }
-
     const total =
         getCartTotal();
 
     if(total <= 0)
         return;
 
-    const qrContainer =
+    const container =
         document.getElementById(
             "qrcode"
         );
 
-    qrContainer.innerHTML = "";
+    container.innerHTML = "";
 
     const upiURL =
         "upi://pay" +
@@ -3767,15 +4212,15 @@ function generateUPIQR(){
         "undefined"
     ){
 
-        qrContainer.innerHTML =
-            "<p style='color:red'>QR library could not load.</p>";
+        container.innerHTML =
+            "<p>QR unavailable</p>";
 
         return;
 
     }
 
     new QRCode(
-        qrContainer,
+        container,
         {
             text:upiURL,
             width:280,
@@ -3787,9 +4232,9 @@ function generateUPIQR(){
 
 }
 
-/* =====================================================
-   WHATSAPP ORDER
-===================================================== */
+/* =========================================================
+   SEND WHATSAPP ORDER
+========================================================= */
 
 function sendWhatsAppOrder(){
 
@@ -3856,58 +4301,155 @@ function sendWhatsAppOrder(){
 
     }
 
+    /*
+       FINAL CHECK BEFORE SENDING:
+
+       Make sure no selected size has already
+       become sold out.
+    */
+
+    for(
+        const item of cart
+    ){
+
+        const product =
+            products.find(
+                p => p.id === item.id
+            );
+
+        if(
+            !product ||
+            !product.stock[item.size] ||
+            product.stock[item.size] <= 0
+        ){
+
+            alert(
+                item.name +
+                " size " +
+                item.size +
+                " is no longer available."
+            );
+
+            return;
+
+        }
+
+    }
+
     const paymentMethod =
         selectedPayment.value;
 
-    let total = 0;
+    const orderId =
+        "MAC-" +
+        Date.now();
+
+    const orderItems =
+        cart.map(
+            item => ({
+
+                id:item.id,
+                name:item.name,
+                category:item.category,
+                size:item.size,
+                price:item.price,
+                quantity:1
+
+            })
+        );
+
+    const total =
+        getCartTotal();
+
+    /*
+       Save order as PENDING.
+
+       IMPORTANT:
+       STOCK IS NOT CHANGED HERE.
+    */
+
+    const order = {
+
+        id:orderId,
+
+        customer:{
+            name:name,
+            phone:phone,
+            address:address
+        },
+
+        items:orderItems,
+
+        total:total,
+
+        paymentMethod:
+            paymentMethod,
+
+        status:
+            "PENDING",
+
+        createdAt:
+            new Date().toLocaleString()
+
+    };
+
+    pendingOrders.push(
+        order
+    );
+
+    savePendingOrders();
+
+    /* -----------------------------------------------------
+       WHATSAPP MESSAGE
+    ----------------------------------------------------- */
 
     let message =
         "*MAC CLOTHING - NEW ORDER*%0A" +
         "--------------------%0A%0A";
 
     message +=
+        "*ORDER ID:* " +
+        encodeURIComponent(
+            orderId
+        ) +
+        "%0A%0A";
+
+    message +=
         "*CUSTOMER DETAILS*%0A";
 
     message +=
         "Name: " +
-        encodeURIComponent(name) +
+        encodeURIComponent(
+            name
+        ) +
         "%0A";
 
     message +=
         "Phone: " +
-        encodeURIComponent(phone) +
+        encodeURIComponent(
+            phone
+        ) +
         "%0A";
 
     message +=
         "Address: " +
-        encodeURIComponent(address) +
+        encodeURIComponent(
+            address
+        ) +
         "%0A%0A";
 
     message +=
-        "*ORDER DETAILS*%0A";
+        "*ORDER ITEMS*%0A";
 
-    cart.forEach(
+    orderItems.forEach(
         (item,index) => {
 
-            const itemTotal =
-                item.price *
-                item.quantity;
-
-            total +=
-                itemTotal;
-
             message +=
-                (index + 1) +
+                (
+                    index + 1
+                ) +
                 ". " +
                 encodeURIComponent(
                     item.name
-                ) +
-                "%0A";
-
-            message +=
-                "Category: " +
-                encodeURIComponent(
-                    item.category
                 ) +
                 "%0A";
 
@@ -3919,11 +4461,8 @@ function sendWhatsAppOrder(){
                 "%0A";
 
             message +=
-                "Quantity: 1%0A";
-
-            message +=
                 "Price: ₹" +
-                itemTotal +
+                item.price +
                 "%0A%0A";
 
         }
@@ -3935,20 +4474,17 @@ function sendWhatsAppOrder(){
         "*%0A";
 
     message +=
-        "Payment Method: " +
+        "Payment: " +
         encodeURIComponent(
             paymentMethod
         ) +
-        "%0A";
+        "%0A%0A";
 
     message +=
-        "%0A";
+        "*STATUS: PENDING CONFIRMATION*%0A%0A";
 
     message +=
-        "*IMPORTANT:* Advance payment is required depending upon delivery location. MAC will confirm the applicable payment requirement before processing.%0A%0A";
-
-    message +=
-        "Please confirm my order.";
+        "The selected sizes should be marked SOLD OUT only after MAC confirms this order.";
 
     const whatsappURL =
         "https://wa.me/" +
@@ -3956,54 +4492,463 @@ function sendWhatsAppOrder(){
         "?text=" +
         message;
 
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
     /*
-       After order is sent,
-       purchased size becomes SOLD OUT.
+       Do NOT clear stock.
+
+       Do NOT mark sold out.
+
+       The customer order remains pending.
     */
 
-    cart.forEach(item => {
+    showToast(
+        "Order sent. Waiting for confirmation."
+    );
+
+    renderAdminOrders();
+
+}
+
+/* =========================================================
+   ADMIN OPEN
+========================================================= */
+
+function openAdmin(){
+
+    renderAdminOrders();
+
+    document
+        .getElementById(
+            "adminOverlay"
+        )
+        .classList.add(
+            "active"
+        );
+
+}
+
+function closeAdmin(){
+
+    document
+        .getElementById(
+            "adminOverlay"
+        )
+        .classList.remove(
+            "active"
+        );
+
+}
+
+/* =========================================================
+   ADMIN ORDER LIST
+========================================================= */
+
+function renderAdminOrders(){
+
+    const container =
+        document.getElementById(
+            "adminOrders"
+        );
+
+    container.innerHTML = "";
+
+    if(
+        pendingOrders.length === 0
+    ){
+
+        container.innerHTML = `
+
+            <div style="
+                padding:25px;
+                text-align:center;
+                color:#777;
+                border:1px solid #ddd;
+            ">
+
+                No pending orders.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    pendingOrders.forEach(
+        order => {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+            div.className =
+                "admin-order";
+
+            let itemsHTML = "";
+
+            order.items.forEach(
+                item => {
+
+                    itemsHTML += `
+
+                        <div
+                            class="admin-order-item">
+
+                            <strong>
+                                ${item.name}
+                            </strong>
+
+                            —
+                            Size
+                            <strong>
+                                ${item.size}
+                            </strong>
+
+                            —
+                            ₹${item.price}
+
+                        </div>
+
+                    `;
+
+                }
+            );
+
+            div.innerHTML = `
+
+                <h3>
+                    Order ${order.id}
+                </h3>
+
+                <p
+                    style="
+                    font-family:Arial,sans-serif;
+                    font-size:12px;
+                    margin-bottom:8px;
+                    ">
+
+                    Customer:
+                    ${order.customer.name}
+
+                    <br>
+
+                    Phone:
+                    ${order.customer.phone}
+
+                    <br>
+
+                    Date:
+                    ${order.createdAt}
+
+                    <br>
+
+                    Payment:
+                    ${order.paymentMethod}
+
+                    <br>
+
+                    Status:
+                    <strong>
+                        ${order.status}
+                    </strong>
+
+                </p>
+
+                ${itemsHTML}
+
+                <div
+                    style="
+                    margin-top:12px;
+                    font-weight:bold;
+                    ">
+
+                    Total:
+                    ₹${order.total.toLocaleString("en-IN")}
+
+                </div>
+
+                ${
+                    order.status === "PENDING"
+                    ?
+
+                    `
+
+                    <button
+                        class="confirm-order-btn"
+                        onclick="
+                        confirmOrder('${order.id}')
+                        ">
+
+                        ✓ CONFIRM ORDER & MARK SIZES SOLD OUT
+
+                    </button>
+
+                    <button
+                        class="cancel-order-btn"
+                        onclick="
+                        cancelOrder('${order.id}')
+                        ">
+
+                        CANCEL ORDER
+
+                    </button>
+
+                    `
+
+                    :
+
+                    `
+
+                    <div
+                        style="
+                        margin-top:12px;
+                        padding:10px;
+                        background:#eee;
+                        font-family:Arial,sans-serif;
+                        font-size:12px;
+                        ">
+
+                        This order has already been
+                        ${order.status.toLowerCase()}.
+
+                    </div>
+
+                    `
+
+                }
+
+            `;
+
+            container.appendChild(
+                div
+            );
+
+        }
+    );
+
+}
+
+/* =========================================================
+   CONFIRM ORDER
+
+   THIS IS THE ONLY PLACE WHERE STOCK
+   BECOMES SOLD OUT.
+========================================================= */
+
+function confirmOrder(
+    orderId
+){
+
+    const order =
+        pendingOrders.find(
+            item =>
+            item.id === orderId
+        );
+
+    if(!order)
+        return;
+
+    if(
+        order.status !==
+        "PENDING"
+    ){
+
+        return;
+
+    }
+
+    /*
+       Confirm every size in the order.
+
+       Example:
+
+       Shirt S
+       Shirt M
+       Shirt L
+
+       ONLY S, M and L become SOLD OUT.
+    */
+
+    for(
+        const item of order.items
+    ){
 
         const product =
             products.find(
                 p => p.id === item.id
             );
 
-        if(
-            product &&
-            product.stock[item.size] > 0
-        ){
+        if(!product)
+            continue;
 
-            product.stock[item.size] =
-                0;
+        /*
+           The product can have several
+           different sizes.
 
-        }
+           Only the purchased size becomes 0.
+        */
 
-    });
+        product.stock[item.size] =
+            0;
+
+    }
+
+    order.status =
+        "CONFIRMED";
+
+    order.confirmedAt =
+        new Date().toLocaleString();
+
+    saveStock();
+
+    savePendingOrders();
+
+    /*
+       Remove confirmed items from
+       the local customer cart.
+    */
+
+    cart =
+        cart.filter(
+            cartItem => {
+
+                return !order.items.some(
+                    orderItem =>
+
+                    orderItem.id ===
+                    cartItem.id &&
+
+                    orderItem.size ===
+                    cartItem.size
+
+                );
+
+            }
+        );
+
+    updateCart();
 
     displayProducts(
         getCurrentProducts()
     );
 
-    window.open(
-        whatsappURL,
-        "_blank"
+    renderAdminOrders();
+
+    showToast(
+        "Order confirmed. Selected sizes are SOLD OUT."
     );
+
+}
+
+/* =========================================================
+   CANCEL ORDER
+
+   IMPORTANT:
+   Cancelling does NOT make any size sold out.
+========================================================= */
+
+function cancelOrder(
+    orderId
+){
+
+    const order =
+        pendingOrders.find(
+            item =>
+            item.id === orderId
+        );
+
+    if(!order)
+        return;
+
+    if(
+        order.status !==
+        "PENDING"
+    ){
+
+        return;
+
+    }
+
+    order.status =
+        "CANCELLED";
+
+    order.cancelledAt =
+        new Date().toLocaleString();
+
+    savePendingOrders();
+
+    renderAdminOrders();
+
+    showToast(
+        "Order cancelled. Sizes remain available."
+    );
+
+}
+
+/* =========================================================
+   RESET STOCK
+
+   FOR TESTING ONLY.
+========================================================= */
+
+function resetDemoStock(){
+
+    if(
+        !confirm(
+            "Reset ALL products and sizes to available stock?"
+        )
+    ){
+
+        return;
+
+    }
+
+    products.forEach(
+        product => {
+
+            product.sizes.forEach(
+                size => {
+
+                    product.stock[size] =
+                        1;
+
+                }
+            );
+
+        }
+    );
+
+    pendingOrders = [];
+
+    saveStock();
+
+    savePendingOrders();
 
     cart = [];
 
     updateCart();
 
-    closeCheckout();
+    displayProducts(
+        getCurrentProducts()
+    );
+
+    renderAdminOrders();
 
     showToast(
-        "Order sent to WhatsApp!"
+        "All stock has been reset."
     );
 
 }
 
-/* =====================================================
+/* =========================================================
    NEWSLETTER
-===================================================== */
+========================================================= */
 
 function joinNewsletter(){
 
@@ -4031,63 +4976,52 @@ function joinNewsletter(){
 
 }
 
-/* =====================================================
+/* =========================================================
    TOAST
-===================================================== */
+========================================================= */
 
 function showToast(
     message
 ){
+
+    const oldToast =
+        document.querySelector(
+            ".toast"
+        );
+
+    if(oldToast)
+        oldToast.remove();
 
     const toast =
         document.createElement(
             "div"
         );
 
+    toast.className =
+        "toast";
+
     toast.innerText =
         message;
-
-    toast.style.position =
-        "fixed";
-
-    toast.style.bottom =
-        "25px";
-
-    toast.style.left =
-        "50%";
-
-    toast.style.transform =
-        "translateX(-50%)";
-
-    toast.style.background =
-        "#111";
-
-    toast.style.color =
-        "#fff";
-
-    toast.style.padding =
-        "12px 22px";
-
-    toast.style.zIndex =
-        "6000";
-
-    toast.style.fontSize =
-        "15px";
 
     document.body.appendChild(
         toast
     );
 
     setTimeout(
-        () => toast.remove(),
-        2200
+        () => {
+
+            if(toast)
+                toast.remove();
+
+        },
+        2500
     );
 
 }
 
-/* =====================================================
-   CLOSE POPUPS OUTSIDE
-===================================================== */
+/* =========================================================
+   PRODUCT POPUP OUTSIDE CLICK
+========================================================= */
 
 document
     .getElementById(
@@ -4109,6 +5043,10 @@ document
         }
     );
 
+/* =========================================================
+   CHECKOUT OUTSIDE CLICK
+========================================================= */
+
 document
     .getElementById(
         "checkoutOverlay"
@@ -4129,17 +5067,40 @@ document
         }
     );
 
-/* =====================================================
-   KEYBOARD
-===================================================== */
+/* =========================================================
+   ADMIN OUTSIDE CLICK
+========================================================= */
+
+document
+    .getElementById(
+        "adminOverlay"
+    )
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(
+                event.target ===
+                this
+            ){
+
+                closeAdmin();
+
+            }
+
+        }
+    );
+
+/* =========================================================
+   KEYBOARD PHOTO CONTROL
+========================================================= */
 
 document.addEventListener(
     "keydown",
     function(event){
 
         const popup =
-            document
-            .getElementById(
+            document.getElementById(
                 "productDetailOverlay"
             );
 
@@ -4183,9 +5144,37 @@ document.addEventListener(
     }
 );
 
-/* =====================================================
+/* =========================================================
+   ADMIN ACCESS
+
+   Press Ctrl + Shift + A to open
+   the admin confirmation window.
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.ctrlKey &&
+            event.shiftKey &&
+            event.key.toLowerCase() === "a"
+        ){
+
+            openAdmin();
+
+        }
+
+    }
+);
+
+/* =========================================================
    INITIALIZE
-===================================================== */
+========================================================= */
+
+loadStock();
+
+loadPendingOrders();
 
 displayProducts();
 
