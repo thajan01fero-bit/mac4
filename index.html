@@ -11,7 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Main website font + Kanit only for size buttons -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
@@ -384,23 +385,14 @@ nav a:hover{
     background:#f5f5f5;
 }
 
-/*
-   The 3 large photos are placed SIDE BY SIDE.
-   Customer can swipe LEFT / RIGHT.
-*/
-
 .main-photo-track{
     display:flex;
     width:100%;
-
     overflow-x:auto;
     overflow-y:hidden;
-
     scroll-snap-type:x mandatory;
     scroll-behavior:smooth;
-
     -webkit-overflow-scrolling:touch;
-
     scrollbar-width:none;
 }
 
@@ -411,7 +403,6 @@ nav a:hover{
 .main-photo-slide{
     flex:0 0 100%;
     width:100%;
-
     scroll-snap-align:start;
     scroll-snap-stop:always;
 }
@@ -432,21 +423,14 @@ nav a:hover{
     position:absolute;
     top:50%;
     transform:translateY(-50%);
-
     width:44px;
     height:44px;
-
     border:none;
     border-radius:50%;
-
     background:rgba(255,255,255,.9);
-
     cursor:pointer;
-
     z-index:10;
-
     font-size:25px;
-
     display:flex;
     align-items:center;
     justify-content:center;
@@ -474,17 +458,12 @@ nav a:hover{
     bottom:12px;
     left:50%;
     transform:translateX(-50%);
-
     background:rgba(0,0,0,.65);
     color:#fff;
-
     padding:6px 12px;
-
     border-radius:20px;
-
     font-family:Arial,sans-serif;
     font-size:12px;
-
     z-index:10;
 }
 
@@ -494,18 +473,12 @@ nav a:hover{
 
 .product-thumbnails{
     display:flex;
-
     gap:10px;
-
     margin-top:12px;
-
     overflow-x:auto;
     overflow-y:hidden;
-
     scroll-behavior:smooth;
-
     -webkit-overflow-scrolling:touch;
-
     scrollbar-width:none;
 }
 
@@ -515,16 +488,11 @@ nav a:hover{
 
 .product-thumbnail{
     flex:0 0 90px;
-
     width:90px;
     height:110px;
-
     object-fit:cover;
-
     cursor:pointer;
-
     border:2px solid transparent;
-
     transition:.2s;
 }
 
@@ -544,7 +512,6 @@ nav a:hover{
     color:#777;
     font-size:15px;
     margin-bottom:10px;
-
     text-transform:uppercase;
     letter-spacing:2px;
 }
@@ -582,12 +549,25 @@ nav a:hover{
     margin-bottom:25px;
 }
 
+/* =====================================================
+   SIZE SELECTION
+   ONLY THESE SIZE BUTTONS USE KANIT
+===================================================== */
+
 .detail-size-option{
     min-width:60px;
     padding:12px 16px;
+
     background:#fff;
     border:1px solid #111;
+
     cursor:pointer;
+
+    font-family:"Kanit",sans-serif;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:1px;
+    line-height:1;
 }
 
 .detail-size-option:hover,
@@ -821,13 +801,6 @@ nav a:hover{
     cursor:pointer;
 
     font-weight:bold;
-}
-
-.empty-cart,
-.empty-wishlist{
-    text-align:center;
-    color:#777;
-    margin-top:50px;
 }
 
 /* =====================================================
@@ -1095,66 +1068,6 @@ nav a:hover{
     font-weight:bold;
 
     cursor:pointer;
-}
-
-/* =====================================================
-   SIZE MODAL
-===================================================== */
-
-.size-box{
-    background:#fff;
-
-    width:420px;
-    max-width:100%;
-
-    padding:30px;
-
-    position:relative;
-
-    text-align:center;
-}
-
-.size-box h2{
-    font-size:30px;
-    margin-bottom:7px;
-}
-
-.size-box p{
-    color:#777;
-    margin-bottom:22px;
-}
-
-.size-options{
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-
-    justify-content:center;
-}
-
-.size-option{
-    min-width:60px;
-
-    padding:12px 15px;
-
-    border:1px solid #111;
-
-    background:#fff;
-
-    cursor:pointer;
-}
-
-.size-option:hover{
-    background:#111;
-    color:#fff;
-}
-
-.sold-out-message{
-    color:#777;
-    font-size:16px;
-    padding:20px;
 }
 
 /* =====================================================
@@ -1817,10 +1730,6 @@ footer a:hover{
 
         <div class="product-detail-content">
 
-            <!-- =================================================
-                 HORIZONTAL 3 PHOTO CAROUSEL
-            ================================================== -->
-
             <div class="product-gallery">
 
                 <div class="main-photo-container">
@@ -1856,18 +1765,12 @@ footer a:hover{
 
                 </div>
 
-                <!-- HORIZONTAL THUMBNAILS -->
-
                 <div
                     class="product-thumbnails"
                     id="detailThumbnails">
                 </div>
 
             </div>
-
-            <!-- =================================================
-                 PRODUCT INFORMATION
-            ================================================== -->
 
             <div class="product-detail-info">
 
@@ -2114,8 +2017,6 @@ footer a:hover{
 
         </div>
 
-        <!-- UPI -->
-
         <div
             class="payment-box"
             id="upiPaymentBox">
@@ -2154,8 +2055,6 @@ footer a:hover{
 
         </div>
 
-        <!-- COD -->
-
         <div
             class="cod-box"
             id="codPaymentBox"
@@ -2186,8 +2085,6 @@ footer a:hover{
             </p>
 
         </div>
-
-        <!-- ORDER SUMMARY -->
 
         <div class="order-summary">
 
@@ -2238,7 +2135,6 @@ const WHATSAPP_NUMBER =
 
 /* =====================================================
    PRODUCTS
-   EACH PRODUCT HAS EXACTLY 3 PHOTOS
 ===================================================== */
 
 const products = [
@@ -2258,13 +2154,13 @@ const products = [
         description:
         "A relaxed oversized shirt designed for everyday comfort and effortless streetwear style.",
 
-        sizes:["S","M","L","XL"],
+        /* XL REMOVED */
+        sizes:["S","M","L"],
 
         stock:{
             S:1,
             M:1,
-            L:1,
-            XL:1
+            L:1
         },
 
         badge:"NEW"
@@ -2285,13 +2181,13 @@ const products = [
         description:
         "A premium everyday shirt with a clean modern silhouette and comfortable fit.",
 
-        sizes:["S","M","L","XL"],
+        /* XL REMOVED */
+        sizes:["S","M","L"],
 
         stock:{
             S:1,
             M:1,
-            L:1,
-            XL:1
+            L:1
         },
 
         badge:""
@@ -2312,13 +2208,13 @@ const products = [
         description:
         "A bold streetwear-inspired shirt made for casual outfits and everyday styling.",
 
-        sizes:["S","M","L","XL"],
+        /* XL REMOVED */
+        sizes:["S","M","L"],
 
         stock:{
             S:1,
             M:1,
-            L:1,
-            XL:1
+            L:1
         },
 
         badge:"BESTSELLER"
@@ -2339,13 +2235,13 @@ const products = [
         description:
         "MAC signature shirt featuring a premium look and versatile design.",
 
-        sizes:["S","M","L","XL"],
+        /* XL REMOVED */
+        sizes:["S","M","L"],
 
         stock:{
             S:1,
             M:1,
-            L:1,
-            XL:1
+            L:1
         },
 
         badge:"NEW"
@@ -2366,14 +2262,14 @@ const products = [
         description:
         "Classic straight-fit pants designed to pair easily with your everyday wardrobe.",
 
-        sizes:["28","30","32","34","36"],
+        /* 36 REMOVED */
+        sizes:["28","30","32","34"],
 
         stock:{
             "28":1,
             "30":1,
             "32":1,
-            "34":1,
-            "36":1
+            "34":1
         },
 
         badge:"NEW"
@@ -2394,14 +2290,14 @@ const products = [
         description:
         "Relaxed-fit pants designed for comfort with a modern MAC silhouette.",
 
-        sizes:["28","30","32","34","36"],
+        /* 36 REMOVED */
+        sizes:["28","30","32","34"],
 
         stock:{
             "28":1,
             "30":1,
             "32":1,
-            "34":1,
-            "36":1
+            "34":1
         },
 
         badge:""
@@ -2422,14 +2318,14 @@ const products = [
         description:
         "Premium pants combining everyday comfort with a refined streetwear look.",
 
-        sizes:["28","30","32","34","36"],
+        /* 36 REMOVED */
+        sizes:["28","30","32","34"],
 
         stock:{
             "28":1,
             "30":1,
             "32":1,
-            "34":1,
-            "36":1
+            "34":1
         },
 
         badge:"BESTSELLER"
@@ -2450,14 +2346,14 @@ const products = [
         description:
         "Modern cargo pants with a functional design and contemporary streetwear style.",
 
-        sizes:["28","30","32","34","36"],
+        /* 36 REMOVED */
+        sizes:["28","30","32","34"],
 
         stock:{
             "28":1,
             "30":1,
             "32":1,
-            "34":1,
-            "36":1
+            "34":1
         },
 
         badge:"NEW"
@@ -2478,13 +2374,13 @@ const products = [
         description:
         "A comfortable essential cotton T-shirt made for simple everyday outfits.",
 
-        sizes:["S","M","L","XL"],
+        /* XL REMOVED */
+        sizes:["S","M","L"],
 
         stock:{
             S:1,
             M:1,
-            L:1,
-            XL:1
+            L:1
         },
 
         badge:"NEW"
@@ -2505,13 +2401,13 @@ const products = [
         description:
         "Premium oversized T-shirt offering a relaxed fit and modern streetwear aesthetic.",
 
-        sizes:["S","M","L","XL"],
+        /* XL REMOVED */
+        sizes:["S","M","L"],
 
         stock:{
             S:1,
             M:1,
-            L:1,
-            XL:1
+            L:1
         },
 
         badge:""
@@ -2532,13 +2428,13 @@ const products = [
         description:
         "MAC graphic T-shirt designed to make a statement while keeping your outfit comfortable.",
 
-        sizes:["S","M","L","XL"],
+        /* XL REMOVED */
+        sizes:["S","M","L"],
 
         stock:{
             S:1,
             M:1,
-            L:1,
-            XL:1
+            L:1
         },
 
         badge:"BESTSELLER"
@@ -2559,13 +2455,13 @@ const products = [
         description:
         "A signature MAC T-shirt with a clean premium design for everyday wear.",
 
-        sizes:["S","M","L","XL"],
+        /* XL REMOVED */
+        sizes:["S","M","L"],
 
         stock:{
             S:1,
             M:1,
-            L:1,
-            XL:1
+            L:1
         },
 
         badge:"NEW"
@@ -2748,8 +2644,6 @@ function openProductDetail(productId){
         .innerText =
         product.description;
 
-    /* CREATE 3 LARGE HORIZONTAL SLIDES */
-
     const track =
         document.getElementById(
             "mainPhotoTrack"
@@ -2782,8 +2676,6 @@ function openProductDetail(productId){
             track.appendChild(slide);
 
         });
-
-    /* CREATE THUMBNAILS */
 
     const thumbnails =
         document.getElementById(
@@ -2825,8 +2717,6 @@ function openProductDetail(productId){
             );
 
         });
-
-    /* CREATE SIZE BUTTONS */
 
     const sizeContainer =
         document.getElementById(
@@ -2947,18 +2837,13 @@ function closeProductDetail(){
 }
 
 /* =====================================================
-   GO TO PHOTO
+   PHOTO FUNCTIONS
 ===================================================== */
 
 function goToPhoto(index){
 
-    if(
-        !selectedDetailProduct
-    ){
-
+    if(!selectedDetailProduct)
         return;
-
-    }
 
     currentPhotoIndex =
         Math.max(
@@ -2991,10 +2876,6 @@ function goToPhoto(index){
 
 }
 
-/* =====================================================
-   NEXT PHOTO
-===================================================== */
-
 function nextPhoto(){
 
     if(!selectedDetailProduct)
@@ -3019,10 +2900,6 @@ function nextPhoto(){
 
 }
 
-/* =====================================================
-   PREVIOUS PHOTO
-===================================================== */
-
 function previousPhoto(){
 
     if(!selectedDetailProduct)
@@ -3046,10 +2923,6 @@ function previousPhoto(){
     );
 
 }
-
-/* =====================================================
-   UPDATE PHOTO UI
-===================================================== */
 
 function updatePhotoUI(){
 
@@ -3088,7 +2961,7 @@ function updatePhotoUI(){
 }
 
 /* =====================================================
-   DETECT MANUAL HORIZONTAL SWIPE / SCROLL
+   MANUAL PHOTO SWIPE
 ===================================================== */
 
 document
@@ -3141,11 +3014,8 @@ document
 
 function addSelectedDetailToCart(){
 
-    if(!selectedDetailProduct){
-
+    if(!selectedDetailProduct)
         return;
-
-    }
 
     if(!selectedDetailSize){
 
@@ -3167,7 +3037,7 @@ function addSelectedDetailToCart(){
 }
 
 /* =====================================================
-   FILTER CATEGORY
+   CATEGORY FILTER
 ===================================================== */
 
 function filterCategory(
@@ -3207,10 +3077,6 @@ function filterCategory(
         });
 
 }
-
-/* =====================================================
-   COLLECTION
-===================================================== */
 
 function selectCollection(
     category
@@ -3296,7 +3162,7 @@ function getCurrentProducts(){
 }
 
 /* =====================================================
-   ADD TO CART
+   CART
 ===================================================== */
 
 function addToCart(
@@ -3337,17 +3203,11 @@ function addToCart(
     cart.push({
 
         id:product.id,
-
         name:product.name,
-
         category:product.category,
-
         price:product.price,
-
         image:product.images[0],
-
         size:size,
-
         quantity:1
 
     });
@@ -3366,10 +3226,6 @@ function addToCart(
     );
 
 }
-
-/* =====================================================
-   CART
-===================================================== */
 
 function updateCart(){
 
@@ -3391,7 +3247,6 @@ function updateCart(){
     container.innerHTML = "";
 
     let total = 0;
-
     let countNumber = 0;
 
     if(cart.length === 0){
@@ -3399,9 +3254,7 @@ function updateCart(){
         container.innerHTML = `
 
             <div class="empty-cart">
-
                 Your cart is empty.
-
             </div>
 
         `;
@@ -3432,8 +3285,7 @@ function updateCart(){
                     src="${item.image}"
                     alt="${item.name}">
 
-                <div
-                    class="cart-item-info">
+                <div class="cart-item-info">
 
                     <h4>
                         ${item.name}
@@ -3447,11 +3299,8 @@ function updateCart(){
                         ₹${item.price.toLocaleString("en-IN")}
                     </div>
 
-                    <div
-                        style="margin-top:10px;">
-
+                    <div style="margin-top:10px;">
                         Quantity: 1
-
                     </div>
 
                     <button
@@ -3482,10 +3331,6 @@ function updateCart(){
 
 }
 
-/* =====================================================
-   REMOVE CART ITEM
-===================================================== */
-
 function removeItem(index){
 
     cart.splice(
@@ -3500,10 +3345,6 @@ function removeItem(index){
     );
 
 }
-
-/* =====================================================
-   CART TOTAL
-===================================================== */
 
 function getCartTotal(){
 
@@ -3524,7 +3365,7 @@ function getCartTotal(){
 }
 
 /* =====================================================
-   OPEN / CLOSE CART
+   CART OPEN / CLOSE
 ===================================================== */
 
 function openCart(){
@@ -3823,7 +3664,7 @@ function updateCheckout(){
 }
 
 /* =====================================================
-   PAYMENT METHOD
+   PAYMENT
 ===================================================== */
 
 function changePaymentMethod(){
@@ -3871,10 +3712,6 @@ function changePaymentMethod(){
 
 }
 
-/* =====================================================
-   GENERATE UPI QR
-===================================================== */
-
 function generateUPIQR(){
 
     const selected =
@@ -3907,24 +3744,19 @@ function generateUPIQR(){
 
     const upiURL =
         "upi://pay" +
-
         "?pa=" +
         encodeURIComponent(
             MAC_UPI_ID
         ) +
-
         "&pn=" +
         encodeURIComponent(
             "MAC Clothing"
         ) +
-
         "&am=" +
         encodeURIComponent(
             total.toFixed(2)
         ) +
-
         "&cu=INR" +
-
         "&tn=" +
         encodeURIComponent(
             "MAC Clothing Order"
@@ -3956,7 +3788,7 @@ function generateUPIQR(){
 }
 
 /* =====================================================
-   SEND WHATSAPP ORDER
+   WHATSAPP ORDER
 ===================================================== */
 
 function sendWhatsAppOrder(){
@@ -4125,8 +3957,8 @@ function sendWhatsAppOrder(){
         message;
 
     /*
-       Once order is sent, the selected size
-       becomes SOLD OUT.
+       After order is sent,
+       purchased size becomes SOLD OUT.
     */
 
     cart.forEach(item => {
@@ -4254,7 +4086,7 @@ function showToast(
 }
 
 /* =====================================================
-   CLOSE POPUPS BY CLICKING OUTSIDE
+   CLOSE POPUPS OUTSIDE
 ===================================================== */
 
 document
@@ -4298,7 +4130,7 @@ document
     );
 
 /* =====================================================
-   KEYBOARD ARROWS
+   KEYBOARD
 ===================================================== */
 
 document.addEventListener(
