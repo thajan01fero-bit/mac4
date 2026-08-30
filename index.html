@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -460,14 +461,6 @@ nav a:hover{
     margin-top:10px;
 }
 
-.qty button{
-    width:27px;
-    height:27px;
-    border:1px solid #ccc;
-    background:#fff;
-    cursor:pointer;
-}
-
 .remove{
     color:#d00;
     border:none;
@@ -497,13 +490,6 @@ nav a:hover{
     border:none;
     cursor:pointer;
     font-weight:bold;
-}
-
-.empty-cart,
-.empty-wishlist{
-    text-align:center;
-    color:#777;
-    margin-top:50px;
 }
 
 /* ================= CHECKOUT ================= */
@@ -617,6 +603,57 @@ nav a:hover{
     line-height:1.6;
 }
 
+/* ================= PAYMENT METHODS ================= */
+
+.payment-method-title{
+    font-size:16px;
+    font-weight:bold;
+    text-align:left;
+    margin-bottom:12px;
+}
+
+.payment-methods{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.payment-method{
+    border:1px solid #111;
+    background:#fff;
+    color:#111;
+    padding:15px 10px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:15px;
+}
+
+.payment-method:hover{
+    background:#eee;
+}
+
+.payment-method.active{
+    background:#111;
+    color:#fff;
+}
+
+.cod-info{
+    display:none;
+    background:#f5f5f5;
+    padding:18px;
+    text-align:left;
+    font-family:Arial,sans-serif;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.cod-info.active{
+    display:block;
+}
+
+/* ================= ORDER SUMMARY ================= */
+
 .order-summary{
     background:#f5f5f5;
     padding:15px;
@@ -645,6 +682,10 @@ nav a:hover{
     font-family:Arial,sans-serif;
     font-weight:bold;
     cursor:pointer;
+}
+
+.whatsapp-btn:hover{
+    opacity:.9;
 }
 
 /* ================= SIZE ================= */
@@ -857,6 +898,10 @@ footer a:hover{
         flex-direction:column;
         gap:8px;
     }
+
+    .payment-methods{
+        grid-template-columns:1fr;
+    }
 }
 
 </style>
@@ -922,7 +967,9 @@ footer a:hover{
 
         <a href="#new"
            class="shop-btn">
+
             SHOP NOW
+
         </a>
 
     </div>
@@ -1150,8 +1197,6 @@ footer a:hover{
 
         </div>
 
-        <!-- CONTACT -->
-
         <div>
 
             <h3>
@@ -1291,7 +1336,7 @@ footer a:hover{
         <button class="checkout-btn"
                 onclick="openCheckout()">
 
-            PROCEED TO PAY
+            PROCEED TO CHECKOUT
 
         </button>
 
@@ -1317,6 +1362,8 @@ footer a:hover{
             COMPLETE YOUR ORDER
         </h2>
 
+        <!-- CUSTOMER NAME -->
+
         <div class="form-group">
 
             <label>
@@ -1328,6 +1375,8 @@ footer a:hover{
                    placeholder="Enter your full name">
 
         </div>
+
+        <!-- PHONE -->
 
         <div class="form-group">
 
@@ -1341,6 +1390,8 @@ footer a:hover{
 
         </div>
 
+        <!-- ADDRESS -->
+
         <div class="form-group">
 
             <label>
@@ -1352,49 +1403,113 @@ footer a:hover{
 
         </div>
 
-        <!-- ================= UPI PAYMENT ================= -->
+        <!-- ================= PAYMENT ================= -->
 
         <div class="payment-box">
 
-            <h3>
+            <div class="payment-method-title">
+                SELECT PAYMENT METHOD
+            </div>
 
-                PAY ₹
-                <span id="paymentAmount">
-                    0
-                </span>
+            <div class="payment-methods">
 
-            </h3>
+                <button type="button"
+                        class="payment-method active"
+                        id="upiMethod"
+                        onclick="selectPaymentMethod('UPI')">
 
-            <div class="upi-id">
+                    UPI PAYMENT
 
-                UPI ID:
-                <strong>
-                    thajan01fero@oksbi
-                </strong>
+                </button>
+
+                <button type="button"
+                        class="payment-method"
+                        id="codMethod"
+                        onclick="selectPaymentMethod('COD')">
+
+                    CASH ON DELIVERY
+
+                </button>
 
             </div>
 
-            <div id="qrcode"></div>
+            <!-- ================= UPI ================= -->
 
-            <p class="payment-note">
+            <div id="upiPaymentArea">
 
-                Scan this QR code using
-                Google Pay, PhonePe, Paytm
-                or another UPI application.
+                <h3>
+
+                    PAY ₹
+
+                    <span id="paymentAmount">
+                        0
+                    </span>
+
+                </h3>
+
+                <div class="upi-id">
+
+                    UPI ID:
+                    <strong>
+                        thajan01fero@oksbi
+                    </strong>
+
+                </div>
+
+                <div id="qrcode">
+                </div>
+
+                <p class="payment-note">
+
+                    Scan this QR code using
+                    Google Pay, PhonePe, Paytm
+                    or another UPI application.
+
+                    <br><br>
+
+                    The QR code contains your
+                    exact order amount.
+
+                    <br><br>
+
+                    After making the payment,
+                    send your order on WhatsApp.
+
+                    Payment will be verified manually
+                    before your order is confirmed.
+
+                </p>
+
+            </div>
+
+            <!-- ================= COD ================= -->
+
+            <div class="cod-info"
+                 id="codPaymentArea">
+
+                <strong>
+                    CASH ON DELIVERY
+                </strong>
 
                 <br><br>
 
-                The QR code contains your
-                exact order amount.
+                Cash on Delivery is available
+                for eligible delivery locations.
 
                 <br><br>
 
-                After making the payment,
-                send your order on WhatsApp.
-                Payment will be verified manually
-                before your order is confirmed.
+                <strong>
+                    Advance payment may be required
+                    depending on the delivery location.
+                </strong>
 
-            </p>
+                <br><br>
+
+                Our team will contact you through
+                WhatsApp to confirm the order and
+                payment details.
+
+            </div>
 
         </div>
 
@@ -1406,7 +1521,8 @@ footer a:hover{
                 ORDER SUMMARY
             </strong>
 
-            <div id="checkoutItems"></div>
+            <div id="checkoutItems">
+            </div>
 
             <div class="order-summary-row final-total">
 
@@ -1421,6 +1537,8 @@ footer a:hover{
             </div>
 
         </div>
+
+        <!-- ================= WHATSAPP ================= -->
 
         <button class="whatsapp-btn"
                 onclick="sendWhatsAppOrder()">
@@ -1657,6 +1775,7 @@ const products = [
 let cart = [];
 let wishlist = [];
 let currentCategory = "all";
+let selectedPaymentMethod = "UPI";
 
 /* =====================================================
    DISPLAY PRODUCTS
@@ -1872,7 +1991,6 @@ function getCurrentProducts(){
 
 /* =====================================================
    SIZE SELECTOR
-   SOLD OUT SIZES ARE NOT DISPLAYED
 ===================================================== */
 
 function openSizeModal(productId){
@@ -2137,7 +2255,7 @@ function updateCart(){
 }
 
 /* =====================================================
-   REMOVE CART ITEM
+   REMOVE ITEM
 ===================================================== */
 
 function removeItem(index){
@@ -2363,10 +2481,7 @@ function openCheckout(){
         .getElementById("checkoutOverlay")
         .classList.add("active");
 
-    setTimeout(
-        generateUPIQR,
-        150
-    );
+    selectPaymentMethod("UPI");
 
 }
 
@@ -2377,6 +2492,63 @@ function closeCheckout(){
         .classList.remove("active");
 
 }
+
+/* =====================================================
+   PAYMENT METHOD
+===================================================== */
+
+function selectPaymentMethod(method){
+
+    selectedPaymentMethod = method;
+
+    const upiButton =
+        document.getElementById("upiMethod");
+
+    const codButton =
+        document.getElementById("codMethod");
+
+    const upiArea =
+        document.getElementById("upiPaymentArea");
+
+    const codArea =
+        document.getElementById("codPaymentArea");
+
+    if(method === "UPI"){
+
+        upiButton.classList.add("active");
+
+        codButton.classList.remove("active");
+
+        upiArea.style.display =
+            "block";
+
+        codArea.classList.remove("active");
+
+        setTimeout(
+            generateUPIQR,
+            100
+        );
+
+    }
+
+    else if(method === "COD"){
+
+        codButton.classList.add("active");
+
+        upiButton.classList.remove("active");
+
+        upiArea.style.display =
+            "none";
+
+        codArea.classList.add("active");
+
+    }
+
+}
+
+/* =====================================================
+   CHECKOUT SUMMARY
+===================================================== */
 
 function updateCheckout(){
 
@@ -2436,6 +2608,10 @@ function updateCheckout(){
 ===================================================== */
 
 function generateUPIQR(){
+
+    if(selectedPaymentMethod !== "UPI"){
+        return;
+    }
 
     const total =
         getCartTotal();
@@ -2549,9 +2725,7 @@ function sendWhatsAppOrder(){
     let total = 0;
 
     let message =
-
         "*MAC CLOTHING - NEW ORDER*%0A" +
-
         "--------------------%0A%0A";
 
     message +=
@@ -2610,11 +2784,9 @@ function sendWhatsAppOrder(){
                 "%0A";
 
             message +=
-
                 "Quantity: 1%0A";
 
             message +=
-
                 "Price: ₹" +
                 itemTotal +
                 "%0A%0A";
@@ -2627,33 +2799,56 @@ function sendWhatsAppOrder(){
         total +
         "*%0A";
 
-    message +=
-        "Payment Method: UPI%0A";
+    /* ================= PAYMENT MESSAGE ================= */
+
+    if(selectedPaymentMethod === "UPI"){
+
+        message +=
+            "Payment Method: UPI%0A";
+
+        message +=
+            "UPI ID: " +
+            encodeURIComponent(
+                MAC_UPI_ID
+            ) +
+            "%0A%0A";
+
+        message +=
+            "Customer selected UPI payment.%0A";
+
+        message +=
+            "Payment will be verified by MAC before the order is confirmed.%0A%0A";
+
+    }
+
+    else{
+
+        message +=
+            "Payment Method: CASH ON DELIVERY%0A";
+
+        message +=
+            "Advance payment may be required depending on the delivery location.%0A%0A";
+
+        message +=
+            "Customer selected Cash on Delivery.%0A";
+
+        message +=
+            "Please confirm the payment requirement for this delivery location.%0A%0A";
+
+    }
 
     message +=
-        "UPI ID: " +
-        encodeURIComponent(
-            MAC_UPI_ID
-        ) +
-        "%0A%0A";
-
-    message +=
-        "Payment will be verified by MAC before the order is confirmed.%0A%0A";
-
-    message +=
-        "Please confirm my order after payment verification.";
+        "Please confirm my order.";
 
     const whatsappURL =
-
         "https://wa.me/" +
         WHATSAPP_NUMBER +
         "?text=" +
         message;
 
-    /*
-       Mark purchased product-size
-       as SOLD OUT.
-    */
+    /* =================================================
+       MARK PRODUCT SIZE AS SOLD OUT
+    ================================================= */
 
     cart.forEach(item => {
 
@@ -2677,10 +2872,14 @@ function sendWhatsAppOrder(){
         getCurrentProducts()
     );
 
+    /* OPEN WHATSAPP */
+
     window.open(
         whatsappURL,
         "_blank"
     );
+
+    /* CLEAR CART */
 
     cart = [];
 
@@ -2812,3 +3011,4 @@ document
 
 </body>
 </html>
+```
