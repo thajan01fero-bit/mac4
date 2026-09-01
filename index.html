@@ -87,12 +87,10 @@ function toggleTheme(){
 }
 
 
-applySavedTheme();
+document.addEventListener("DOMContentLoaded", function(){
+    applySavedTheme();
+});
 
-
-
-// Ensure the theme is applied after the page elements exist.
-document.addEventListener("DOMContentLoaded", applySavedTheme);
 </script>
 
 <style>
@@ -398,6 +396,12 @@ nav a:hover{
     font-weight:bold;
 }
 
+/* OFFER PRICE */
+.price-offer{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.price-old{color:#888;text-decoration:line-through;font-weight:400;}
+.price-new{font-weight:800;}
+.price-offer-badge{display:inline-block;margin-left:5px;padding:3px 6px;border:1px solid #111;font-size:9px;letter-spacing:1px;font-family:Arial,sans-serif;}
+
 .badge{
     position:absolute;
     top:12px;
@@ -632,6 +636,8 @@ nav a:hover{
     font-weight:bold;
     margin-bottom:25px;
 }
+.product-detail-price .price-old{font-size:17px;}
+.product-detail-price .price-new{font-size:22px;}
 
 .product-description{
     font-size:18px;
@@ -1619,6 +1625,11 @@ body.dark-mode .newsletter{
 
 body.dark-mode footer{
     background:#050505;
+}
+
+
+body.dark-mode .price-old{
+    color:#999;
 }
 
 body.dark-mode .product-thumbnail.active{
@@ -2714,6 +2725,7 @@ const products = [
         name:"Essential Oversized Shirt",
         category:"Shirts",
         price:699,
+        originalPrice:899,
 
         images:[
             "images/shirt1.jpeg",
@@ -3151,6 +3163,54 @@ function savePendingOrders(){
 }
 
 /* =========================================================
+   PRICE DISPLAY / OFFER PRICE
+
+   price = actual selling price
+   originalPrice = crossed-out MRP / previous price
+
+   Example:
+   price:699,
+   originalPrice:899
+========================================================= */
+
+function priceHTML(product, detail = false){
+
+    const sale = Number(product.price || 0);
+
+    // Automatically show a crossed-out price ₹200 higher
+    // for every Shirt and Pants product.
+    // A manually supplied originalPrice takes priority.
+    const automaticOffer =
+        (product.category === "Shirts" || product.category === "Pants" || product.category === "T-Shirts")
+        ? sale + 200
+        : 0;
+
+    const original = Number(product.originalPrice || automaticOffer || 0);
+    const saleText = sale.toLocaleString("en-IN");
+
+    if(original <= sale){
+        return `₹${saleText}`;
+    }
+
+    const originalText = original.toLocaleString("en-IN");
+
+    if(detail){
+        return `
+            <span class="price-old">₹${originalText}</span>
+            <span class="price-new">₹${saleText}</span>
+        `;
+    }
+
+    return `
+        <span class="price-offer">
+            <span class="price-old">₹${originalText}</span>
+            <span class="price-new">₹${saleText}</span>
+            <span class="price-offer-badge">OFFER</span>
+        </span>
+    `;
+}
+
+/* =========================================================
    DISPLAY PRODUCTS
 ========================================================= */
 
@@ -3254,7 +3314,7 @@ function displayProducts(
                 </div>
 
                 <p class="price">
-                    ₹${product.price.toLocaleString("en-IN")}
+                    ${priceHTML(product)}
                 </p>
 
                 <div class="product-actions">
@@ -3322,11 +3382,8 @@ function openProductDetail(
         .getElementById(
             "detailPrice"
         )
-        .innerText =
-        "₹" +
-        product.price.toLocaleString(
-            "en-IN"
-        );
+        .innerHTML =
+        priceHTML(product, true);
 
     document
         .getElementById(
@@ -4274,8 +4331,8 @@ function updateWishlist(){
                         ${product.name}
                     </h3>
 
-                    <p>
-                        ₹${product.price.toLocaleString("en-IN")}
+                    <p class="price">
+                        ${priceHTML(product)}
                     </p>
 
                     <br>
