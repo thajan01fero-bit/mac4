@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +14,86 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Kanit:wght@500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+/* =========================================================
+   DARK / WHITE MODE
+========================================================= */
+
+function applySavedTheme(){
+
+    const savedTheme =
+        localStorage.getItem("MAC_THEME");
+
+    const isDark =
+        savedTheme === "dark";
+
+    document.body.classList.toggle(
+        "dark-mode",
+        isDark
+    );
+
+    updateThemeButton(isDark);
+
+}
+
+function updateThemeButton(isDark){
+
+    const button =
+        document.getElementById(
+            "themeToggle"
+        );
+
+    if(!button)
+        return;
+
+    button.innerText =
+        isDark ? "☀" : "☾";
+
+    button.title =
+        isDark
+        ? "Switch to white mode"
+        : "Switch to dark mode";
+
+    button.setAttribute(
+        "aria-label",
+        isDark
+        ? "Switch to white mode"
+        : "Switch to dark mode"
+    );
+
+}
+
+function toggleTheme(){
+
+    const isDark =
+        document.body.classList.toggle(
+            "dark-mode"
+        );
+
+    localStorage.setItem(
+        "MAC_THEME",
+        isDark ? "dark" : "light"
+    );
+
+    updateThemeButton(isDark);
+
+    showToast(
+        isDark
+        ? "Dark mode enabled"
+        : "White mode enabled"
+    );
+
+}
+
+
+applySavedTheme();
+
+
+
+// Ensure the theme is applied after the page elements exist.
+document.addEventListener("DOMContentLoaded", applySavedTheme);
+</script>
 
 <style>
 
@@ -43,6 +122,50 @@ input,
 textarea,
 select{
     font-family:inherit;
+}
+
+
+/* =========================================================
+   TOP RUNNING MESSAGE
+========================================================= */
+
+.top-marquee{
+    width:100%;
+    height:38px;
+    background:#111;
+    color:#fff;
+    overflow:hidden;
+    white-space:nowrap;
+    display:flex;
+    align-items:center;
+    position:relative;
+    z-index:1100;
+}
+
+.marquee-track{
+    display:flex;
+    align-items:center;
+    gap:80px;
+    width:max-content;
+    animation:marqueeScroll 15s linear infinite;
+    will-change:transform;
+}
+
+.marquee-track span{
+    font-family:"Kanit",sans-serif;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:2px;
+    flex-shrink:0;
+}
+
+@keyframes marqueeScroll{
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(-50%);
+    }
 }
 
 /* =========================================================
@@ -1342,6 +1465,183 @@ footer a:hover{
     font-size:15px;
 }
 
+
+/* =========================================================
+   DARK / WHITE MODE
+========================================================= */
+
+.theme-toggle{
+    border:1px solid #ddd;
+    background:#fff;
+    color:#111;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+    transition:.25s;
+}
+
+.theme-toggle:hover{
+    background:#111;
+    color:#fff;
+}
+
+body.dark-mode{
+    color:#eee;
+    background:#111;
+}
+
+body.dark-mode header{
+    background:rgba(17,17,17,.97);
+    border-bottom-color:#333;
+}
+
+body.dark-mode nav a,
+body.dark-mode .logo{
+    color:#eee;
+}
+
+body.dark-mode .wishlist-button,
+body.dark-mode .cart-button{
+    color:#eee;
+}
+
+body.dark-mode .section-title h2,
+body.dark-mode .product-info h3,
+body.dark-mode .category-name,
+body.dark-mode .section{
+    color:#eee;
+}
+
+body.dark-mode .category-name{
+    color:#aaa;
+}
+
+body.dark-mode .catalog-btn,
+body.dark-mode .product-actions button,
+body.dark-mode .detail-size-option,
+body.dark-mode .theme-toggle{
+    background:#111;
+    color:#eee;
+    border-color:#555;
+}
+
+body.dark-mode .catalog-btn:hover,
+body.dark-mode .catalog-btn.active,
+body.dark-mode .product-actions button:hover,
+body.dark-mode .detail-size-option:hover,
+body.dark-mode .detail-size-option.selected,
+body.dark-mode .theme-toggle:hover{
+    background:#fff;
+    color:#111;
+}
+
+body.dark-mode .search-box input,
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea,
+body.dark-mode .form-group select{
+    background:#1b1b1b;
+    color:#eee;
+    border-color:#555;
+}
+
+body.dark-mode .search-box input::placeholder,
+body.dark-mode .form-group input::placeholder,
+body.dark-mode .form-group textarea::placeholder{
+    color:#999;
+}
+
+body.dark-mode .product-image{
+    background:#1b1b1b;
+}
+
+body.dark-mode .product-detail-box,
+body.dark-mode .wishlist-panel,
+body.dark-mode .cart-panel,
+body.dark-mode .checkout-box,
+body.dark-mode .admin-box{
+    background:#111;
+    color:#eee;
+}
+
+body.dark-mode .close-product-detail,
+body.dark-mode .close-wishlist,
+body.dark-mode .close-cart,
+body.dark-mode .close-checkout,
+body.dark-mode .close-admin{
+    background:#111;
+    color:#eee;
+}
+
+body.dark-mode .wishlist-header,
+body.dark-mode .cart-header,
+body.dark-mode .cart-footer{
+    border-color:#333;
+}
+
+body.dark-mode .wishlist-item,
+body.dark-mode .cart-item{
+    border-bottom-color:#333;
+}
+
+body.dark-mode .cart-size,
+body.dark-mode .product-description,
+body.dark-mode .payment-note,
+body.dark-mode .newsletter p{
+    color:#aaa;
+}
+
+body.dark-mode .advance-notice{
+    background:#29240f;
+    border-color:#75651d;
+}
+
+body.dark-mode .payment-box,
+body.dark-mode .cod-box,
+body.dark-mode .admin-section,
+body.dark-mode .order-summary,
+body.dark-mode .admin-order{
+    background:#1b1b1b;
+    border-color:#444;
+}
+
+body.dark-mode .order-summary-row{
+    border-color:#444;
+}
+
+body.dark-mode .newsletter{
+    background:#1b1b1b;
+}
+
+body.dark-mode footer{
+    background:#050505;
+}
+
+body.dark-mode .product-thumbnail.active{
+    border-color:#eee;
+}
+
+body.dark-mode .detail-size-option.sold{
+    background:#333;
+    color:#aaa;
+}
+
+body.dark-mode .theme-toggle{
+    border-color:#555;
+}
+
+@media(max-width:600px){
+    .theme-toggle{
+        width:38px;
+        height:38px;
+        font-size:18px;
+    }
+}
+
 /* =========================================================
    MOBILE
 ========================================================= */
@@ -1462,6 +1762,21 @@ footer a:hover{
 <body>
 
 <!-- =========================================================
+     TOP RUNNING MESSAGE
+========================================================= -->
+
+<div class="top-marquee">
+    <div class="marquee-track">
+        <span>WELCOME TO MAC CLOTHING</span>
+        <span>WELCOME TO MAC CLOTHING</span>
+        <span>WELCOME TO MAC CLOTHING</span>
+        <span>WELCOME TO MAC CLOTHING</span>
+        <span>WELCOME TO MAC CLOTHING</span>
+        <span>WELCOME TO MAC CLOTHING</span>
+    </div>
+</div>
+
+<!-- =========================================================
      HEADER
 ========================================================= -->
 
@@ -1518,6 +1833,17 @@ footer a:hover{
                 0
 
             </span>
+
+        </button>
+
+        <button
+            class="theme-toggle"
+            id="themeToggle"
+            onclick="toggleTheme()"
+            aria-label="Switch to dark mode"
+            title="Switch to dark mode">
+
+            ☾
 
         </button>
 
