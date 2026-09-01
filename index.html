@@ -1767,10 +1767,99 @@ body.dark-mode .theme-toggle{
 
 }
 
+
+/* =========================================================
+   MAC INTRO TITLE CARD
+========================================================= */
+.mac-intro{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100vh;
+    height:100dvh;
+    background:#111;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:99999;
+    animation:macIntroOut .9s ease 2.8s forwards;
+    pointer-events:none;
+}
+
+.mac-intro-content{
+    text-align:center;
+    opacity:0;
+    transform:scale(.88);
+    animation:macIntroIn 1.2s cubic-bezier(.2,.8,.2,1) .2s forwards;
+}
+
+.mac-intro-logo{
+    font-family:"Kanit",sans-serif;
+    font-size:clamp(90px,18vw,220px);
+    font-weight:700;
+    letter-spacing:.18em;
+    line-height:.9;
+    margin-left:.18em;
+}
+
+.mac-intro-line{
+    width:min(260px,55vw);
+    height:1px;
+    background:rgba(255,255,255,.75);
+    margin:28px auto 20px;
+    transform:scaleX(0);
+    transform-origin:center;
+    animation:macIntroLine 1s ease 1s forwards;
+}
+
+.mac-intro-tagline{
+    font-family:"Kanit",sans-serif;
+    font-size:clamp(12px,1.8vw,18px);
+    letter-spacing:7px;
+    opacity:0;
+    animation:macIntroText 1s ease 1.25s forwards;
+}
+
+@keyframes macIntroIn{
+    0%{opacity:0;transform:scale(.88);filter:blur(8px);}
+    100%{opacity:1;transform:scale(1);filter:blur(0);}
+}
+
+@keyframes macIntroLine{
+    to{transform:scaleX(1);}
+}
+
+@keyframes macIntroText{
+    to{opacity:1;}
+}
+
+@keyframes macIntroOut{
+    0%{opacity:1;}
+    100%{opacity:0;visibility:hidden;}
+}
+
+@media(prefers-reduced-motion:reduce){
+    .mac-intro, .mac-intro-content, .mac-intro-line, .mac-intro-tagline{
+        animation:none !important;
+    }
+    .mac-intro{opacity:0;visibility:hidden;}
+}
+
 </style>
 </head>
 
 <body>
+
+<!-- MAC INTRO / TITLE CARD -->
+<div id="macIntro" class="mac-intro">
+  <div class="mac-intro-content">
+    <div class="mac-intro-logo">MAC</div>
+    <div class="mac-intro-line"></div>
+    <div class="mac-intro-tagline">EVERYDAY. ELEVATED.</div>
+  </div>
+</div>
+
 
 <!-- =========================================================
      TOP RUNNING MESSAGE
@@ -3181,7 +3270,7 @@ function priceHTML(product, detail = false){
     // for every Shirt and Pants product.
     // A manually supplied originalPrice takes priority.
     const automaticOffer =
-        (product.category === "Shirts" || product.category === "Pants" || product.category === "T-Shirts")
+        (product.category === "Shirts" || product.category === "Pants")
         ? sale + 200
         : 0;
 
@@ -5565,6 +5654,17 @@ updateCart();
 
 updateWishlist();
 
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    const intro = document.getElementById("macIntro");
+    if(!intro) return;
+    setTimeout(() => {
+        intro.remove();
+    }, 3900);
+});
 </script>
 
 </body>
