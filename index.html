@@ -2070,7 +2070,40 @@ body.dark-mode .private-editor-actions{
     .private-editor-top{flex-direction:column;}
 }
 
+
+.mac-photo-delete-btn{
+    width:100%;
+    margin-top:8px;
+    padding:9px 10px;
+    border:1px solid #111;
+    background:#fff;
+    color:#111;
+    cursor:pointer;
+    font-family:Arial,sans-serif;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:.5px;
+}
+.mac-photo-delete-btn:hover{
+    background:#111;
+    color:#fff;
+}
+.private-save-btn:disabled{
+    opacity:.6;
+    cursor:wait;
+}
+body.dark-mode .mac-photo-delete-btn{
+    background:#111;
+    color:#eee;
+    border-color:#555;
+}
+body.dark-mode .mac-photo-delete-btn:hover{
+    background:#eee;
+    color:#111;
+}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+
 </head>
 
 <body>
@@ -6265,6 +6298,685 @@ function resetPrivateProducts(){
 
 </script>
 
+
+<script>
+/* =========================================================
+   MAC CLOTHING - SUPABASE CLOUD PHOTO MANAGER
+   Connected to the user's Supabase project.
+   Bucket: Product-images
+========================================================= */
+
+const MAC_SUPABASE_URL = "https://sgpmekxjtkapvbbtbumh.supabase.co";
+const MAC_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_KW00OO16GC9VB47yxjF4iA_LFC1tZov";
+const MAC_SUPABASE_BUCKET = "Product-images";
+
+const macCloud = window.supabase
+    ? window.supabase.createClient(
+        MAC_SUPABASE_URL,
+        MAC_SUPABASE_PUBLISHABLE_KEY
+      )
+    : null;
+
+let macCloudReady = false;
+const macPendingPhotoDeletes = new Set();
+
+function macImageList(value){
+    if(Array.isArray(value)) return value.filter(Boolean).slice(0,3);
+    if(typeof value !== "string" || !value.trim()) return [];
+    try{
+        const parsed = JSON.parse(value);
+        if(Array.isArray(parsed)) return parsed.filter(Boolean).slice(0,3);
+    }catch(e){}
+    return [value];
+}
+
+function macImageJson(images){
+    return JSON.stringify((images || []).filter(Boolean).slice(0,3));
+}
+
+function macStoragePathFromUrl(url){
+    if(!url || typeof url !== "string") return null;
+
+    const marker = `/storage/v1/object/public/${MAC_SUPABASE_BUCKET}/`;
+    const index = url.indexOf(marker);
+    if(index === -1) return null;
+
+    return decodeURIComponent(
+        url.substring(index + marker.length)
+    );
+}
+
+function macSafeFileName(name){
+    return String(name || "image")
+        .toLowerCase()
+        .replace(/\.[^.]+$/, "")
+        .replace(/[^a-z0-9-_]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .substring(0,80) || "image";
+}
+
+function macCloudUrl(path){
+    return macCloud
+        .storage
+        .from(MAC_SUPABASE_BUCKET)
+        .getPublicUrl(path)
+        .data
+        .publicUrl;
+}
+
+async function macUploadImage(file, product, photoIndex){
+    if(!macCloud) throw new Error("Supabase library did not load.");
+
+    const extension =
+        (file.name.split(".").pop() || "jpg")
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g,"");
+
+    const path =
+        `${product.id}/${Date.now()}-${photoIndex + 1}-${macSafeFileName(file.name)}.${extension}`;
+
+    const { error } =
+        await macCloud
+            .storage
+            .from(MAC_SUPABASE_BUCKET)
+            .upload(path, file, {
+                cacheControl: "3600",
+                upsert: false
+            });
+
+    if(error) throw error;
+
+    return {
+        path,
+        url: macCloudUrl(path)
+    };
+}
+
+async function macDeleteStorageUrl(url){
+    const path = macStoragePathFromUrl(url);
+    if(!path) return;
+
+    const { error } =
+        await macCloud
+            .storage
+            .from(MAC_SUPABASE_BUCKET)
+            .remove([path]);
+
+    if(error) console.warn("Storage delete warning:", error);
+}
+
+async function macSaveProductCloud(product, originalName){
+    if(!macCloud) throw new Error("Supabase library did not load.");
+
+    const payload = {
+        name: product.name,
+        category: product.category,
+        price: Number(product.price || 0),
+        original_price:
+            product.originalPrice == null
+            ? null
+            : Number(product.originalPrice),
+        description: product.description || "",
+        images: macImageJson(product.images)
+    };
+
+    const { error } =
+        await macCloud
+            .from("products")
+            .upsert(payload, { onConflict: "name" });
+
+    if(error) throw error;
+
+    /* If the product name was changed, remove the old row.
+       This only runs when an old name was supplied. */
+    if(originalName && originalName !== product.name){
+        const { error: deleteError } =
+            await macCloud
+                .from("products")
+                .delete()
+                .eq("name", originalName);
+
+        if(deleteError){
+            console.warn("Old product row could not be removed:", deleteError);
+        }
+    }
+}
+
+async function macLoadCloudProducts(){
+    if(!macCloud) return false;
+
+    const { data, error } =
+        await macCloud
+            .from("products")
+            .select("name,category,price,original_price,description,images");
+
+    if(error){
+        console.warn("Supabase product load failed:", error);
+        return false;
+    }
+
+    if(!data || !data.length){
+        return false;
+    }
+
+    let changed = false;
+
+    data.forEach(row => {
+        const product =
+            products.find(
+                p => p.name === row.name
+            );
+
+        if(!product) return;
+
+        if(row.category != null) product.category = row.category;
+        if(row.price != null) product.price = Number(row.price);
+
+        if(row.original_price != null){
+            product.originalPrice = Number(row.original_price);
+        }
+
+        if(row.description != null){
+            product.description = row.description;
+        }
+
+        const cloudImages = macImageList(row.images);
+
+        if(cloudImages.length){
+            product.images = cloudImages;
+            changed = true;
+        }
+    });
+
+    macCloudReady = true;
+    return changed;
+}
+
+async function macSeedCloudProducts(){
+    if(!macCloud) return false;
+
+    const rows = products.map(product => ({
+        name: product.name,
+        category: product.category,
+        price: Number(product.price || 0),
+        original_price:
+            product.originalPrice == null
+            ? null
+            : Number(product.originalPrice),
+        description: product.description || "",
+        images: macImageJson(product.images)
+    }));
+
+    const { error } =
+        await macCloud
+            .from("products")
+            .upsert(rows, { onConflict: "name" });
+
+    if(error){
+        console.warn("Supabase product seed failed:", error);
+        return false;
+    }
+
+    macCloudReady = true;
+    return true;
+}
+
+/* =========================================================
+   PRIVATE EDITOR - SUPABASE VERSION
+========================================================= */
+
+function renderPrivateEditor(){
+    if(!macAdminAuthenticated) return;
+
+    const list = document.getElementById("privateEditorList");
+    if(!list) return;
+
+    list.innerHTML = "";
+
+    products.forEach((product,index) => {
+        const card = document.createElement("div");
+        card.className = "private-product-card";
+
+        const images = [...(product.images || [])];
+        while(images.length < 3) images.push("");
+
+        card.innerHTML = `
+            <h3>${index + 1}. ${privateEscape(product.name)}</h3>
+
+            <div class="private-editor-grid">
+
+                <div class="private-field">
+                    <label>PRODUCT NAME</label>
+                    <input
+                        id="private-name-${product.id}"
+                        data-original-name="${privateEscape(product.name)}"
+                        value="${privateEscape(product.name)}">
+                </div>
+
+                <div class="private-field">
+                    <label>CATEGORY</label>
+                    <select id="private-category-${product.id}">
+                        ${["Shirts","Pants","T-Shirts"].map(c =>
+                            `<option value="${c}" ${product.category===c?"selected":""}>${c}</option>`
+                        ).join("")}
+                    </select>
+                </div>
+
+                <div class="private-field">
+                    <label>SELLING PRICE (₹)</label>
+                    <input type="number" min="0"
+                           id="private-price-${product.id}"
+                           value="${Number(product.price||0)}">
+                </div>
+
+                <div class="private-field">
+                    <label>ORIGINAL / MRP PRICE (₹)</label>
+                    <input type="number" min="0"
+                           id="private-original-${product.id}"
+                           value="${product.originalPrice ? Number(product.originalPrice) : ""}">
+                </div>
+
+                <div class="private-field">
+                    <label>BADGE</label>
+                    <input id="private-badge-${product.id}"
+                           value="${privateEscape(product.badge || "")}"
+                           placeholder="NEW / BESTSELLER / blank">
+                </div>
+
+                <div class="private-field">
+                    <label>SIZES — COMMA SEPARATED</label>
+                    <input id="private-sizes-${product.id}"
+                           value="${privateEscape((product.sizes || []).join(", "))}">
+                </div>
+
+                <div class="private-field" style="grid-column:1/-1;">
+                    <label>DESCRIPTION</label>
+                    <textarea id="private-description-${product.id}">${privateEscape(product.description || "")}</textarea>
+                </div>
+
+                <div class="private-photos">
+                    ${images.slice(0,3).map((image,photoIndex) => `
+                        <div class="private-photo" id="private-photo-box-${product.id}-${photoIndex}">
+                            <strong>PHOTO ${photoIndex + 1}</strong>
+
+                            <img
+                                id="private-preview-${product.id}-${photoIndex}"
+                                src="${privateEscape(image || "https://via.placeholder.com/600x800?text=Choose+Photo")}"
+                                onerror="this.src='https://via.placeholder.com/600x800?text=Choose+Photo'">
+
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onchange="previewPrivateImage(this,${product.id},${photoIndex})">
+
+                            <button
+                                type="button"
+                                class="mac-photo-delete-btn"
+                                onclick="deletePrivatePhoto(${product.id},${photoIndex})">
+                                DELETE PHOTO
+                            </button>
+                        </div>
+                    `).join("")}
+                </div>
+
+            </div>
+        `;
+
+        list.appendChild(card);
+    });
+
+    document.getElementById("privateEditorStatus").innerText =
+        macCloudReady
+        ? "Cloud connected. Choose, replace or delete photos, then click SAVE ALL CHANGES."
+        : "Cloud connection pending. Choose photos and click SAVE ALL CHANGES.";
+}
+
+function previewPrivateImage(input,productId,photoIndex){
+    if(!macAdminAuthenticated) return;
+
+    const file = input.files && input.files[0];
+    if(!file) return;
+
+    if(!file.type.startsWith("image/")){
+        alert("Please choose an image.");
+        input.value = "";
+        return;
+    }
+
+    const product = products.find(p => p.id === productId);
+    if(!product) return;
+
+    const oldUrl = (product.images || [])[photoIndex];
+    if(oldUrl) macPendingPhotoDeletes.add(oldUrl);
+
+    const preview =
+        document.getElementById(
+            `private-preview-${productId}-${photoIndex}`
+        );
+
+    if(preview){
+        preview.src = URL.createObjectURL(file);
+    }
+
+    input.dataset.hasNewImage = "true";
+    input.dataset.imageName = file.name;
+
+    const box =
+        document.getElementById(
+            `private-photo-box-${productId}-${photoIndex}`
+        );
+
+    if(box) box.dataset.hasNewFile = "true";
+}
+
+function deletePrivatePhoto(productId,photoIndex){
+    if(!macAdminAuthenticated) return;
+
+    const product = products.find(p => p.id === productId);
+    if(!product) return;
+
+    const oldUrl = (product.images || [])[photoIndex];
+    if(oldUrl) macPendingPhotoDeletes.add(oldUrl);
+
+    const images = [...(product.images || [])];
+    while(images.length < 3) images.push("");
+
+    images[photoIndex] = "";
+    product.images = images.slice(0,3);
+
+    const preview =
+        document.getElementById(
+            `private-preview-${productId}-${photoIndex}`
+        );
+
+    if(preview){
+        preview.src =
+            "https://via.placeholder.com/600x800?text=No+Photo";
+    }
+
+    const input =
+        document.querySelector(
+            `input[type="file"][onchange="previewPrivateImage(this,${productId},${photoIndex})"]`
+        );
+
+    if(input){
+        input.value = "";
+        delete input.dataset.hasNewImage;
+    }
+
+    showToast("Photo marked for deletion. Click SAVE ALL CHANGES.");
+}
+
+async function savePrivateProducts(){
+    if(!macAdminAuthenticated){
+        alert("Admin login required.");
+        return;
+    }
+
+    const status =
+        document.getElementById("privateEditorStatus");
+
+    const saveButton =
+        document.querySelector(".private-save-btn");
+
+    try{
+        if(saveButton){
+            saveButton.disabled = true;
+            saveButton.innerText = "SAVING TO CLOUD...";
+        }
+
+        if(!macCloud){
+            throw new Error("Supabase library did not load.");
+        }
+
+        for(const product of products){
+
+            const name =
+                document.getElementById(`private-name-${product.id}`);
+
+            const category =
+                document.getElementById(`private-category-${product.id}`);
+
+            const price =
+                document.getElementById(`private-price-${product.id}`);
+
+            const original =
+                document.getElementById(`private-original-${product.id}`);
+
+            const badge =
+                document.getElementById(`private-badge-${product.id}`);
+
+            const sizes =
+                document.getElementById(`private-sizes-${product.id}`);
+
+            const description =
+                document.getElementById(`private-description-${product.id}`);
+
+            const originalName =
+                name
+                ? (name.dataset.originalName || product.name)
+                : product.name;
+
+            if(name) product.name = name.value.trim() || product.name;
+            if(category) product.category = category.value;
+            if(price) product.price = Math.max(0,Number(price.value)||0);
+
+            if(original && original.value.trim() !== ""){
+                product.originalPrice =
+                    Math.max(0,Number(original.value)||0);
+            }else{
+                delete product.originalPrice;
+            }
+
+            if(badge) product.badge = badge.value.trim();
+
+            if(sizes){
+                const newSizes =
+                    sizes.value
+                        .split(",")
+                        .map(s => s.trim())
+                        .filter(Boolean);
+
+                if(newSizes.length){
+                    const oldStock = product.stock || {};
+                    const newStock = {};
+
+                    newSizes.forEach(size => {
+                        newStock[size] =
+                            Object.prototype.hasOwnProperty.call(oldStock,size)
+                            ? oldStock[size]
+                            : 1;
+                    });
+
+                    product.sizes = newSizes;
+                    product.stock = newStock;
+                }
+            }
+
+            if(description){
+                product.description = description.value.trim();
+            }
+
+            const images = [...(product.images || [])];
+            while(images.length < 3) images.push("");
+
+            for(let photoIndex=0;photoIndex<3;photoIndex++){
+
+                const input =
+                    document.querySelector(
+                        `input[type="file"][onchange="previewPrivateImage(this,${product.id},${photoIndex})"]`
+                    );
+
+                if(
+                    input &&
+                    input.dataset.hasNewImage === "true" &&
+                    input.files &&
+                    input.files[0]
+                ){
+                    const oldUrl = images[photoIndex];
+
+                    const uploaded =
+                        await macUploadImage(
+                            input.files[0],
+                            product,
+                            photoIndex
+                        );
+
+                    images[photoIndex] = uploaded.url;
+
+                    if(oldUrl){
+                        macPendingPhotoDeletes.add(oldUrl);
+                    }
+                }
+            }
+
+            product.images = images.slice(0,3);
+
+            await macSaveProductCloud(
+                product,
+                originalName
+            );
+        }
+
+        /* Delete old Supabase Storage images only after all
+           database rows have been updated successfully. */
+        for(const url of macPendingPhotoDeletes){
+            await macDeleteStorageUrl(url);
+        }
+
+        macPendingPhotoDeletes.clear();
+
+        localStorage.setItem(
+            "MAC_PRODUCTS",
+            JSON.stringify(products)
+        );
+
+        saveStock();
+
+        displayProducts(getCurrentProducts());
+        updateWishlist();
+        updateCart();
+
+        if(status){
+            status.innerText =
+                "✓ Saved successfully to Supabase. Customers will see the updated photos.";
+        }
+
+        showToast("MAC products saved to cloud");
+
+        /* Re-render so the selected file inputs reset. */
+        renderPrivateEditor();
+
+    }catch(error){
+        console.error("MAC cloud save error:",error);
+
+        if(status){
+            status.innerText =
+                "Could not save to Supabase: " +
+                (error.message || "Unknown error");
+        }
+
+        alert(
+            "Cloud save failed.\n\n" +
+            (error.message || "Please check your Supabase policies.")
+        );
+
+    }finally{
+        if(saveButton){
+            saveButton.disabled = false;
+            saveButton.innerText = "SAVE ALL CHANGES";
+        }
+    }
+}
+
+/* =========================================================
+   INITIAL CLOUD LOAD
+========================================================= */
+
+async function initMacSupabase(){
+    if(!macCloud){
+        console.error("Supabase JS library not available.");
+        return;
+    }
+
+    try{
+        const { data, error } =
+            await macCloud
+                .from("products")
+                .select("name,category,price,original_price,description,images");
+
+        if(error){
+            console.warn("Supabase is not ready yet:", error);
+            return;
+        }
+
+        if(data && data.length){
+            data.forEach(row => {
+                const product =
+                    products.find(p => p.name === row.name);
+
+                if(!product) return;
+
+                if(row.category != null) product.category = row.category;
+                if(row.price != null) product.price = Number(row.price);
+
+                if(row.original_price != null){
+                    product.originalPrice = Number(row.original_price);
+                }
+
+                if(row.description != null){
+                    product.description = row.description;
+                }
+
+                const images = macImageList(row.images);
+                if(images.length){
+                    product.images = images;
+                }
+            });
+
+            macCloudReady = true;
+
+            localStorage.setItem(
+                "MAC_PRODUCTS",
+                JSON.stringify(products)
+            );
+
+            displayProducts(getCurrentProducts());
+            updateWishlist();
+            updateCart();
+
+            if(macAdminAuthenticated){
+                renderPrivateEditor();
+            }
+
+            console.log("MAC products loaded from Supabase.");
+            return;
+        }
+
+        /* The table is empty. Try to seed the existing website
+           products so future edits have rows to update. */
+        const seeded = await macSeedCloudProducts();
+
+        if(seeded){
+            console.log("MAC products seeded to Supabase.");
+        }else{
+            console.warn(
+                "Supabase products table is empty and could not be seeded."
+            );
+        }
+
+    }catch(error){
+        console.warn("Supabase initialization error:",error);
+    }
+}
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+        setTimeout(initMacSupabase, 500);
+    }
+);
+</script>
+
 </body>
 </html>
-```
