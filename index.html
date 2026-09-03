@@ -1846,6 +1846,230 @@ body.dark-mode .theme-toggle{
     .mac-intro{opacity:0;visibility:hidden;}
 }
 
+
+/* =========================================================
+   PRIVATE ADMIN LOGIN / EDITOR
+========================================================= */
+.admin-login-overlay,
+.private-editor-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.78);
+    z-index:10000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+}
+.admin-login-overlay.active,
+.private-editor-overlay.active{display:flex;}
+
+.admin-login-box{
+    width:390px;
+    max-width:100%;
+    background:#fff;
+    color:#111;
+    padding:30px;
+    position:relative;
+}
+.admin-login-box h2{font-size:32px;margin-bottom:5px;}
+.admin-login-box p{
+    font-family:Arial,sans-serif;
+    color:#777;
+    font-size:13px;
+    margin-bottom:25px;
+}
+.close-admin-login,
+.close-private-editor{
+    position:absolute;
+    top:10px;
+    right:15px;
+    border:0;
+    background:none;
+    font-size:30px;
+    cursor:pointer;
+}
+.admin-login-field label{
+    display:block;
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+.admin-login-field input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    outline:none;
+}
+.admin-login-btn{
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    border:0;
+    background:#111;
+    color:#fff;
+    cursor:pointer;
+    font-weight:bold;
+}
+.admin-login-error{
+    min-height:20px;
+    margin-top:10px;
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    color:#c00;
+}
+
+.private-editor-box{
+    width:1150px;
+    max-width:100%;
+    max-height:94vh;
+    overflow-y:auto;
+    background:#fff;
+    color:#111;
+    padding:28px;
+    position:relative;
+}
+.private-editor-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:15px;
+    padding-right:35px;
+    margin-bottom:20px;
+}
+.private-editor-top h2{font-size:32px;margin-bottom:5px;}
+.private-editor-top p{
+    font-family:Arial,sans-serif;
+    color:#777;
+    font-size:13px;
+}
+.admin-logout-btn{
+    padding:10px 15px;
+    border:1px solid #111;
+    background:#fff;
+    cursor:pointer;
+    font-weight:bold;
+}
+.private-product-card{
+    border:1px solid #ddd;
+    padding:18px;
+    margin-bottom:18px;
+}
+.private-product-card h3{
+    font-size:22px;
+    margin-bottom:15px;
+}
+.private-editor-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+.private-field label{
+    display:block;
+    font-family:Arial,sans-serif;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+.private-field input,
+.private-field textarea,
+.private-field select{
+    width:100%;
+    padding:11px;
+    border:1px solid #ccc;
+    outline:none;
+}
+.private-field textarea{min-height:75px;resize:vertical;}
+.private-photos{
+    grid-column:1/-1;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+.private-photo{
+    border:1px solid #ddd;
+    padding:10px;
+}
+.private-photo strong{
+    display:block;
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    margin-bottom:8px;
+}
+.private-photo img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+    display:block;
+    background:#f5f5f5;
+    margin-bottom:8px;
+}
+.private-photo input{width:100%;font-size:12px;}
+.private-editor-actions{
+    position:sticky;
+    bottom:0;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    background:#fff;
+    border-top:1px solid #ddd;
+    padding-top:15px;
+    margin-top:5px;
+}
+.private-save-btn,
+.private-reset-btn{
+    padding:14px 20px;
+    cursor:pointer;
+    font-weight:bold;
+}
+.private-save-btn{background:#111;color:#fff;border:1px solid #111;}
+.private-reset-btn{background:#fff;color:#111;border:1px solid #111;}
+.private-editor-status{
+    font-family:Arial,sans-serif;
+    color:#666;
+    font-size:12px;
+    margin-top:8px;
+}
+body.dark-mode .admin-login-box,
+body.dark-mode .private-editor-box{
+    background:#111;
+    color:#eee;
+}
+body.dark-mode .admin-login-box p,
+body.dark-mode .private-editor-top p,
+body.dark-mode .private-editor-status{
+    color:#aaa;
+}
+body.dark-mode .admin-login-field input,
+body.dark-mode .private-field input,
+body.dark-mode .private-field textarea,
+body.dark-mode .private-field select{
+    background:#1b1b1b;
+    color:#eee;
+    border-color:#555;
+}
+body.dark-mode .admin-logout-btn,
+body.dark-mode .private-reset-btn{
+    background:#111;
+    color:#eee;
+    border-color:#555;
+}
+body.dark-mode .private-product-card,
+body.dark-mode .private-photo{
+    border-color:#444;
+}
+body.dark-mode .private-editor-actions{
+    background:#111;
+    border-color:#444;
+}
+@media(max-width:700px){
+    .private-editor-grid{grid-template-columns:1fr;}
+    .private-photos{grid-template-columns:1fr;}
+    .private-photo img{height:300px;}
+    .private-editor-top{flex-direction:column;}
+}
+
 </style>
 </head>
 
@@ -2291,6 +2515,51 @@ body.dark-mode .theme-toggle{
     </div>
 
 </footer>
+
+
+<!-- =========================================================
+     PRIVATE MAC ADMIN LOGIN + PRODUCT EDITOR
+     Customers do not see an admin button.
+========================================================= -->
+<div class="admin-login-overlay" id="adminLoginOverlay">
+    <div class="admin-login-box">
+        <button class="close-admin-login" onclick="closeAdminLogin()">×</button>
+        <h2>MAC ADMIN</h2>
+        <p>Private product management</p>
+
+        <div class="admin-login-field">
+            <label>ADMIN PASSWORD</label>
+            <input type="password" id="adminPassword" placeholder="Enter password"
+                   onkeydown="if(event.key==='Enter') verifyAdminPassword()">
+        </div>
+
+        <button class="admin-login-btn" onclick="verifyAdminPassword()">LOGIN</button>
+        <div class="admin-login-error" id="adminLoginError"></div>
+    </div>
+</div>
+
+<div class="private-editor-overlay" id="privateEditorOverlay">
+    <div class="private-editor-box">
+        <button class="close-private-editor" onclick="logoutAdmin()">×</button>
+
+        <div class="private-editor-top">
+            <div>
+                <h2>MAC PRODUCT MANAGER</h2>
+                <p>Only the admin can edit product photos and details.</p>
+            </div>
+            <button class="admin-logout-btn" onclick="logoutAdmin()">LOG OUT</button>
+        </div>
+
+        <div id="privateEditorList"></div>
+
+        <div class="private-editor-actions">
+            <button class="private-save-btn" onclick="savePrivateProducts()">SAVE ALL CHANGES</button>
+            <button class="private-reset-btn" onclick="resetPrivateProducts()">RESET PRODUCTS</button>
+        </div>
+
+        <div class="private-editor-status" id="privateEditorStatus"></div>
+    </div>
+</div>
 
 <!-- =========================================================
      PRODUCT DETAIL
@@ -5665,6 +5934,335 @@ document.addEventListener("DOMContentLoaded", function(){
         intro.remove();
     }, 3900);
 });
+
+/* =========================================================
+   PRIVATE ADMIN ACCESS
+   Click the MAC logo 5 times quickly to open the admin login.
+   Customers do not see an Admin button.
+========================================================= */
+let macLogoClicks = 0;
+let macLogoClickTimer = null;
+
+function setupPrivateAdminAccess(){
+    const logo = document.querySelector(".logo");
+    if(!logo) return;
+
+    logo.style.cursor = "default";
+    logo.addEventListener("click", function(){
+        macLogoClicks++;
+
+        clearTimeout(macLogoClickTimer);
+        macLogoClickTimer = setTimeout(() => {
+            macLogoClicks = 0;
+        }, 1500);
+
+        if(macLogoClicks >= 5){
+            macLogoClicks = 0;
+            openAdminLogin();
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", setupPrivateAdminAccess);
+
+
+/* =========================================================
+   PRIVATE ADMIN LOGIN / PRODUCT EDITOR
+========================================================= */
+
+/*
+   IMPORTANT:
+   This is a front-end-only password gate. It prevents normal
+   customers from opening the editor UI, but it is NOT a secure
+   server-side authentication system. For real online security,
+   use a backend/database with authentication.
+*/
+const MAC_ADMIN_PASSWORD = "MACADMIN2026";
+
+let macAdminAuthenticated = false;
+
+function openAdminLogin(){
+    const overlay = document.getElementById("adminLoginOverlay");
+    const input = document.getElementById("adminPassword");
+    const error = document.getElementById("adminLoginError");
+
+    if(!overlay) return;
+
+    overlay.classList.add("active");
+    if(input){
+        input.value = "";
+        setTimeout(() => input.focus(), 100);
+    }
+    if(error) error.innerText = "";
+}
+
+function closeAdminLogin(){
+    const overlay = document.getElementById("adminLoginOverlay");
+    if(overlay) overlay.classList.remove("active");
+}
+
+function verifyAdminPassword(){
+    const input = document.getElementById("adminPassword");
+    const error = document.getElementById("adminLoginError");
+
+    if(!input) return;
+
+    if(input.value === MAC_ADMIN_PASSWORD){
+        macAdminAuthenticated = true;
+        closeAdminLogin();
+        openPrivateEditor();
+    }else{
+        if(error) error.innerText = "Incorrect admin password.";
+        input.value = "";
+        input.focus();
+    }
+}
+
+function openPrivateEditor(){
+    if(!macAdminAuthenticated){
+        openAdminLogin();
+        return;
+    }
+
+    renderPrivateEditor();
+
+    const overlay = document.getElementById("privateEditorOverlay");
+    if(overlay) overlay.classList.add("active");
+}
+
+function logoutAdmin(){
+    macAdminAuthenticated = false;
+
+    const overlay = document.getElementById("privateEditorOverlay");
+    if(overlay) overlay.classList.remove("active");
+
+    const login = document.getElementById("adminLoginOverlay");
+    if(login) login.classList.remove("active");
+}
+
+function privateEscape(value){
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+function renderPrivateEditor(){
+    if(!macAdminAuthenticated) return;
+
+    const list = document.getElementById("privateEditorList");
+    if(!list) return;
+
+    list.innerHTML = "";
+
+    products.forEach((product,index) => {
+        const card = document.createElement("div");
+        card.className = "private-product-card";
+
+        const images = [...(product.images || [])];
+        while(images.length < 3) images.push("");
+
+        card.innerHTML = `
+            <h3>${index + 1}. ${privateEscape(product.name)}</h3>
+
+            <div class="private-editor-grid">
+
+                <div class="private-field">
+                    <label>PRODUCT NAME</label>
+                    <input id="private-name-${product.id}" value="${privateEscape(product.name)}">
+                </div>
+
+                <div class="private-field">
+                    <label>CATEGORY</label>
+                    <select id="private-category-${product.id}">
+                        ${["Shirts","Pants","T-Shirts"].map(c =>
+                            `<option value="${c}" ${product.category===c?"selected":""}>${c}</option>`
+                        ).join("")}
+                    </select>
+                </div>
+
+                <div class="private-field">
+                    <label>SELLING PRICE (₹)</label>
+                    <input type="number" min="0" id="private-price-${product.id}" value="${Number(product.price||0)}">
+                </div>
+
+                <div class="private-field">
+                    <label>ORIGINAL / MRP PRICE (₹)</label>
+                    <input type="number" min="0" id="private-original-${product.id}"
+                           value="${product.originalPrice ? Number(product.originalPrice) : ""}">
+                </div>
+
+                <div class="private-field">
+                    <label>BADGE</label>
+                    <input id="private-badge-${product.id}" value="${privateEscape(product.badge || "")}"
+                           placeholder="NEW / BESTSELLER / blank">
+                </div>
+
+                <div class="private-field">
+                    <label>SIZES — COMMA SEPARATED</label>
+                    <input id="private-sizes-${product.id}"
+                           value="${privateEscape((product.sizes || []).join(", "))}">
+                </div>
+
+                <div class="private-field" style="grid-column:1/-1;">
+                    <label>DESCRIPTION</label>
+                    <textarea id="private-description-${product.id}">${privateEscape(product.description || "")}</textarea>
+                </div>
+
+                <div class="private-photos">
+                    ${images.slice(0,3).map((image,photoIndex) => `
+                        <div class="private-photo">
+                            <strong>PHOTO ${photoIndex + 1}</strong>
+                            <img id="private-preview-${product.id}-${photoIndex}"
+                                 src="${privateEscape(image || "https://via.placeholder.com/600x800?text=Choose+Photo")}"
+                                 onerror="this.src='https://via.placeholder.com/600x800?text=Choose+Photo'">
+                            <input type="file" accept="image/*"
+                                   onchange="previewPrivateImage(this,${product.id},${photoIndex})">
+                        </div>
+                    `).join("")}
+                </div>
+
+            </div>
+        `;
+
+        list.appendChild(card);
+    });
+
+    document.getElementById("privateEditorStatus").innerText =
+        "Admin mode active. Choose photos and click SAVE ALL CHANGES.";
+}
+
+function previewPrivateImage(input,productId,photoIndex){
+    if(!macAdminAuthenticated) return;
+
+    const file = input.files && input.files[0];
+    if(!file) return;
+
+    if(!file.type.startsWith("image/")){
+        alert("Please choose an image.");
+        input.value = "";
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(event){
+        const preview = document.getElementById(
+            `private-preview-${productId}-${photoIndex}`
+        );
+
+        if(preview) preview.src = event.target.result;
+
+        input.dataset.imageData = event.target.result;
+        input.dataset.hasNewImage = "true";
+    };
+
+    reader.readAsDataURL(file);
+}
+
+function savePrivateProducts(){
+    if(!macAdminAuthenticated){
+        alert("Admin login required.");
+        return;
+    }
+
+    try{
+        products.forEach(product => {
+            const name = document.getElementById(`private-name-${product.id}`);
+            const category = document.getElementById(`private-category-${product.id}`);
+            const price = document.getElementById(`private-price-${product.id}`);
+            const original = document.getElementById(`private-original-${product.id}`);
+            const badge = document.getElementById(`private-badge-${product.id}`);
+            const sizes = document.getElementById(`private-sizes-${product.id}`);
+            const description = document.getElementById(`private-description-${product.id}`);
+
+            if(name) product.name = name.value.trim() || product.name;
+            if(category) product.category = category.value;
+            if(price) product.price = Math.max(0,Number(price.value)||0);
+
+            if(original && original.value.trim() !== ""){
+                product.originalPrice = Math.max(0,Number(original.value)||0);
+            }else{
+                delete product.originalPrice;
+            }
+
+            if(badge) product.badge = badge.value.trim();
+
+            if(sizes){
+                const newSizes = sizes.value
+                    .split(",")
+                    .map(s => s.trim())
+                    .filter(Boolean);
+
+                if(newSizes.length){
+                    const oldStock = product.stock || {};
+                    const newStock = {};
+
+                    newSizes.forEach(size => {
+                        newStock[size] =
+                            Object.prototype.hasOwnProperty.call(oldStock,size)
+                            ? oldStock[size]
+                            : 1;
+                    });
+
+                    product.sizes = newSizes;
+                    product.stock = newStock;
+                }
+            }
+
+            if(description) product.description = description.value.trim();
+
+            const newImages = [...(product.images || [])];
+            while(newImages.length < 3) newImages.push("");
+
+            for(let photoIndex=0;photoIndex<3;photoIndex++){
+                const input = document.querySelector(
+                    `input[type="file"][onchange="previewPrivateImage(this,${product.id},${photoIndex})"]`
+                );
+
+                if(input &&
+                   input.dataset.hasNewImage === "true" &&
+                   input.dataset.imageData){
+                    newImages[photoIndex] = input.dataset.imageData;
+                }
+            }
+
+            product.images = newImages.slice(0,3);
+        });
+
+        localStorage.setItem("MAC_PRODUCTS",JSON.stringify(products));
+        saveStock();
+
+        displayProducts(getCurrentProducts());
+        updateWishlist();
+        updateCart();
+
+        document.getElementById("privateEditorStatus").innerText =
+            "✓ All changes saved successfully.";
+        showToast("MAC products updated");
+    }catch(error){
+        console.error(error);
+        alert(
+            "Could not save the changes. Try smaller/compressed photos. " +
+            "Browser storage may be full."
+        );
+    }
+}
+
+function resetPrivateProducts(){
+    if(!macAdminAuthenticated) return;
+
+    if(!confirm(
+        "Reset all product edits and photos to the original website data?"
+    )) return;
+
+    localStorage.removeItem("MAC_PRODUCTS");
+    localStorage.removeItem("MAC_STOCK");
+    location.reload();
+}
+
 </script>
 
 </body>
