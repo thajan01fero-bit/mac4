@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -2004,14 +2004,7 @@ body.dark-mode .theme-toggle{
     </div>
 
 </header>
-<button id="visibleAdminButton"
-        onclick="openAdmin()"
-        style="position:fixed;right:18px;bottom:18px;z-index:9998;
-               background:#111;color:#fff;border:0;border-radius:8px;
-               padding:12px 16px;font-weight:700;cursor:pointer;
-               box-shadow:0 4px 15px rgba(0,0,0,.2);">
-    ADMIN
-</button>
+
 
 
 <!-- =========================================================
@@ -5797,6 +5790,61 @@ displayProducts();
 updateCart();
 
 updateWishlist();
+
+
+/* =========================================================
+   MAC FIVE-TAP ADMIN TRIGGER
+========================================================= */
+(function MAC_FIVE_TAP_ADMIN(){
+    let tapCount = 0;
+    let tapTimer = null;
+
+    function handleMACTap(event){
+        tapCount++;
+
+        clearTimeout(tapTimer);
+        tapTimer = setTimeout(function(){
+            tapCount = 0;
+        }, 1800);
+
+        if(tapCount >= 5){
+            tapCount = 0;
+            clearTimeout(tapTimer);
+            if(typeof openAdmin === "function"){
+                openAdmin();
+            }
+        }
+    }
+
+    function attachLogoTrigger(){
+        const selectors = [
+            "#logo",
+            ".logo",
+            ".brand-logo",
+            ".navbar-logo",
+            ".site-logo",
+            "[class*='logo']",
+            "[id*='logo']"
+        ];
+
+        const logos = document.querySelectorAll(selectors.join(","));
+        logos.forEach(function(logo){
+            if(!logo.dataset.macFiveTap){
+                logo.dataset.macFiveTap = "1";
+                logo.addEventListener("click", handleMACTap);
+            }
+        });
+    }
+
+    if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded", attachLogoTrigger);
+    }else{
+        attachLogoTrigger();
+    }
+
+    // Re-check after dynamic header rendering.
+    setTimeout(attachLogoTrigger, 1000);
+})();
 
 </script>
 
